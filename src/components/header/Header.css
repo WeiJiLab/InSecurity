@@ -1,0 +1,33 @@
+.Header {
+    background: #fff;
+    color: #000;
+    padding: 0;
+    margin: 0;
+    border-bottom: 1px solid #f0f1f3;
+}
+
+.icon {
+    /*border-bottom: solid 3px #000;*/
+}
+
+.logo-img {
+    width: 2em;
+    height: 2em;
+}
+
+.span-security{
+    font-weight: bolder;
+    color: darkgreen;
+}
+.span-in{
+    font-weight: bolder;
+    color: darkblue;
+}
+
+.span-login{
+    color:#000;
+}
+
+.mr-auto > a {
+    color: #000;
+}
