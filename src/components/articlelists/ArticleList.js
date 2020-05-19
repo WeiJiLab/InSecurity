@@ -12,7 +12,7 @@ class ArticleList extends Component {
                 this.props.articles.map((item, index) => {
                     return <Row className={"Article-Card"}>
                         <Col md={8}>
-                            <h5>{item.article.title}</h5>
+                            {this.renderTitle(item.article.title)}
                             <p>作者: {item.authorName}</p>
                             <h6 style={{color: '#aaa'}}>{item.article.content}</h6>
                             <Button variant="link" style={{padding: 0, margin: 0}}>{this.renderTagIcon()}</Button>
@@ -36,6 +36,13 @@ class ArticleList extends Component {
             }
 
         </Fragment>);
+    }
+
+    renderTitle(title) {
+        let html = {
+            __html:title
+        };
+        return <h5><div dangerouslySetInnerHTML={html}></div></h5>;
     }
 
     renderTagIcon() {
