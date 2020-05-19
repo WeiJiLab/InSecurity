@@ -9,6 +9,7 @@ import Login from "./pages/login/Login";
 import Write from "./pages/write/Write";
 import Me from "./pages/me/Me";
 import {Col, Container, Row} from "react-bootstrap";
+import Topic from "./pages/topic/Topic";
 
 function App() {
     return (
@@ -20,6 +21,7 @@ function App() {
                     <Col md={10}>
                         <Switch>
                             <Route exact path="/" component={Home}/>
+                            <Route exact path="/topic" component={Topic}/>
                             <Route exact path="/home" component={Home}/>
                             <Route exact path="/login" component={Login}/>
                             <Route exact path="/register" component={Register}/>

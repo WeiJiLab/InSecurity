@@ -282,8 +282,8 @@ export function ajaxGetArticlesFromApi(dispatch) {
 }
 
 
-export function ajaxGetArticlesByTopicFromApi(dispatch) {
-    fetch(API_ARTICLE_TOPIC, {
+export function ajaxGetArticlesByTopicFromApi(topic, dispatch) {
+    fetch(API_ARTICLE_TOPIC + "?topic=" + topic, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',

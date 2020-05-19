@@ -37,7 +37,7 @@ public class ArticleService {
         String[] topics = topic.trim().split(",");
         Set<ArticleResponseDTO> result = new HashSet<>();
         for (String tag : topics) {
-            List<Article> allByTagsLike = articleRepository.findAllByTagsLike(tag);
+            List<Article> allByTagsLike = articleRepository.findAllByTagsLike("%"+tag+"%");
             result.addAll(getArticleResponseDTO(allByTagsLike));
         }
         return ResultDTO.<List<ArticleResponseDTO>>builder().data(new ArrayList<>(result)).build();

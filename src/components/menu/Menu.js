@@ -35,7 +35,13 @@ class Menu extends Component {
         return (<Fragment>
                 {
                     this.props.topicsResult.topics.map((item, index) => {
-                        return <Nav.Link className="nav-tag" style={{color: "#000"}}><Link to={"/topic/" + item}>{item}</Link></Nav.Link>
+                        let path = {
+                            pathname: "/topic",
+                            state: {
+                                tag: item,
+                            }
+                        };
+                        return <Nav.Link className="nav-tag" style={{color: "#000"}}><Link to={path}>{item}</Link></Nav.Link>
                     })
                 }
             </Fragment>

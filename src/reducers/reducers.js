@@ -64,12 +64,12 @@ export function reduxResult(state = initialState, action) {
 
         case TopicActions.GET_TOPICS_FAILED:
             return Object.assign({}, state, {
-                topicResult: action.payload,
+                topicsResult: action.payload,
             });
 
         case TopicActions.GET_TOPICS_SUCCESS:
             return Object.assign({}, state, {
-                topicResult: action.payload,
+                topicsResult: action.payload,
             });
 
         case ArticleActions.ARTICLE_POST_FAILED:
