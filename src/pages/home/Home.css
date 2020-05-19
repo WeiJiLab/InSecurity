@@ -9,10 +9,10 @@
 }
 
 .Article-Card:hover {
+    background: #f5f6f6;
     -webkit-transition: background-size .2s linear;
     transition: background-size .2s linear;
 }
-
 
 
 h1, h2, h3 {
@@ -57,18 +57,16 @@ h1, h2, h3 {
 
 .Left-Card {
     padding: 1em;
-    color: #fff;
-    height: 25em;
-    background-size: 100% auto;
-    background: #000 url("https://agilutions.com/wp-content/uploads/2018/04/team-coding-768x512.jpg") center;
-    text-align: match-parent;
+    text-align: left;
+    box-shadow: 0 1px 3px rgba(27, 95, 160, .1);
+    background: #fff;
 }
 
 .Left-Card:hover {
     background-size: 120% auto;
     -webkit-transition: background-size .2s linear;
     transition: background-size .2s linear;
-    background: linear-gradient(to top, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0)), url("https://agilutions.com/wp-content/uploads/2018/04/team-coding-768x512.jpg") no-repeat center;
+    /*background: linear-gradient(to top, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0)), url("https://agilutions.com/wp-content/uploads/2018/04/team-coding-768x512.jpg") no-repeat center;*/
 }
 
 .Right-Card {
@@ -76,7 +74,7 @@ h1, h2, h3 {
     background: #fff;
     padding: 1em;
     height: 12em;
-    box-shadow: 0 1px 3px rgba(27,95,160,.1);
+    box-shadow: 0 1px 3px rgba(27, 95, 160, .1);
 }
 
 .Write-Card {
@@ -115,3 +113,10 @@ h1, h2, h3 {
     padding-bottom: 0.5em;
 }
 
+.SvgIcon {
+    width: 1.2em;
+    height: 1.2em;
+    float: left;
+    margin-right: 0.5em;
+    position: relative;
+}

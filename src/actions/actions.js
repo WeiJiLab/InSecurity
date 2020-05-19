@@ -1,4 +1,4 @@
-import {API_ARTICLE_POST, API_LOGIN, API_REGISTER} from "../api/insecurityApi";
+import {API_ARTICLE_ALL, API_ARTICLE_POST, API_ARTICLE_TOPIC, API_ARTICLE_TOPICS, API_LOGIN, API_REGISTER} from "../api/insecurityApi";
 
 export const LoginActions = {
     LOGIN_SUCCESS: 'LOGIN_SUCCESS',
@@ -10,10 +10,19 @@ export const RegisterActions = {
     REGISTER_FAILED: 'REGISTER_FAILED',
 };
 
-export const WriteActions = {
-    ARTICLE_CHANGE: 'ARTICLE_CHANGE',
+export const ArticleActions = {
+    WRITE_ARTICLE_CHANGE: 'ARTICLE_CHANGE',
     ARTICLE_POST_SUCCESS: 'ARTICLE_POST_SUCCESS',
     ARTICLE_POST_FAILED: 'ARTICLE_POST_FAILED',
+    GET_ARTICLE_LIST_ALL_SUCCESS: 'GET_ARTICLE_LIST_ALL_SUCCESS',
+    GET_ARTICLE_LIST_ALL_FAILED: 'GET_ARTICLE_LIST_ALL_FAILED',
+    GET_ARTICLE_LIST_ALL_BY_TOPIC_SUCCESS: 'GET_ARTICLE_LIST_ALL_BY_TOPIC_SUCCESS',
+    GET_ARTICLE_LIST_ALL_BY_TOPIC_FAILED: 'GET_ARTICLE_LIST_ALL_BY_TOPIC_FAILED',
+};
+
+export const TopicActions = {
+    GET_TOPICS_SUCCESS: 'GET_TOPICS_SUCCESS',
+    GET_TOPICS_FAILED: 'GET_TOPICS_FAILED',
 };
 
 export const login = (loginDTO) => (dispatch) => {
@@ -24,14 +33,25 @@ export const register = (registerDTO) => (dispatch) => {
     ajaxRegisterFromApi(registerDTO, dispatch);
 };
 
-
 export const post = (registerDTO) => (dispatch) => {
     ajaxPostArticleFromApi(registerDTO, dispatch);
 };
 
+export const topics = () => (dispatch) => {
+    ajaxGetTopicsFromApi(dispatch);
+};
+
+export const articles = () => (dispatch) => {
+    ajaxGetArticlesFromApi(dispatch);
+};
+
+export const articlesByTopic = (topic) => (dispatch) => {
+    ajaxGetArticlesByTopicFromApi(topic, dispatch);
+};
+
 export const edit = (articleDTO) => (dispatch) => {
     dispatch({
-        type: WriteActions.ARTICLE_CHANGE,
+        type: ArticleActions.WRITE_ARTICLE_CHANGE,
         payload: {
             title: articleDTO.title,
             content: articleDTO.content,
@@ -142,16 +162,18 @@ export function ajaxPostArticleFromApi(articleDTO, dispatch) {
             console.log('Success:', data);
             if (data.status == null && data.errorCode != null) {
                 dispatch({
-                    type: WriteActions.ARTICLE_POST_FAILED,
+                    type: ArticleActions.ARTICLE_POST_FAILED,
                     payload: {
+                        postStatus: false,
                         title: data.title,
                         content: data.content,
                     }
                 })
             } else {
                 dispatch({
-                    type: WriteActions.ARTICLE_POST_SUCCESS,
+                    type: ArticleActions.ARTICLE_POST_SUCCESS,
                     payload: {
+                        postStatus: true,
                         title: data.title,
                         content: data.content,
                     }
@@ -161,11 +183,145 @@ export function ajaxPostArticleFromApi(articleDTO, dispatch) {
         .catch((error) => {
             console.error('Error:', error);
             dispatch({
-                type: WriteActions.ARTICLE_POST_FAILED,
+                type: ArticleActions.ARTICLE_POST_FAILED,
                 payload: {
+                    postStatus: false,
                     title: null,
                     content: null,
                 }
             })
         });
 }
+
+
+export function ajaxGetTopicsFromApi(dispatch) {
+    fetch(API_ARTICLE_TOPICS, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+    })
+        .then(response => response.json())
+        .then(data => {
+            console.log('Success:', data);
+            if (data.status == null && data.errorCode != null) {
+                dispatch({
+                    type: TopicActions.GET_TOPICS_FAILED,
+                    payload: {
+                        topicsStatus: false,
+                        message: data.message,
+                        topics: null
+                    }
+                })
+            } else {
+                dispatch({
+                    type: TopicActions.GET_TOPICS_SUCCESS,
+                    payload: {
+                        topicsStatus: true,
+                        message: data.message,
+                        topics: data.data
+                    }
+                })
+            }
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+            dispatch({
+                type: TopicActions.GET_TOPICS_FAILED,
+                payload: {
+                    topicsStatus: false,
+                    message: error.message,
+                    topics: null
+                }
+            })
+        });
+}
+
+
+export function ajaxGetArticlesFromApi(dispatch) {
+    fetch(API_ARTICLE_ALL, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+    })
+        .then(response => response.json())
+        .then(data => {
+            console.log('Success:', data);
+            if (data.status == null && data.errorCode != null) {
+                dispatch({
+                    type: ArticleActions.GET_ARTICLE_LIST_ALL_FAILED,
+                    payload: {
+                        articlesStatus: false,
+                        message: data.message,
+                        articles: null
+                    }
+                })
+            } else {
+                dispatch({
+                    type: ArticleActions.GET_ARTICLE_LIST_ALL_SUCCESS,
+                    payload: {
+                        articlesStatus: true,
+                        message: data.message,
+                        articles: data.data
+                    }
+                })
+            }
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+            dispatch({
+                type: ArticleActions.GET_ARTICLE_LIST_ALL_FAILED,
+                payload: {
+                    articlesStatus: false,
+                    message: error.message,
+                    articles: null
+                }
+            })
+        });
+}
+
+
+export function ajaxGetArticlesByTopicFromApi(dispatch) {
+    fetch(API_ARTICLE_TOPIC, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+    })
+        .then(response => response.json())
+        .then(data => {
+            console.log('Success:', data);
+            if (data.status == null && data.errorCode != null) {
+                dispatch({
+                    type: ArticleActions.GET_ARTICLE_LIST_ALL_BY_TOPIC_FAILED,
+                    payload: {
+                        articlesStatus: false,
+                        message: data.message,
+                        articles: null
+                    }
+                })
+            } else {
+                dispatch({
+                    type: ArticleActions.GET_ARTICLE_LIST_ALL_BY_TOPIC_SUCCESS,
+                    payload: {
+                        articlesStatus: true,
+                        message: data.message,
+                        articles: data.data
+                    }
+                })
+            }
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+            dispatch({
+                type: ArticleActions.GET_ARTICLE_LIST_ALL_BY_TOPIC_FAILED,
+                payload: {
+                    articlesStatus: false,
+                    message: error.message,
+                    articles: null
+                }
+            })
+        });
+}
+

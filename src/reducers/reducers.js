@@ -1,5 +1,5 @@
 import {combineReducers} from 'redux'
-import {LoginActions, RegisterActions, WriteActions} from '../actions/actions'
+import {ArticleActions, LoginActions, RegisterActions, TopicActions} from '../actions/actions'
 
 const initialState = {
     loginResult: {
@@ -15,6 +15,26 @@ const initialState = {
     editResult: {
         title: '',
         content: '',
+    },
+    postResult: {
+        postStatus: false,
+        title: '',
+        content: '',
+    },
+    topicsResult: {
+        topicsStatus: false,
+        message: null,
+        topics: []
+    },
+    articlesResult: {
+        articlesStatus: false,
+        message: null,
+        articles: []
+    },
+    articlesByTopicResult: {
+        articlesStatus: false,
+        message: null,
+        articles: []
     }
 };
 
@@ -37,9 +57,50 @@ export function reduxResult(state = initialState, action) {
                 registerResult: action.payload,
             });
 
-        case WriteActions.ARTICLE_CHANGE:
+        case ArticleActions.WRITE_ARTICLE_CHANGE:
             return Object.assign({}, state, {
                 editResult: action.payload,
+            });
+
+        case TopicActions.GET_TOPICS_FAILED:
+            return Object.assign({}, state, {
+                topicResult: action.payload,
+            });
+
+        case TopicActions.GET_TOPICS_SUCCESS:
+            return Object.assign({}, state, {
+                topicResult: action.payload,
+            });
+
+        case ArticleActions.ARTICLE_POST_FAILED:
+            return Object.assign({}, state, {
+                postResult: action.payload,
+            });
+
+        case ArticleActions.ARTICLE_POST_SUCCESS:
+            return Object.assign({}, state, {
+                postResult: action.payload,
+            });
+
+        case ArticleActions.GET_ARTICLE_LIST_ALL_FAILED:
+            return Object.assign({}, state, {
+                articlesResult: action.payload,
+            });
+
+        case  ArticleActions.GET_ARTICLE_LIST_ALL_SUCCESS:
+            return Object.assign({}, state, {
+                articlesResult: action.payload,
+            });
+
+
+        case ArticleActions.GET_ARTICLE_LIST_ALL_BY_TOPIC_FAILED:
+            return Object.assign({}, state, {
+                articlesByTopicResult: action.payload,
+            });
+
+        case  ArticleActions.GET_ARTICLE_LIST_ALL_BY_TOPIC_SUCCESS:
+            return Object.assign({}, state, {
+                articlesByTopicResult: action.payload,
             });
 
         default:
