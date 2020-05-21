@@ -9,6 +9,7 @@ import com.thoughtworks.security.insecurity.entity.User;
 import com.thoughtworks.security.insecurity.exceptions.EmailAlreadyRegisteredException;
 import com.thoughtworks.security.insecurity.exceptions.EmailOrPasswordNotCorrectException;
 import com.thoughtworks.security.insecurity.exceptions.RegisterFailedException;
+import com.thoughtworks.security.insecurity.exceptions.UserDeletedException;
 import com.thoughtworks.security.insecurity.exceptions.UserNotFoundException;
 import com.thoughtworks.security.insecurity.exceptions.UsernameAlreadyRegisteredException;
 import com.thoughtworks.security.insecurity.repository.UserRepository;
@@ -24,6 +25,7 @@ import static com.thoughtworks.security.insecurity.constant.Constant.EMAIL_ALREA
 import static com.thoughtworks.security.insecurity.constant.Constant.EMAIL_OR_PASSWORD_NOT_CORRECT_CODE;
 import static com.thoughtworks.security.insecurity.constant.Constant.REGISTER_FAILED;
 import static com.thoughtworks.security.insecurity.constant.Constant.USERNAME_ALREADY_REGISTERED;
+import static com.thoughtworks.security.insecurity.constant.Constant.USER_HAS_DELETED;
 import static com.thoughtworks.security.insecurity.constant.Constant.USER_NOT_FOUND;
 
 @Component
@@ -44,6 +46,9 @@ public class UserService {
         User user = userRepository.findTopByEmail(loginRequestDTO.getEmail());
         if (user == null) {
             throw new UserNotFoundException(USER_NOT_FOUND);
+        }
+        if (user.getDel()) {
+            throw new UserDeletedException(USER_HAS_DELETED);
         }
 
 //        String password = DigestUtils.md5DigestAsHex((user.getEmail() + user.getUsername() + loginRequestDTO.getPassword()).getBytes());

@@ -47,7 +47,7 @@ class ArticlesManage extends Component {
                 return <Container style={{marginBottom: '0em', paddingBottom: '0em'}}>
                     <Row>
                         <Col md={10} style={{marginBottom: '0.5em', paddingBottom: '0.5em'}}>
-                            <Row style={{fontSize: '1em', color: '#303030'}}><Link className={"title"} to={path}>{item.article.title}</Link></Row>
+                            <Row style={{fontSize: '1em', color: '#303030'}}>{item.article.hot?'[热点]':''}<Link className={"title"} to={path}>{item.article.title}</Link></Row>
                             <Row style={{fontSize: '0.7em'}}>{this.renderTags(item.tags)}
                                 <span style={{color: 'gray', marginLeft: '1em'}}>{item.authorName}</span>&nbsp;发布于&nbsp;<span
                                     style={{color: 'gray'}}>{item.article.createTime}</span>
@@ -56,7 +56,7 @@ class ArticlesManage extends Component {
                         <Col md={2} style={{padding:0}}>
                             <Row style={{height:'100%'}}>
                                 <Col style={{color:'#000',height:'100%'}}><Link>删除</Link></Col>
-                                <Col style={{color:'#000',height:'100%'}}><Link>热点</Link></Col>
+                                <Col style={{color:'#000',height:'100%'}}><Link>{item.article.hot?'降温':'热点'}</Link></Col>
                             </Row>
                         </Col>
                     </Row>

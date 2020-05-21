@@ -17,4 +17,5 @@ public class UserDTO {
     private String email;
     private String token;
     private Date lastLoginTime;
+    private Boolean del;
 }

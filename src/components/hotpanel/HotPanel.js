@@ -26,7 +26,7 @@ class HotPanel extends Component {
     }
 
     renderHotList() {
-        if (!this.props.articlesHotResult.result) {
+        if (!this.props.articlesHotResult) {
             return <Row><Col><span style={{color: '#ccc'}}>&nbsp;&nbsp;无</span></Col></Row>
         }
 
@@ -38,9 +38,10 @@ class HotPanel extends Component {
                         article:item
                     }
                 };
-                return <Container style={{borderBottom: 'solid 1px #eee', marginBottom: '0.5em',paddingBottom:'0.5em'}}>
-                    <Row style={{fontSize:'0.9em',color:'#303030'}}><Link className={"title"} to={path}>{item.article.title}</Link></Row>
-                    <Row style={{fontSize: '0.7em'}}><span style={{color: 'gray'}}>{item.article.createTime}</span></Row>
+                return <Container style={{marginBottom: '0.3em',paddingBottom:'0.3em'}}>
+                    <Row style={{fontSize:'0.9em',color:'#303030',textAlign:'left'}}>
+                        <Link className={"title"} to={path}><span className={"hotSpan"}>{index}</span>{item.article.title}</Link>
+                    </Row>
                 </Container>;
             })
         }</Fragment>);

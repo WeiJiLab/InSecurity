@@ -46,6 +46,7 @@ public class User {
                 .email(email)
                 .token(token)
                 .lastLoginTime(lastLoginTime)
+                .del(del)
                 .build();
     }
 }

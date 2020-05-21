@@ -1,3 +1,28 @@
 .HotPanel {
 
 }
+.hotSpan{
+    padding-left: 0.8em;
+    padding-right: 0.8em;
+    border-radius: 3px;
+    height: 1.8em;
+    line-height: 1.8em;
+    font-size: 0.5em;
+    margin-right: 1em;
+    color: #1458d4;
+    border:solid 1px #1458d4;
+}
+
+.hotSpan:hover {
+    background: #1458d4;
+    color:#fff;
+}
+
+.title{
+    color:#000;
+    float: left;
+}
+.title:hover {
+    color: #1458d4;
+}
+
