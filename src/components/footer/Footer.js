@@ -34,8 +34,9 @@ function Footer() {
                                 </Col>
                                 <Col>
                                     <Row>Links</Row>
-                                    <Row><span className="footerText">ThoughtWorks</span></Row>
-                                    <Row><span className="footerText">Git</span></Row>
+                                    <Row><a href={"https://www.thoughtworks.com/"}><span className="footerText">ThoughtWorks</span></a></Row>
+                                    <Row><a href={"https://github.com/nerososft/InSecurity"}><span className="footerText">Git</span></a></Row>
+                                    <Row><a href={"http://www.owasp.org.cn/"}><span className="footerText">OWASP 中国</span></a></Row>
                                 </Col>
                             </Row>
                         </Col>
