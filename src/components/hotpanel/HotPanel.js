@@ -38,7 +38,7 @@ class HotPanel extends Component {
                         article: item
                     }
                 };
-                return <Container style={{marginBottom: '0.3em', paddingBottom: '0.3em'}}>
+                return <Container style={{marginBottom: '0.3em', paddingBottom: '0.3em',paddingLeft:'1.1em'}}>
                     <Row style={{fontSize: '0.9em', color: '#303030', textAlign: 'left'}}>
                         <Col md={1} style={{padding: 0, margin: 0}}>
                             <span className={"hotSpan"}>{index}</span>
