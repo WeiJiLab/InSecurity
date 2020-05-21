@@ -5,7 +5,6 @@ import {Button, Col, Image, Row} from "react-bootstrap";
 import Menu from "../../components/menu/Menu";
 import {Link} from "react-router-dom";
 import {articles} from "../../actions/actions";
-import ArticleList from "../../components/articlelists/ArticleList";
 import {bindActionCreators} from "redux";
 import {connect} from "react-redux";
 import HotPanel from "../../components/hotpanel/HotPanel";

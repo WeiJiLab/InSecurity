@@ -9,6 +9,7 @@ import {connect} from "react-redux";
 import HotPanel from "../../components/hotpanel/HotPanel";
 import Subscribe from "../../components/subscribe/Subscribe";
 import {Link} from "react-router-dom";
+import SuggestListPanel from "../../components/suggestlistpanel/SuggestListPanel";
 
 class ArticleDetail extends Component {
     render() {
@@ -57,6 +58,9 @@ class ArticleDetail extends Component {
                                 <HotPanel/>
                             </Container>
                             <Container style={{marginTop: '1em'}}>
+                                <SuggestListPanel tags={article.tags}/>
+                            </Container>
+                            <Container style={{marginTop: '1em'}}>
                                 <Subscribe/>
                             </Container>
                         </Row>
@@ -97,18 +101,6 @@ class ArticleDetail extends Component {
                 797.866667 593.066667c0-8.533333-4.266667-17.066667-8.533334-23.466667L371.2 151.466667l-12.8-12.8c-6.4-6.4-14.933333-8.533333-23.466667-8.533334H64c-17.066667 0-32 14.933333-32 32v270.933334c0 8.533333 4.266667 17.066667 8.533333 23.466666l430.933334 430.933334c6.4 6.4 14.933333 8.533333 23.466666 8.533333s17.066667-2.133333 23.466667-8.533333L789.333333 616.533333c4.266667-6.4 8.533333-14.933333 8.533334-23.466666zM494.933333 819.2L96 420.266667V194.133333h226.133333l398.933334 398.933334-226.133334 226.133333z"
                     fill="#007bff" p-id="1158"/>
             </svg>);
-    }
-
-    componentWillMount() {
-        // let key = this.props.location.state.key;
-        // this.props.articlesByKey(key);
-    }
-
-    componentWillUpdate(nextProps, nextState, nextContext) {
-        // let key = this.props.location.state.key;
-        // if (nextProps.location.state.key !== key) {
-        //     this.props.articlesByKey(nextProps.location.state.key);
-        // }
     }
 
     renderBestIcon() {
