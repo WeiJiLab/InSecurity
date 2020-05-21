@@ -21,7 +21,7 @@ function Footer() {
                                 </Col>
                                 <Col>
                                     <Row>Copyright</Row>
-                                    <Row><span className="footerText">© 2020 ThoughtWorks, Inc</span></Row>
+                                    <Row><span className="footerText">© 2020 TW BuildSecurityIn</span></Row>
                                 </Col>
                                 <Col>
                                     <Row>SiteMap</Row>

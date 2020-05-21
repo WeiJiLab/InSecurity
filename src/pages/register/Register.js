@@ -5,7 +5,7 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import {Alert, Col, Row} from "react-bootstrap";
 import Image from "react-bootstrap/Image";
-import Logo from "../../static/images/logo.png";
+import Logo from "../../static/images/logo_w.png";
 import {register} from "../../actions/actions";
 import {bindActionCreators} from "redux";
 import {connect} from "react-redux";
@@ -29,8 +29,8 @@ class Register extends Component {
                 <Col md={10} style={{background: "#fff", padding: "0em"}}>
                     <Col style={{padding: "0em"}}>
                         <Row style={{padding: 0,margin:0,boxShadow:'0 1px 3px rgba(27,95,160,.1)'}}>
-                            <Col style={{textAlign: "left",padding: 0}}>
-                                <Image src={Logo} style={{padding:"4em", width: '100%',height:'100%'}}/>
+                            <Col style={{textAlign: "left",padding: 0,background:'#000'}}>
+                                <Image src={Logo} style={{padding:"4em",paddingTop:'10em',paddingBottom:'10em', width: '100%',height:'100%'}}/>
                             </Col>
                             <Col style={{padding:"3em"}}>
                                 <h3>注册</h3>

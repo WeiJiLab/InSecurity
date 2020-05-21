@@ -4,7 +4,6 @@ import com.thoughtworks.security.insecurity.dto.ResultDTO;
 import com.thoughtworks.security.insecurity.dto.request.PostArticleRequestDTO;
 import com.thoughtworks.security.insecurity.dto.response.ArticleResponseDTO;
 import com.thoughtworks.security.insecurity.entity.Article;
-import com.thoughtworks.security.insecurity.entity.User;
 import com.thoughtworks.security.insecurity.repository.ArticleRepository;
 import com.thoughtworks.security.insecurity.repository.UserRepository;
 import org.springframework.jdbc.core.JdbcTemplate;

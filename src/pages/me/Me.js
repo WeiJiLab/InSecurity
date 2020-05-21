@@ -3,7 +3,7 @@ import './Me.css';
 import Container from "react-bootstrap/Container";
 import {Col, Form, Row} from "react-bootstrap";
 import Image from "react-bootstrap/Image";
-import Logo from "../../static/images/logo.png";
+import Logo from "../../static/images/logo_w.png";
 import Button from "react-bootstrap/Button";
 import Cookies from "js-cookie";
 
@@ -22,7 +22,7 @@ class Me extends Component {
                 <Col md={10} style={{background: "#fff", padding: "0em"}}>
                     <Col style={{padding: "0em"}}>
                         <Row style={{padding: 0,margin:0,boxShadow:'0 1px 3px rgba(27,95,160,.1)'}}>
-                            <Col style={{textAlign: "left",padding:0}}>
+                            <Col style={{textAlign: "left",padding:0,background:'#000'}}>
                                 <Image src={Logo} style={{padding: "4em", width: '100%', height: '100%'}}/>
                             </Col>
                             <Col style={{padding: "3em", textAlign: "left"}}>

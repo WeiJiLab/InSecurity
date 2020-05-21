@@ -44,7 +44,7 @@ class ArticleList extends Component {
             __html:title
         };
         // return <h5>{title}</h5>;
-        return <h5><div dangerouslySetInnerHTML={html}></div></h5>;
+        return <h5><div style={{width:'100%'}} dangerouslySetInnerHTML={html}></div></h5>;
     }
 
     renderTagIcon() {
