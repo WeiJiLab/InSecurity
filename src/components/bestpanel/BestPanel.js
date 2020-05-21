@@ -18,10 +18,10 @@ class BestPanel extends Component {
                 {
                     this.props.bestArticles[0] ? <Row style={{padding: '0 1em 0 1em'}}>
                         <Col style={{padding: '1em 0em 0em 1em'}}>
-                            <Row><Image style={{width: '100%', borderRadius: '4px'}}
+                            <Row><Image style={{width: '100%', borderRadius: '4px',height:'12em'}}
                                         src={this.props.bestArticles[0].article.imgUrl}/></Row>
                         </Col>
-                        <Col style={{paddingLeft: '3em', paddingTop: '1em'}}>
+                        <Col style={{paddingLeft: '3em', paddingTop: '0em'}}>
                             <Row style={{marginTop: '1em'}}><h5>{this.props.bestArticles[0].article.title}</h5></Row>
                             <Row style={{fontSize: '0.8em'}}><span style={{color: 'gray'}}>作者:</span>{this.props.bestArticles[0].authorName}</Row>
                             <Row style={{marginTop: '1em', color: 'gray'}}>{this.props.bestArticles[0].article.content}</Row>
@@ -46,14 +46,14 @@ class BestPanel extends Component {
         return <>
             {
                 bestArticles ? <Col style={{padding: '1em 1.5em 0 1em'}}>
-                    <Row><Image style={{width: '100%', borderRadius: '4px'}}
+                    <Row><Image style={{width: '100%', borderRadius: '4px',height:'8em'}}
                                 src={bestArticles.article.imgUrl}/></Row>
                     <Row style={{marginTop: '1em'}}><h5>{bestArticles.article.title}</h5></Row>
                     <Row style={{fontSize: '0.8em'}}><span style={{color: 'gray'}}>作者:</span>{bestArticles.authorName}</Row>
                     <Row style={{marginTop: '0.5em'}}>
                         {this.renderTags(bestArticles.tags)}
                     </Row>
-                </Col> : null
+                </Col> : <Col style={{padding: '1em 1.5em 0 1em'}}> </Col>
             }
         </>;
     }
