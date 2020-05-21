@@ -23,7 +23,7 @@ class ArticleList extends Component {
                             {this.renderTitle(item.article.title)}
                             </Link>
                             <p>作者: {item.authorName}</p>
-                            <h6 style={{color: '#aaa'}}>{item.article.content}</h6>
+                            <h6 style={{color: '#aaa'}}>{item.article.content.substr(0,50)}...</h6>
                             <Button variant="link" style={{padding: 0, margin: 0}}>{this.renderTagIcon()}</Button>
                             {
                                 item.tags.map((item, index) => {

@@ -44,11 +44,11 @@ class BestPanel extends Component {
             <Col style={{paddingLeft: '3em', paddingTop: '0em'}}>
                 <Row style={{marginTop: '1em'}}>
                     <Link to={path}>
-                        <h6 className={"title"}>{article.article.title.substr(0, 40)}</h6>
+                        <h6 className={"title"}>{article.article.title.substr(0, 50)}</h6>
                     </Link>
                 </Row>
                 <Row style={{fontSize: '0.8em'}}><span style={{color: 'gray'}}>作者:</span>{article.authorName}</Row>
-                <Row style={{marginTop: '1em', color: 'gray'}}>{article.article.content}</Row>
+                <Row style={{marginTop: '1em', color: 'gray'}}>{article.article.content.substr(0,50)}...</Row>
 
                 <Row style={{marginTop: '1em'}}>
                     {this.renderTags(article.tags)}
