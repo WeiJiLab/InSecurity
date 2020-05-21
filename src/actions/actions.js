@@ -1,11 +1,15 @@
 import {
-    API_ARTICLE_ALL, API_ARTICLE_HOT,
+    API_ARTICLE_ALL,
+    API_ARTICLE_HOT,
     API_ARTICLE_KEY,
     API_ARTICLE_POST,
     API_ARTICLE_TOPIC,
-    API_ARTICLE_TOPICS, API_ARTICLE_USER,
+    API_ARTICLE_TOPICS,
+    API_ARTICLE_USER,
     API_LOGIN,
-    API_REGISTER, API_USER_ALL
+    API_REGISTER,
+    API_USER_ALL,
+    API_USER_BAN
 } from "../api/insecurityApi";
 
 export const LoginActions = {
@@ -24,19 +28,21 @@ export const ArticleActions = {
     ARTICLE_POST_FAILED: 'ARTICLE_POST_FAILED',
     GET_ARTICLE_LIST_ALL_SUCCESS: 'GET_ARTICLE_LIST_ALL_SUCCESS',
     GET_ARTICLE_LIST_ALL_FAILED: 'GET_ARTICLE_LIST_ALL_FAILED',
-    GET_ARTICLE_LIST_HOT_SUCCESS:'GET_ARTICLE_LIST_HOT_SUCCESS',
-    GET_ARTICLE_LIST_HOT_FAILED:'GET_ARTICLE_LIST_HOT_FAILED',
+    GET_ARTICLE_LIST_HOT_SUCCESS: 'GET_ARTICLE_LIST_HOT_SUCCESS',
+    GET_ARTICLE_LIST_HOT_FAILED: 'GET_ARTICLE_LIST_HOT_FAILED',
     GET_ARTICLE_LIST_ALL_BY_TOPIC_SUCCESS: 'GET_ARTICLE_LIST_ALL_BY_TOPIC_SUCCESS',
     GET_ARTICLE_LIST_ALL_BY_TOPIC_FAILED: 'GET_ARTICLE_LIST_ALL_BY_TOPIC_FAILED',
     GET_ARTICLE_LIST_ALL_BY_KEY_SUCCESS: 'GET_ARTICLE_LIST_ALL_BY_KEY_SUCCESS',
     GET_ARTICLE_LIST_ALL_BY_KEY_FAILED: 'GET_ARTICLE_LIST_ALL_BY_KEY_FAILED',
-    GET_ARTICLE_LIST_ALL_BY_UID_FAILED:'GET_ARTICLE_LIST_ALL_BY_UID_FAILED',
-    GET_ARTICLE_LIST_ALL_BY_UID_SUCCESS:'GET_ARTICLE_LIST_ALL_BY_UID_SUCCESS'
+    GET_ARTICLE_LIST_ALL_BY_UID_FAILED: 'GET_ARTICLE_LIST_ALL_BY_UID_FAILED',
+    GET_ARTICLE_LIST_ALL_BY_UID_SUCCESS: 'GET_ARTICLE_LIST_ALL_BY_UID_SUCCESS'
 };
 
 export const UserActions = {
     GET_USER_LIST_ALL_SUCCESS: 'GET_USER_LIST_ALL_SUCCESS',
     GET_USER_LIST_ALL_FAILED: 'GET_USER_LIST_ALL_FAILED',
+    BAN_USER_BY_UID_FAILED: 'BAN_USER_BY_UID_FAILED',
+    BAN_USER_BY_UID_SUCCESS: 'BAN_USER_BY_UID_SUCCESS',
 };
 
 export const TopicActions = {
@@ -72,6 +78,10 @@ export const users = () => (dispatch) => {
     ajaxGetUsersFromApi(dispatch);
 };
 
+export const banUser = (uid) => (dispatch) => {
+    ajaxBanUsersFromApi(uid, dispatch);
+};
+
 export const articlesByTopic = (topic) => (dispatch) => {
     ajaxGetArticlesByTopicFromApi(topic, dispatch);
 };
@@ -83,7 +93,6 @@ export const articlesByKey = (key) => (dispatch) => {
 export const articlesByUid = (uid) => (dispatch) => {
     ajaxGetArticlesByUidFromApi(uid, dispatch);
 };
-
 
 
 export const edit = (articleDTO) => (dispatch) => {
@@ -451,7 +460,6 @@ export function ajaxGetArticlesByTopicFromApi(topic, dispatch) {
 }
 
 
-
 export function ajaxGetArticlesByKeyFromApi(key, dispatch) {
     fetch(API_ARTICLE_KEY + "?key=" + key, {
         method: 'GET',
@@ -538,3 +546,45 @@ export function ajaxGetArticlesByUidFromApi(uid, dispatch) {
         });
 }
 
+export function ajaxBanUsersFromApi(uid, dispatch) {
+    fetch(API_USER_BAN + "/" + uid, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+    })
+        .then(response => response.json())
+        .then(data => {
+            console.log('Success:', data);
+            if (data.status == null && data.errorCode != null) {
+                dispatch({
+                    type: UserActions.BAN_USER_BY_UID_FAILED,
+                    payload: {
+                        banUserStatus: false,
+                        message: data.message,
+                        userInfo: null
+                    }
+                })
+            } else {
+                dispatch({
+                    type: UserActions.BAN_USER_BY_UID_SUCCESS,
+                    payload: {
+                        banUserStatus: true,
+                        message: data.message,
+                        userInfo: data.data
+                    }
+                })
+            }
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+            dispatch({
+                type: ArticleActions.BAN_USER_BY_UID_FAILED,
+                payload: {
+                    banUserStatus: false,
+                    message: error.message,
+                    userInfo: null
+                }
+            })
+        });
+}

@@ -4,7 +4,7 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import {Link} from "react-router-dom";
 import {bindActionCreators} from "redux";
-import {users} from "../../actions/actions";
+import {banUser, users} from "../../actions/actions";
 import {connect} from "react-redux";
 import Col from "react-bootstrap/Col";
 import {Badge} from "react-bootstrap";
@@ -61,7 +61,8 @@ class UsersManage extends Component {
                         </Col>
                         <Col md={2} style={{padding: 0}}>
                             <Row style={{height: '100%'}}>
-                                <Col style={{color: '#000', height: '100%'}}><Link>{item.del ? '恢复' : '拉黑'}</Link></Col>
+                                <Col onClick={this.banUser.bind(this, item.uid)}
+                                     style={{color: '#000', height: '100%'}}><Link>{item.del ? '恢复' : '拉黑'}</Link></Col>
                             </Row>
                         </Col>
                     </Row>
@@ -70,8 +71,18 @@ class UsersManage extends Component {
         }</Fragment>);
     }
 
+    banUser(uid) {
+        this.props.banUser(uid);
+    }
+
     componentWillMount() {
         this.props.users();
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.banUserByUidResult !== this.props.banUserByUidResult) {
+            this.props.users();
+        }
     }
 
     renderHotIcon() {
@@ -93,11 +104,13 @@ class UsersManage extends Component {
 }
 
 const mapStateToProps = state => ({
-    usersResult: state.reduxResult.usersResult
+    usersResult: state.reduxResult.usersResult,
+    banUserByUidResult: state.reduxResult.banUserByUidResult
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators({
-    users
+    users,
+    banUser,
 }, dispatch);
 
 

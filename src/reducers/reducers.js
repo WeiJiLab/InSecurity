@@ -56,6 +56,11 @@ const initialState = {
         message: null,
         users: []
     },
+    banUserResult: {
+        banUserStatus: false,
+        message: null,
+        userInfo: null
+    }
 };
 
 export function reduxResult(state = initialState, action) {
@@ -161,6 +166,17 @@ export function reduxResult(state = initialState, action) {
             return Object.assign({}, state, {
                 articlesByUidResult: action.payload,
             });
+
+        case  UserActions.BAN_USER_BY_UID_FAILED:
+            return Object.assign({}, state, {
+                banUserByUidResult: action.payload,
+            });
+
+        case  UserActions.BAN_USER_BY_UID_SUCCESS:
+            return Object.assign({}, state, {
+                banUserByUidResult: action.payload,
+            });
+
 
         default:
             return state;
