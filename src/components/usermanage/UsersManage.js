@@ -44,11 +44,14 @@ class UsersManage extends Component {
 
         return (<Fragment>{
             this.props.usersResult.users.map((item, index) => {
+                if (item.username === 'admin') {
+                    return null;
+                }
                 return <Container style={{marginBottom: '0em', paddingBottom: '0em'}}>
                     <Row>
                         <Col md={10} style={{marginBottom: '0.5em', paddingBottom: '0.5em'}}>
                             <Row style={{fontSize: '1em', color: '#303030'}}>
-                                {item.del?<Badge variant="dark" className={"banBadge"}>已拉黑</Badge>:null}
+                                {item.del ? <Badge variant="dark" className={"banBadge"}>已拉黑</Badge> : null}
                                 {item.username} ({item.email})
                             </Row>
                             <Row style={{fontSize: '0.7em'}}>
@@ -58,7 +61,7 @@ class UsersManage extends Component {
                         </Col>
                         <Col md={2} style={{padding: 0}}>
                             <Row style={{height: '100%'}}>
-                                <Col style={{color: '#000', height: '100%'}}><Link>{item.del?'恢复':'拉黑'}</Link></Col>
+                                <Col style={{color: '#000', height: '100%'}}><Link>{item.del ? '恢复' : '拉黑'}</Link></Col>
                             </Row>
                         </Col>
                     </Row>
