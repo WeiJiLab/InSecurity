@@ -50,6 +50,12 @@ public class ArticleController {
         return articleService.listByKey(key);
     }
 
+    @GetMapping("/user")
+    @CrossOrigin(origins = "*")
+    public ResultDTO<List<ArticleResponseDTO>> listByUid(@RequestParam("uid") Long uid) {
+        return articleService.listByUid(uid);
+    }
+
     @GetMapping("/topics")
     @CrossOrigin(origins = "*")
     public ResultDTO<List<String>> listTopics() {

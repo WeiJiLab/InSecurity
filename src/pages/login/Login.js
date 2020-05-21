@@ -34,8 +34,8 @@ class Login extends Component {
                 <Col md={10} style={{background:"#fff",padding:"0em"}}>
                     <Col style={{padding:"0em"}}>
                         <Row style={{padding:0,margin:0,boxShadow:'0 1px 3px rgba(27,95,160,.1)'}}>
-                            <Col style={{textAlign: "left",padding:0,background:'#000'}}>
-                                <Image src={Logo} style={{padding:"4em", width: '100%',height:'100%'}}/>
+                            <Col style={{textAlign: "left",padding:0}}>
+                                <Image src={Logo} style={{padding:"4em", width: '100%',height:'100%',background:'#000'}}/>
                             </Col>
                             <Col style={{padding:"3em"}}>
                                 <h3>登录</h3>

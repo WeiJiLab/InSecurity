@@ -3,7 +3,7 @@ import {
     API_ARTICLE_KEY,
     API_ARTICLE_POST,
     API_ARTICLE_TOPIC,
-    API_ARTICLE_TOPICS,
+    API_ARTICLE_TOPICS, API_ARTICLE_USER,
     API_LOGIN,
     API_REGISTER
 } from "../api/insecurityApi";
@@ -28,6 +28,8 @@ export const ArticleActions = {
     GET_ARTICLE_LIST_ALL_BY_TOPIC_FAILED: 'GET_ARTICLE_LIST_ALL_BY_TOPIC_FAILED',
     GET_ARTICLE_LIST_ALL_BY_KEY_SUCCESS: 'GET_ARTICLE_LIST_ALL_BY_KEY_SUCCESS',
     GET_ARTICLE_LIST_ALL_BY_KEY_FAILED: 'GET_ARTICLE_LIST_ALL_BY_KEY_FAILED',
+    GET_ARTICLE_LIST_ALL_BY_UID_FAILED:'GET_ARTICLE_LIST_ALL_BY_UID_FAILED',
+    GET_ARTICLE_LIST_ALL_BY_UID_SUCCESS:'GET_ARTICLE_LIST_ALL_BY_UID_SUCCESS'
 };
 
 export const TopicActions = {
@@ -62,6 +64,12 @@ export const articlesByTopic = (topic) => (dispatch) => {
 export const articlesByKey = (key) => (dispatch) => {
     ajaxGetArticlesByKeyFromApi(key, dispatch);
 };
+
+export const articlesByUid = (uid) => (dispatch) => {
+    ajaxGetArticlesByUidFromApi(uid, dispatch);
+};
+
+
 
 export const edit = (articleDTO) => (dispatch) => {
     dispatch({
@@ -375,6 +383,49 @@ export function ajaxGetArticlesByKeyFromApi(key, dispatch) {
             console.error('Error:', error);
             dispatch({
                 type: ArticleActions.GET_ARTICLE_LIST_ALL_BY_KEY_FAILED,
+                payload: {
+                    articlesStatus: false,
+                    message: error.message,
+                    articles: null
+                }
+            })
+        });
+}
+
+export function ajaxGetArticlesByUidFromApi(uid, dispatch) {
+    fetch(API_ARTICLE_USER + "?uid=" + uid, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+    })
+        .then(response => response.json())
+        .then(data => {
+            console.log('Success:', data);
+            if (data.status == null && data.errorCode != null) {
+                dispatch({
+                    type: ArticleActions.GET_ARTICLE_LIST_ALL_BY_UID_FAILED,
+                    payload: {
+                        articlesStatus: false,
+                        message: data.message,
+                        articles: null
+                    }
+                })
+            } else {
+                dispatch({
+                    type: ArticleActions.GET_ARTICLE_LIST_ALL_BY_UID_SUCCESS,
+                    payload: {
+                        articlesStatus: true,
+                        message: data.message,
+                        articles: data.data
+                    }
+                })
+            }
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+            dispatch({
+                type: ArticleActions.GET_ARTICLE_LIST_ALL_BY_UID_FAILED,
                 payload: {
                     articlesStatus: false,
                     message: error.message,

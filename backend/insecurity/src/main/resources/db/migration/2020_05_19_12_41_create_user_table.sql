@@ -9,3 +9,4 @@ create table if not exists user
     update_time     datetime    not null,
     last_login_time datetime
 );
+

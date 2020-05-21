@@ -1,50 +1,66 @@
 import React, {Component} from 'react';
 import './Me.css';
 import Container from "react-bootstrap/Container";
-import {Col, Form, Row} from "react-bootstrap";
-import Image from "react-bootstrap/Image";
-import Logo from "../../static/images/logo_w.png";
-import Button from "react-bootstrap/Button";
+import {Col, Image, Row} from "react-bootstrap";
 import Cookies from "js-cookie";
+import Logo from "../../static/images/logo_w.png"
+import Button from "react-bootstrap/Button";
+import MyArticlesPanel from "../../components/myarticles/MyArticlesPanel";
 
 class Me extends Component {
 
-    constructor(props){
+    constructor(props) {
         super(props);
     }
 
     render() {
-        let login = JSON.parse(Cookies.get("login"));
+        if (Cookies.get("login") === "null") {
+            this.props.history.push("/login");
+            return null;
+        }
 
-        return (<Container className="Me">
-            <Row>
-                <Col md={1}> </Col>
-                <Col md={10} style={{background: "#fff", padding: "0em"}}>
-                    <Col style={{padding: "0em"}}>
-                        <Row style={{padding: 0,margin:0,boxShadow:'0 1px 3px rgba(27,95,160,.1)'}}>
-                            <Col style={{textAlign: "left",padding:0,background:'#000'}}>
-                                <Image src={Logo} style={{padding: "4em", width: '100%', height: '100%'}}/>
-                            </Col>
-                            <Col style={{padding: "3em", textAlign: "left"}}>
-                                <h3>我的资料</h3>
-                                <Form>
-                                    <Form.Group controlId="formGroupEmail">
-                                        <Form.Label>用户名</Form.Label>
-                                        <Form.Control type="text" readOnly placeholder={login.userInfo.userDTO.username}/>
-                                    </Form.Group>
-                                    <Form.Group controlId="formGroupPassword">
-                                        <Form.Label>邮箱</Form.Label>
-                                        <Form.Control type="email" readOnly placeholder={login.userInfo.userDTO.email}/>
-                                    </Form.Group>
-                                </Form>
-                                <Button variant="outline-dark" type="button" onClick={this.logout.bind(this)}>登出</Button>
-                            </Col>
+        let user = JSON.parse(Cookies.get("login")).userInfo.userDTO;
+
+        return (<Container style={{padding: 0, marginTop: '1em'}} className="Home">
+            <Container className="Events">
+                <Row style={{padding: 0}}>
+                    <Col md={4} style={{padding: 0}}>
+                        <Container className="Left-Card" style={{padding: 0}}>
+                            <Image style={{width: '100%', background: '#000', padding: '4em'}} src={Logo}/>
+                            <Container style={{padding: '3em'}}>
+                                <Row>
+                                    <h2>{user.username}</h2>
+                                </Row>
+                                <Row>
+                                    <h4>{user.email}</h4>
+                                </Row>
+                                <Row style={{marginTop: '1em'}}>
+                                </Row>
+
+                                <Row style={{fontSize: '0.8em', marginTop: '1em'}}>
+                                    <span style={{color: 'gray'}}>上一次在线: {user.lastLoginTime}</span>
+                                </Row>
+                                <Row style={{fontSize: '0.8em'}}>
+                                    <span style={{color: 'gray'}}>共发布 2 篇文章</span>
+                                </Row>
+
+                                <Row style={{fontSize: '0.8em', marginTop: '2em'}}>
+                                    <Button variant="outline-dark" type="button" style={{width: '100%'}} onClick={this.logout.bind(this)}>登出</Button>
+                                </Row>
+                            </Container>
+                        </Container>
+                    </Col>
+                    <Col md={8} style={{paddingRight: 0, textAlign: 'left'}}>
+                        <Row>
+                            <Container style={{marginTop: '0em'}}>
+                                <MyArticlesPanel uid={user.uid}/>
+                            </Container>
                         </Row>
                     </Col>
-                </Col>
-            </Row>
+                </Row>
+            </Container>
         </Container>);
-    };
+    }
 
     logout() {
         Cookies.set("login", null);

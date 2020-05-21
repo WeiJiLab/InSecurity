@@ -86,7 +86,7 @@ public class ArticleService {
     public ResultDTO<List<ArticleResponseDTO>> listByKey(String key) {
         Set<ArticleResponseDTO> result = new HashSet<>();
 //        List<Article> allByTagsLike = articleRepository.findAllByTitleLike("%"+key+"%");
-        String sql = "select * from article where title like '%"+key+"%';";
+        String sql = "select * from article where title like '%" + key + "%';";
         System.out.println(sql);
         List<Article> allByTagsLike = jdbcTemplate.query(
                 sql,
@@ -101,6 +101,14 @@ public class ArticleService {
                         .build());
 
         result.addAll(getArticleResponseDTO(allByTagsLike));
+        return ResultDTO.<List<ArticleResponseDTO>>builder().data(new ArrayList<>(result)).build();
+    }
+
+    public ResultDTO<List<ArticleResponseDTO>> listByUid(Long uid) {
+        Set<ArticleResponseDTO> result = new HashSet<>();
+
+        List<Article> articles = articleRepository.findAllByUidIs(uid);
+        result.addAll(getArticleResponseDTO(articles));
         return ResultDTO.<List<ArticleResponseDTO>>builder().data(new ArrayList<>(result)).build();
     }
 }

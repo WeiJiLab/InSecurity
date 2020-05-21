@@ -13,11 +13,18 @@ import {login} from "../../actions/actions";
 import {connect} from "react-redux";
 import Cookies from "js-cookie";
 import Search from "../search/Search";
-import Form from "react-bootstrap/Form";
 
 class Header extends Component {
     constructor(props) {
         super(props);
+        let ck = Cookies.get("login");
+        let login = null;
+        if (ck != null) {
+            login = JSON.parse(ck);
+        }
+        this.state = {
+            user: login
+        };
     }
 
     render() {
@@ -29,7 +36,7 @@ class Header extends Component {
                         <Navbar bg="#fff" variant="light">
                             <Link to="/home"><Image src={Logo} className="logo-img" rounded/>
                                 <Navbar.Brand className="icon" href="#home">
-                                    <p style={{padding:0,margin:0}}>TWOWASP</p>
+                                    <p style={{padding: 0, margin: 0}}>TWOWASP</p>
                                     {/*<span style={{fontWeight:'bolder',color:'#900C3F'}}>O</span>*/}
                                     {/*<span style={{fontWeight:'bolder',color:'#C70039'}}>W</span>*/}
                                     {/*<span style={{fontWeight:'bolder',color:'#FF5733'}}>A</span>*/}
@@ -41,7 +48,8 @@ class Header extends Component {
                             <Navbar.Collapse className="justify-content-end">
                                 <Search/>
 
-                                <Button className={"buttonWrite"} variant="default" type="button" style={{background:'#3db24b',color:'#fff'}}><Link style={{color:'#fff'}} to={"/write"}>写作平台</Link></Button>
+                                <Button className={"buttonWrite"} variant="default" type="button" style={{background: '#3db24b', color: '#fff'}}><Link
+                                    style={{color: '#fff'}} to={"/write"}>写作平台</Link></Button>
 
                                 {
                                     this.renderUserInfo()
@@ -57,11 +65,7 @@ class Header extends Component {
 
     renderUserInfo() {
         let ck = Cookies.get("login");
-        let login = null;
-        if (ck != null) {
-            login = JSON.parse(ck);
-        }
-
+        const login  = this.state.user;
         if (ck == null || login == null || !login.loginStatus) {
             return (<Fragment><Link to="/login"><Button variant="link" style={{color: "#000"}}>
                 登录
@@ -73,6 +77,19 @@ class Header extends Component {
             return (<Link to="/me"><Button variant="link" style={{color: "#000"}}>
                 <strong>{login.userInfo.userDTO.username}</strong> ({login.userInfo.userDTO.email})
             </Button></Link>);
+        }
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.loginResult !== this.props.loginResult) {
+            let ck = Cookies.get("login");
+            let login = null;
+            if (ck != null) {
+                login = JSON.parse(ck);
+            }
+            this.setState({
+                user: login
+            })
         }
     }
 }

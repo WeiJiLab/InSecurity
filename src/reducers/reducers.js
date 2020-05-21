@@ -40,7 +40,12 @@ const initialState = {
         articlesStatus: false,
         message: null,
         articles: []
-    }
+    },
+    articlesByUidResult: {
+        articlesStatus: false,
+        message: null,
+        articles: []
+    },
 };
 
 export function reduxResult(state = initialState, action) {
@@ -116,6 +121,16 @@ export function reduxResult(state = initialState, action) {
         case  ArticleActions.GET_ARTICLE_LIST_ALL_BY_KEY_SUCCESS:
             return Object.assign({}, state, {
                 articlesByKeyResult: action.payload,
+            });
+
+        case ArticleActions.GET_ARTICLE_LIST_ALL_BY_UID_FAILED:
+            return Object.assign({}, state, {
+                articlesByUidResult: action.payload,
+            });
+
+        case  ArticleActions.GET_ARTICLE_LIST_ALL_BY_UID_SUCCESS:
+            return Object.assign({}, state, {
+                articlesByUidResult: action.payload,
             });
 
         default:
