@@ -40,9 +40,6 @@ class Me extends Component {
                                 <Row style={{fontSize: '0.8em', marginTop: '1em'}}>
                                     <span style={{color: 'gray'}}>上一次在线: {user.lastLoginTime}</span>
                                 </Row>
-                                <Row style={{fontSize: '0.8em'}}>
-                                    <span style={{color: 'gray'}}>共发布 2 篇文章</span>
-                                </Row>
 
                                 <Row style={{fontSize: '0.8em', marginTop: '2em'}}>
                                     <Button variant="outline-dark" type="button" style={{width: '100%'}} onClick={this.logout.bind(this)}>登出</Button>

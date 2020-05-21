@@ -12,11 +12,11 @@ class MyArticlesPanel extends Component {
     render() {
         return (
             <Container style={{background: '#fff', padding: '1em', boxShadow: '0 1px 3px rgba(27,95,160,.1)'}}>
-                <h4>
+                <h4 style={{display:'inline-block'}}>
                     {this.renderHotIcon()}
                     我的文章
-                </h4>
-                <Container style={{padding: 0,marginTop:'1em'}}>
+                </h4><span style={{color: 'gray',marginLeft:'0.5em',fontSize:'0.9em'}}>共发布 <strong>{this.props.articlesByUidResult.articles.length}</strong> 篇文章</span>
+                <Container style={{padding: 0, marginTop: '1em'}}>
                     <Container style={{padding: 0}}>
                         {this.renderMyArticlesList()}
                     </Container>
@@ -33,13 +33,13 @@ class MyArticlesPanel extends Component {
         return (<Fragment>{
             this.props.articlesByUidResult.articles.map((item, index) => {
                 const path = {
-                    pathname:"/article",
-                    state:{
-                        article:item
+                    pathname: "/article",
+                    state: {
+                        article: item
                     }
                 };
-                return <Container style={{borderBottom: 'solid 1px #eee', marginBottom: '0.5em',paddingBottom:'0.5em'}}>
-                    <Row style={{fontSize:'0.9em',color:'#303030'}}><Link className={"title"} to={path}>{item.article.title}</Link></Row>
+                return <Container style={{borderBottom: 'solid 1px #eee', marginBottom: '0.5em', paddingBottom: '0.5em'}}>
+                    <Row style={{fontSize: '0.9em', color: '#303030'}}><Link className={"title"} to={path}>{item.article.title}</Link></Row>
                     <Row style={{fontSize: '0.7em'}}><span style={{color: 'gray'}}>{item.article.createTime}</span></Row>
                 </Container>;
             })
