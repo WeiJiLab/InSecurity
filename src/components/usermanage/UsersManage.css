@@ -8,3 +8,9 @@
 .title:hover {
     color: #1458d4;
 }
+
+.banBadge {
+    border-radius: 0 !important;
+    margin-right: 1em;
+    line-height: '';
+}

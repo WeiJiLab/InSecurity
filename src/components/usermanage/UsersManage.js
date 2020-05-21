@@ -7,6 +7,7 @@ import {bindActionCreators} from "redux";
 import {users} from "../../actions/actions";
 import {connect} from "react-redux";
 import Col from "react-bootstrap/Col";
+import {Badge} from "react-bootstrap";
 
 class UsersManage extends Component {
     render() {
@@ -46,7 +47,10 @@ class UsersManage extends Component {
                 return <Container style={{marginBottom: '0em', paddingBottom: '0em'}}>
                     <Row>
                         <Col md={10} style={{marginBottom: '0.5em', paddingBottom: '0.5em'}}>
-                            <Row style={{fontSize: '1em', color: '#303030'}}>{item.del?'[已拉黑]':''} {item.username} ({item.email})</Row>
+                            <Row style={{fontSize: '1em', color: '#303030'}}>
+                                {item.del?<Badge variant="dark" className={"banBadge"}>已拉黑</Badge>:null}
+                                {item.username} ({item.email})
+                            </Row>
                             <Row style={{fontSize: '0.7em'}}>
                                 上一次登录&nbsp;<span
                                 style={{color: 'gray'}}>{item.lastLoginTime}</span>

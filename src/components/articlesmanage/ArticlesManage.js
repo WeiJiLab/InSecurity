@@ -7,7 +7,7 @@ import {bindActionCreators} from "redux";
 import {articles} from "../../actions/actions";
 import {connect} from "react-redux";
 import Col from "react-bootstrap/Col";
-import {Button} from "react-bootstrap";
+import {Badge, Button} from "react-bootstrap";
 
 class ArticlesManage extends Component {
     render() {
@@ -47,7 +47,10 @@ class ArticlesManage extends Component {
                 return <Container style={{marginBottom: '0em', paddingBottom: '0em'}}>
                     <Row>
                         <Col md={10} style={{marginBottom: '0.5em', paddingBottom: '0.5em'}}>
-                            <Row style={{fontSize: '1em', color: '#303030'}}>{item.article.hot?'[热点]':''}<Link className={"title"} to={path}>{item.article.title}</Link></Row>
+                            <Row style={{fontSize: '1em', color: '#303030'}}>
+                                {item.article.hot?<Badge variant="dark" className={"banBadge"}>热点</Badge>:null}
+                                <Link className={"title"} to={path}>{item.article.title}</Link>
+                            </Row>
                             <Row style={{fontSize: '0.7em'}}>{this.renderTags(item.tags)}
                                 <span style={{color: 'gray', marginLeft: '1em'}}>{item.authorName}</span>&nbsp;发布于&nbsp;<span
                                     style={{color: 'gray'}}>{item.article.createTime}</span>
