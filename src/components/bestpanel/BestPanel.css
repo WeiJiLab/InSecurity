@@ -1,6 +1,9 @@
 .HotPanel {
 
 }
-.title:hover{
-    color:#1458d4;
+.title{
+    color:#000;
+}
+.title:hover {
+    color: #1458d4;
 }

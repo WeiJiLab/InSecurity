@@ -1,5 +1,5 @@
 .ArticleList {
-    padding-bottom:1em;
+    padding-bottom: 1em;
     background: #fff;
     color: #000;
     border-top: 1px solid #f0f1f3;
@@ -17,6 +17,9 @@
     transition: background-size .2s linear;
 }
 
-.title:hover{
-    color:#1458d4;
+.title{
+    color:#000;
+}
+.title:hover {
+    color: #1458d4;
 }
