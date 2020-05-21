@@ -4,8 +4,10 @@ import com.thoughtworks.security.insecurity.dto.ResultDTO;
 import com.thoughtworks.security.insecurity.dto.request.PostArticleRequestDTO;
 import com.thoughtworks.security.insecurity.dto.response.ArticleResponseDTO;
 import com.thoughtworks.security.insecurity.entity.Article;
+import com.thoughtworks.security.insecurity.entity.User;
 import com.thoughtworks.security.insecurity.repository.ArticleRepository;
 import com.thoughtworks.security.insecurity.repository.UserRepository;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -21,10 +23,12 @@ public class ArticleService {
 
     private final ArticleRepository articleRepository;
     private final UserRepository userRepository;
+    private final JdbcTemplate jdbcTemplate;
 
-    public ArticleService(ArticleRepository articleRepository, UserRepository userRepository) {
+    public ArticleService(ArticleRepository articleRepository, UserRepository userRepository, JdbcTemplate jdbcTemplate) {
         this.articleRepository = articleRepository;
         this.userRepository = userRepository;
+        this.jdbcTemplate = jdbcTemplate;
     }
 
 
@@ -37,7 +41,7 @@ public class ArticleService {
         String[] topics = topic.trim().split(",");
         Set<ArticleResponseDTO> result = new HashSet<>();
         for (String tag : topics) {
-            List<Article> allByTagsLike = articleRepository.findAllByTagsLike("%"+tag+"%");
+            List<Article> allByTagsLike = articleRepository.findAllByTagsLike("%" + tag + "%");
             result.addAll(getArticleResponseDTO(allByTagsLike));
         }
         return ResultDTO.<List<ArticleResponseDTO>>builder().data(new ArrayList<>(result)).build();
@@ -82,7 +86,21 @@ public class ArticleService {
 
     public ResultDTO<List<ArticleResponseDTO>> listByKey(String key) {
         Set<ArticleResponseDTO> result = new HashSet<>();
-        List<Article> allByTagsLike = articleRepository.findAllByTitleLike("%"+key+"%");
+//        List<Article> allByTagsLike = articleRepository.findAllByTitleLike("%"+key+"%");
+        String sql = "select * from article where title like '%"+key+"%';";
+        System.out.println(sql);
+        List<Article> allByTagsLike = jdbcTemplate.query(
+                sql,
+                (rs, rowNum) -> Article.builder()
+                        .aid(rs.getLong("aid"))
+                        .uid(rs.getLong("uid"))
+                        .title(rs.getString("title"))
+                        .tags(rs.getString("tags"))
+                        .imgUrl(rs.getString("img_url"))
+                        .content(rs.getString("content"))
+                        .createTime(rs.getTime("create_time"))
+                        .build());
+
         result.addAll(getArticleResponseDTO(allByTagsLike));
         return ResultDTO.<List<ArticleResponseDTO>>builder().data(new ArrayList<>(result)).build();
     }

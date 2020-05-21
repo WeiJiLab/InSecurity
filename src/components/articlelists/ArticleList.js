@@ -33,7 +33,7 @@ class ArticleList extends Component {
                             <Image style={{width: '100%'}} src={item.article.imgUrl}/>
                         </Col>
                     </Row>
-                }):<span>无</span>
+                }):<span style={{color:'gray'}}>无</span>
             }
 
         </Fragment>);

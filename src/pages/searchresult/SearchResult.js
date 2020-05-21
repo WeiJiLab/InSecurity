@@ -4,7 +4,7 @@ import Container from "react-bootstrap/Container";
 import {Col, Row} from "react-bootstrap";
 import Menu from "../../components/menu/Menu";
 import {bindActionCreators} from "redux";
-import {articlesByKey, articlesByTopic} from "../../actions/actions";
+import {articlesByKey} from "../../actions/actions";
 import {connect} from "react-redux";
 import ArticleList from "../../components/articlelists/ArticleList";
 import HotPanel from "../../components/hotpanel/HotPanel";
@@ -13,7 +13,7 @@ class SearchResult extends Component {
     render() {
         let key = this.props.location.state.key;
         let html = {
-            __html:key
+            __html: key
         };
 
         return (<Container style={{padding: 0}} className="Home">
@@ -24,7 +24,10 @@ class SearchResult extends Component {
                         <Container className="Left-Card">
                             <h3>{this.renderBestIcon()}搜索结果</h3>
                             <Row>
-                                <Col><p style={{color: '#888'}}>&nbsp;收录了关于 <div style={{display:'inline-block'}} dangerouslySetInnerHTML={html}></div> 的 {this.props.articlesByKeyResult.articles.length} 篇内容</p></Col>
+                                <Col>
+                                    <p style={{color: '#888'}}>&nbsp;收录了关于 <div style={{display: 'inline-block'}} dangerouslySetInnerHTML={html}/> 的 {this.props.articlesByKeyResult.articles ? this.props.articlesByKeyResult.articles.length : 0} 篇内容
+                                    </p>
+                                </Col>
                             </Row>
                         </Container>
                         <Container style={{

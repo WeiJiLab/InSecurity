@@ -27,7 +27,6 @@ public class Article {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long aid;
-
     private Long uid;
     private String title;
     private String tags;
