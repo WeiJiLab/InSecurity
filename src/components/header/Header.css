@@ -15,19 +15,25 @@
     height: 2em;
 }
 
-.span-security{
+.span-security {
     font-weight: bolder;
     color: darkgreen;
 }
-.span-in{
+
+.span-in {
     font-weight: bolder;
     color: darkblue;
 }
 
-.span-login{
-    color:#000;
+.span-login {
+    color: #000;
 }
 
 .mr-auto > a {
     color: #000;
+}
+
+.buttonWrite {
+    background: #3db24b;
+    color: #fff;
 }

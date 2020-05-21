@@ -8,7 +8,9 @@ import {Button, Image} from "react-bootstrap";
 class ArticleList extends Component {
     render() {
         return (<Fragment>
+
             {
+                this.props.articles?
                 this.props.articles.map((item, index) => {
                     return <Row className={"Article-Card"}>
                         <Col md={8}>
@@ -24,7 +26,7 @@ class ArticleList extends Component {
                                             tag: item,
                                         }
                                     };
-                                    return <Button variant="link" style={{padding: 0, margin: 0}}><Link to={path}>{item}</Link></Button>
+                                    return <Fragment><Button variant="link" style={{padding: 0, margin: 0}}><Link to={path}>{item}</Link></Button>, </Fragment>
                                 })
                             }
                         </Col>
@@ -32,7 +34,7 @@ class ArticleList extends Component {
                             <Image style={{width: '100%'}} src={item.article.imgUrl}/>
                         </Col>
                     </Row>
-                })
+                }):<span>无</span>
             }
 
         </Fragment>);
@@ -42,6 +44,7 @@ class ArticleList extends Component {
         let html = {
             __html:title
         };
+        // return <h5>{title}</h5>;
         return <h5><div dangerouslySetInnerHTML={html}></div></h5>;
     }
 

@@ -1,0 +1,12 @@
+.Search {
+    background: transparent;
+    color: #000;
+    padding: 0;
+    margin: 0;
+    width: 15em;
+}
+
+.searchIcon {
+    width: 1em;
+    height: 1em;
+}

@@ -17,8 +17,8 @@ function App() {
             <Header/>
             <Container>
                 <Row>
-                    <Col md={1}> </Col>
-                    <Col md={10}>
+                    <Col md={2}> </Col>
+                    <Col md={8}>
                         <Switch>
                             <Route exact path="/" component={Home}/>
                             <Route exact path="/topic" component={Topic}/>

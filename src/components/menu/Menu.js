@@ -33,6 +33,7 @@ class Menu extends Component {
 
     renderTopics() {
         return (<Fragment>
+                <Nav.Link className="nav-tag" style={{color: "#000"}}><Link style={{color:'#1458d4'}} to={"/"}>首页</Link></Nav.Link>
                 {
                     this.props.topicsResult.topics.map((item, index) => {
                         let path = {
@@ -41,7 +42,7 @@ class Menu extends Component {
                                 tag: item,
                             }
                         };
-                        return <Nav.Link className="nav-tag" style={{color: "#000"}}><Link to={path}>{item}</Link></Nav.Link>
+                        return <Nav.Link className="nav-tag" style={{color: "#000",paddingRight:'2em'}}><Link style={{color:'#4a4a4a'}} to={path}>{item}</Link></Nav.Link>
                     })
                 }
             </Fragment>

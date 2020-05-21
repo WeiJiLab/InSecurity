@@ -1,4 +1,4 @@
-import React, {Component, Fragment} from 'react';
+import React, {Component} from 'react';
 import './Topic.css';
 import Container from "react-bootstrap/Container";
 import {Col, Row} from "react-bootstrap";

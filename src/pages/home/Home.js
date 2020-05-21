@@ -9,6 +9,7 @@ import ArticleList from "../../components/articlelists/ArticleList";
 import {bindActionCreators} from "redux";
 import {connect} from "react-redux";
 import HotPanel from "../../components/hotpanel/HotPanel";
+import Subscribe from "../../components/subscribe/Subscribe";
 
 class Home extends Component {
     render() {
@@ -45,8 +46,13 @@ class Home extends Component {
                                         <Link to={"/write"}><Button variant="outline-light" style={{marginTop: "1em"}}>开始写作</Button></Link>
                                     </Container>
                                 </Container>
-                                <Container>
+
+                                <Container style={{marginTop:'1em'}}>
                                     <HotPanel/>
+                                </Container>
+
+                                <Container style={{marginTop:'1em'}}>
+                                    <Subscribe/>
                                 </Container>
                             </Row>
                         </Col>

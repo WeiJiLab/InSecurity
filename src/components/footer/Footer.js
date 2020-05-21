@@ -13,27 +13,31 @@ function Footer() {
             <Container>
                 <Router>
                     <Row className="footerLine">
-                        <Col md={1}></Col>
-                        <Col>
-                            <Row><Image style={{width:'30%'}} src={Logo}/></Row>
-                        </Col>
-                        <Col>
-                            <Row>Copyright</Row>
-                            <Row><span className="footerText">© 2020 ThoughtWorks, Inc</span></Row>
-                        </Col>
-                        <Col>
-                            <Row>SiteMap</Row>
-                            <Row><span className="footerText"><Link to="/home">Home</Link></span></Row>
-                        </Col>
-                        <Col><Row>Info</Row>
-                            <Row><span className="footerText">Terms</span></Row>
-                            <Row><span className="footerText">Privacy</span></Row>
-                            <Row><span className="footerText">Contract</span></Row>
-                        </Col>
-                        <Col>
-                            <Row>Links</Row>
-                            <Row><span className="footerText">ThoughtWorks</span></Row>
-                            <Row><span className="footerText">Git</span></Row>
+                        <Col md={2}></Col>
+                        <Col md={8}>
+                            <Row>
+                                <Col>
+                                    <Row><Image style={{width: '30%'}} src={Logo}/></Row>
+                                </Col>
+                                <Col>
+                                    <Row>Copyright</Row>
+                                    <Row><span className="footerText">© 2020 ThoughtWorks, Inc</span></Row>
+                                </Col>
+                                <Col>
+                                    <Row>SiteMap</Row>
+                                    <Row><span className="footerText"><Link to="/home">Home</Link></span></Row>
+                                </Col>
+                                <Col><Row>Info</Row>
+                                    <Row><span className="footerText">Terms</span></Row>
+                                    <Row><span className="footerText">Privacy</span></Row>
+                                    <Row><span className="footerText">Contract</span></Row>
+                                </Col>
+                                <Col>
+                                    <Row>Links</Row>
+                                    <Row><span className="footerText">ThoughtWorks</span></Row>
+                                    <Row><span className="footerText">Git</span></Row>
+                                </Col>
+                            </Row>
                         </Col>
                     </Row>
                 </Router>

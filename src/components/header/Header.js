@@ -12,6 +12,8 @@ import {bindActionCreators} from "redux";
 import {login} from "../../actions/actions";
 import {connect} from "react-redux";
 import Cookies from "js-cookie";
+import Search from "../search/Search";
+import Form from "react-bootstrap/Form";
 
 class Header extends Component {
     constructor(props) {
@@ -22,8 +24,8 @@ class Header extends Component {
         return (
             <Container className="Header">
                 <Row>
-                    <Col md={1}> </Col>
-                    <Col md={10}>
+                    <Col md={2}> </Col>
+                    <Col md={8}>
                         <Navbar bg="#fff" variant="light">
                             <Link to="/home"><Image src={Logo} className="logo-img" rounded/>
                                 <Navbar.Brand className="icon" href="#home"><span className="span-in">In</span>
@@ -31,6 +33,10 @@ class Header extends Component {
                             </Link>
 
                             <Navbar.Collapse className="justify-content-end">
+                                <Search/>
+
+                                <Button className={"buttonWrite"} variant="default" type="button" style={{background:'#3db24b',color:'#fff'}}><Link style={{color:'#fff'}} to={"/write"}>写作平台</Link></Button>
+
                                 {
                                     this.renderUserInfo()
                                 }
@@ -44,8 +50,13 @@ class Header extends Component {
 
 
     renderUserInfo() {
-        let login = JSON.parse(Cookies.get("login"));
-        if (login == null || !login.loginStatus) {
+        let ck = Cookies.get("login");
+        let login = null;
+        if (ck != null) {
+            login = JSON.parse(ck);
+        }
+
+        if (ck == null || login == null || !login.loginStatus) {
             return (<Fragment><Link to="/login"><Button variant="link" style={{color: "#000"}}>
                 登录
             </Button></Link>|
