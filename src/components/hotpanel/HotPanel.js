@@ -7,10 +7,10 @@ import Col from "react-bootstrap/Col";
 function HotPanel() {
     return (
         <Container style={{background: '#fff', padding: '1em', boxShadow: '0 1px 3px rgba(27,95,160,.1)'}}>
-            <h3>
+            <h4>
                 {renderHotIcon()}
                 热点
-            </h3>
+            </h4>
             <Row>
                 <Col><span style={{color: '#ccc'}}>&nbsp;&nbsp;无</span></Col>
             </Row>

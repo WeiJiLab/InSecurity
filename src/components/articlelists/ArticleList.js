@@ -8,12 +8,11 @@ import {Button, Image} from "react-bootstrap";
 class ArticleList extends Component {
     render() {
         return (<Fragment>
-
             {
                 this.props.articles?
                 this.props.articles.map((item, index) => {
                     return <Row className={"Article-Card"}>
-                        <Col md={8}>
+                        <Col style={{padding:0}} md={8}>
                             {this.renderTitle(item.article.title)}
                             <p>作者: {item.authorName}</p>
                             <h6 style={{color: '#aaa'}}>{item.article.content}</h6>
@@ -30,7 +29,7 @@ class ArticleList extends Component {
                                 })
                             }
                         </Col>
-                        <Col md={4}>
+                        <Col style={{padding:0}} md={4}>
                             <Image style={{width: '100%'}} src={item.article.imgUrl}/>
                         </Col>
                     </Row>

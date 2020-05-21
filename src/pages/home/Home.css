@@ -2,19 +2,6 @@
     margin: 0em 0em 3em;
 }
 
-.Article-Card {
-    padding: 1em;
-    color: #000;
-    text-align: match-parent;
-}
-
-.Article-Card:hover {
-    background: #f5f6f6;
-    -webkit-transition: background-size .2s linear;
-    transition: background-size .2s linear;
-}
-
-
 h1, h2, h3 {
     display: inline-block;
 }

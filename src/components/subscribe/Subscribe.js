@@ -7,13 +7,12 @@ import {Link} from "react-router-dom";
 function Subscribe() {
     return (
         <Container style={{background: '#fff', padding: '1em', boxShadow: '0 1px 3px rgba(27,95,160,.1)'}}>
-            <h3>
-                订阅
-            </h3>
-            <br></br>
             <h4>
-                <strong>InSecurity</strong>每周精要
+                订阅
             </h4>
+            <h5>
+                <strong>InSecurity</strong>每周精要
+            </h5>
             <h6 style={{background:'#eee',padding:'0.5em'}}>你将获得</h6>
             <ul>
                 <li style={{color:'#828a92'}}>资深编辑编译的全球 IT 要闻</li>
