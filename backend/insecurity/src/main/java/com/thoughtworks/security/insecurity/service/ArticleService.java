@@ -4,6 +4,7 @@ import com.thoughtworks.security.insecurity.dto.ResultDTO;
 import com.thoughtworks.security.insecurity.dto.request.PostArticleRequestDTO;
 import com.thoughtworks.security.insecurity.dto.response.ArticleResponseDTO;
 import com.thoughtworks.security.insecurity.entity.Article;
+import com.thoughtworks.security.insecurity.exceptions.ArticleNotFoundException;
 import com.thoughtworks.security.insecurity.repository.ArticleRepository;
 import com.thoughtworks.security.insecurity.repository.UserRepository;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -15,7 +16,10 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.function.Supplier;
 import java.util.stream.Collectors;
+
+import static com.thoughtworks.security.insecurity.constant.Constant.ARTICLE_NOT_FOUND;
 
 @Component
 public class ArticleService {
@@ -117,4 +121,18 @@ public class ArticleService {
         return ResultDTO.<List<ArticleResponseDTO>>builder().data(new ArrayList<>(result)).build();
     }
 
+    public ResultDTO<ArticleResponseDTO> hotByAid(Long aid) throws Throwable {
+        Article article = articleRepository.findById(aid).orElseThrow((Supplier<Throwable>) () -> new ArticleNotFoundException(ARTICLE_NOT_FOUND));
+
+        article.setHot(!article.getHot());
+
+        articleRepository.save(article);
+
+        ArticleResponseDTO articleResponseDTO = ArticleResponseDTO.builder()
+                .authorName(userRepository.findById(article.getUid()).get().getUsername())
+                .tags(Arrays.asList(article.getTags().trim().split(",")))
+                .article(article).build();
+
+        return ResultDTO.<ArticleResponseDTO>builder().data(articleResponseDTO).build();
+    }
 }

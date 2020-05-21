@@ -20,6 +20,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
+import java.util.function.Supplier;
 
 import static com.thoughtworks.security.insecurity.constant.Constant.EMAIL_ALREADY_REGISTERED;
 import static com.thoughtworks.security.insecurity.constant.Constant.EMAIL_OR_PASSWORD_NOT_CORRECT_CODE;
@@ -117,5 +118,17 @@ public class UserService {
         }
         return ResultDTO.<List<UserDTO>>builder()
                 .data(result).build();
+    }
+
+    public ResultDTO<UserDTO> banUser(Long uid) throws Throwable {
+        User user = userRepository.findById(uid).orElseThrow((Supplier<Throwable>) () -> new UserNotFoundException(USER_NOT_FOUND));
+
+        user.setDel(!user.getDel());
+
+        userRepository.save(user);
+
+        return ResultDTO.<UserDTO>builder()
+                .data(user.toUserDTO())
+                .build();
     }
 }

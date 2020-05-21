@@ -9,7 +9,9 @@ import com.thoughtworks.security.insecurity.dto.response.LoginResponseDTO;
 import com.thoughtworks.security.insecurity.service.UserService;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -30,6 +32,12 @@ public class UserController {
     @CrossOrigin(origins = "*")
     public ResultDTO<UserDTO> register(@RequestBody RegisterRequestDTO registerRequestDTO) {
         return userService.register(registerRequestDTO);
+    }
+
+    @PutMapping("/ban/{uid}")
+    @CrossOrigin(origins = "*")
+    public ResultDTO<UserDTO> register(@PathVariable("uid") Long uid) throws Throwable {
+        return userService.banUser(uid);
     }
 
     @GetMapping("/all")

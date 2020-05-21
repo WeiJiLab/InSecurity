@@ -10,6 +10,9 @@ public class Constant {
     public static final String USERNAME_ALREADY_REGISTERED = "USERNAME_ALREADY_REGISTERED";
     public static final String USER_NOT_FOUND = "USER_NOT_FOUND";
     public static final String USER_HAS_DELETED = "USER_HAS_DELETED";
+    public static final String ARTICLE_NOT_FOUND = "ARTICLE_NOT_FOUND";
+
+
     public static final Map<String, String> ERRORS;
 
     static {
@@ -20,7 +23,7 @@ public class Constant {
         err.put(USERNAME_ALREADY_REGISTERED, "该用户名已经被别人用了");
         err.put(USER_NOT_FOUND, "该用户不存在");
         err.put(USER_HAS_DELETED, "该用户被禁止登录");
-
+        err.put(ARTICLE_NOT_FOUND, "文章不存在");
 
         ERRORS = err;
     }
