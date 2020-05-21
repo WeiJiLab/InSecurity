@@ -16,3 +16,7 @@
     -webkit-transition: background-size .2s linear;
     transition: background-size .2s linear;
 }
+
+.title:hover{
+    color:#1458d4;
+}

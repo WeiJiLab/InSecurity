@@ -22,9 +22,10 @@ class Menu extends Component {
                             <Nav className="mr-auto">
                                 {this.renderTopics()}
                                 {topics.length > 10 ?
-                                    <Navbar.Collapse className="justify-content-end" style={{position:'absolute',right:'0'}}>
+                                    <Navbar.Collapse className="justify-content-end" style={{position: 'absolute', right: '0'}}>
                                         <Dropdown style={{float: 'right'}}>
-                                            <Dropdown.Toggle variant="success" id="dropdown-basic" style={{background:'transparent',color:'#4a4a4a',border:'none'}}>
+                                            <Dropdown.Toggle variant="success" id="dropdown-basic"
+                                                             style={{background: 'transparent', color: '#4a4a4a', border: 'none'}}>
                                                 更多
                                             </Dropdown.Toggle>
                                             <Dropdown.Menu>
@@ -59,7 +60,7 @@ class Menu extends Component {
                         }
                     };
                     return <Dropdown.Item href="#/action-1"><Link style={{color: '#4a4a4a'}}
-                                                           to={path}>{item}</Link></Dropdown.Item>
+                                                                  to={path}>{item}</Link></Dropdown.Item>
                 })
             }
         </>;
@@ -92,8 +93,9 @@ class Menu extends Component {
                                 tag: item,
                             }
                         };
-                        return <Nav.Link className="nav-tag" style={{color: "#000", paddingRight: '2em'}}><Link style={{color: '#4a4a4a'}}
-                                                                                                                to={path}>{item}</Link></Nav.Link>
+                        return <Nav.Link style={{color: "#000", paddingRight: '2em'}}>
+                            <Link style={{color: '#4a4a4a'}} to={path}>{item}</Link>
+                        </Nav.Link>
                     })
                 }
             </Fragment>
