@@ -30,7 +30,7 @@ class ArticleList extends Component {
                             }
                         </Col>
                         <Col style={{padding:0}} md={4}>
-                            <Image style={{width: '100%'}} src={item.article.imgUrl}/>
+                            <Image style={{width: '100%',height:'8em',borderRadius:'4px'}} src={item.article.imgUrl}/>
                         </Col>
                     </Row>
                 }):<span style={{color:'gray'}}>无</span>
@@ -44,7 +44,7 @@ class ArticleList extends Component {
             __html:title
         };
         // return <h5>{title}</h5>;
-        return <h5><div style={{width:'100%'}} dangerouslySetInnerHTML={html}></div></h5>;
+        return <h6><div style={{width:'100%'}} dangerouslySetInnerHTML={html}></div></h6>;
     }
 
     renderTagIcon() {
