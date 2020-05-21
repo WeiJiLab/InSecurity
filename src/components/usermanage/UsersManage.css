@@ -12,5 +12,5 @@
 .banBadge {
     border-radius: 0 !important;
     margin-right: 1em;
-    line-height: '';
+    line-height: 1.5 !important;
 }
