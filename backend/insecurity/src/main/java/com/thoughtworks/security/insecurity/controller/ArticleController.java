@@ -44,6 +44,12 @@ public class ArticleController {
         return articleService.listByTopic(topic);
     }
 
+    @GetMapping("/search")
+    @CrossOrigin(origins = "*")
+    public ResultDTO<List<ArticleResponseDTO>> listByKey(@RequestParam("key") String key) {
+        return articleService.listByKey(key);
+    }
+
     @GetMapping("/topics")
     @CrossOrigin(origins = "*")
     public ResultDTO<List<String>> listTopics() {

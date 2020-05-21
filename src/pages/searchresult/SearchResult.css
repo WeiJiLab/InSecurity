@@ -1,0 +1,122 @@
+.Topic {
+    margin: 0em 0em 3em;
+}
+
+.Article-Card {
+    padding: 1em;
+    color: #000;
+    text-align: match-parent;
+}
+
+.Article-Card:hover {
+    background: #f5f6f6;
+    -webkit-transition: background-size .2s linear;
+    transition: background-size .2s linear;
+}
+
+
+h1, h2, h3 {
+    display: inline-block;
+}
+
+.Card-Title {
+    margin-top: 43%;
+    text-align: left;
+    font-size: 1.2em;
+    line-height: 1.2em;
+    font-weight: bolder;
+    margin-bottom: 0;
+}
+
+.Card-Content {
+    text-align: left;
+    margin-top: 0;
+    color: #eee;
+    font-size: 0.9em;
+    font-weight: bolder;
+}
+
+.Right-Card-Title {
+    margin-top: 35%;
+    text-align: left;
+    font-size: 1em;
+    line-height: 1em;
+    font-weight: bolder;
+    margin-bottom: 0;
+}
+
+.Right-Card-Content {
+    text-align: left;
+    color: #eee;
+    font-size: 0.8em;
+    font-weight: bolder;
+}
+
+.Events {
+}
+
+.Left-Card {
+    padding: 1em;
+    text-align: left;
+    box-shadow: 0 1px 3px rgba(27, 95, 160, .1);
+    background: #fff;
+}
+
+.Left-Card:hover {
+    background-size: 120% auto;
+    -webkit-transition: background-size .2s linear;
+    transition: background-size .2s linear;
+    /*background: linear-gradient(to top, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0)), url("https://agilutions.com/wp-content/uploads/2018/04/team-coding-768x512.jpg") no-repeat center;*/
+}
+
+.Right-Card {
+    color: #fff;
+    background: #fff;
+    padding: 1em;
+    height: 12em;
+    box-shadow: 0 1px 3px rgba(27, 95, 160, .1);
+}
+
+.Write-Card {
+    color: #fff;
+    border-radius: 10px;
+    padding: 1em;
+    height: 12em;
+    background: #000 url(https://static001.geekbang.org/static/infoq/www/img/write-apply-bg.c689269.png) center;
+    background-size: 100% 100%;
+    text-align: left;
+}
+
+.Write-Card-Title {
+    margin-top: 5%;
+    text-align: left;
+    font-size: 1.8em;
+    line-height: 1em;
+    font-weight: bolder;
+    display: block;
+    margin-bottom: 0;
+}
+
+.Write-Card-Content {
+    text-align: left;
+    color: #eee;
+    font-size: 1.4em;
+    display: block;
+    font-weight: bolder;
+}
+
+.Right-Bottom-Card {
+    padding-top: 0.5em;
+}
+
+.Right-Top-Card {
+    padding-bottom: 0em;
+}
+
+.SvgIcon {
+    width: 1.2em;
+    height: 1.2em;
+    float: left;
+    margin-right: 0.5em;
+    position: relative;
+}

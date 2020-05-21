@@ -79,4 +79,11 @@ public class ArticleService {
                 .build();
         return ResultDTO.<Article>builder().data(articleRepository.save(article)).build();
     }
+
+    public ResultDTO<List<ArticleResponseDTO>> listByKey(String key) {
+        Set<ArticleResponseDTO> result = new HashSet<>();
+        List<Article> allByTagsLike = articleRepository.findAllByTitleLike("%"+key+"%");
+        result.addAll(getArticleResponseDTO(allByTagsLike));
+        return ResultDTO.<List<ArticleResponseDTO>>builder().data(new ArrayList<>(result)).build();
+    }
 }

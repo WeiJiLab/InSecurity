@@ -35,6 +35,11 @@ const initialState = {
         articlesStatus: false,
         message: null,
         articles: []
+    },
+    articlesByKeyResult: {
+        articlesStatus: false,
+        message: null,
+        articles: []
     }
 };
 
@@ -101,6 +106,16 @@ export function reduxResult(state = initialState, action) {
         case  ArticleActions.GET_ARTICLE_LIST_ALL_BY_TOPIC_SUCCESS:
             return Object.assign({}, state, {
                 articlesByTopicResult: action.payload,
+            });
+
+        case ArticleActions.GET_ARTICLE_LIST_ALL_BY_KEY_FAILED:
+            return Object.assign({}, state, {
+                articlesByKeyResult: action.payload,
+            });
+
+        case  ArticleActions.GET_ARTICLE_LIST_ALL_BY_KEY_SUCCESS:
+            return Object.assign({}, state, {
+                articlesByKeyResult: action.payload,
             });
 
         default:

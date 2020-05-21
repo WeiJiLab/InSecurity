@@ -7,5 +7,6 @@ export const API_ARTICLE_POST = API_BASE + 'article/post';
 export const API_ARTICLE_ALL = API_BASE + 'article/all';
 export const API_ARTICLE_TOPIC = API_BASE + 'article/topic';
 export const API_ARTICLE_TOPICS = API_BASE + 'article/topics';
+export const API_ARTICLE_KEY = API_BASE + 'article/search';
 
 
