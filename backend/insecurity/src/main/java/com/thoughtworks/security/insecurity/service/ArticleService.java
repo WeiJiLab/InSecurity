@@ -36,6 +36,11 @@ public class ArticleService {
         return ResultDTO.<List<ArticleResponseDTO>>builder().data(getArticleResponseDTO(allOrderByCreateTimeDesc)).build();
     }
 
+    public ResultDTO<List<ArticleResponseDTO>> listHotByUpdateTime() {
+        List<Article> allOrderByCreateTimeDesc = articleRepository.findAllByHotIsOrderByUpdateTimeDesc(true);
+        return ResultDTO.<List<ArticleResponseDTO>>builder().data(getArticleResponseDTO(allOrderByCreateTimeDesc)).build();
+    }
+
     public ResultDTO<List<ArticleResponseDTO>> listByTopic(String topic) {
         String[] topics = topic.trim().split(",");
         Set<ArticleResponseDTO> result = new HashSet<>();
@@ -111,4 +116,5 @@ public class ArticleService {
         result.addAll(getArticleResponseDTO(articles));
         return ResultDTO.<List<ArticleResponseDTO>>builder().data(new ArrayList<>(result)).build();
     }
+
 }

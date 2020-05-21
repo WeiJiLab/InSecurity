@@ -37,6 +37,7 @@ public class User {
     private Date createTime;
     private Date updateTime;
     private Date lastLoginTime;
+    private Boolean del;
 
     public UserDTO toUserDTO(){
         return UserDTO.builder()

@@ -15,4 +15,6 @@ public interface ArticleRepository extends JpaRepository<Article, Long> {
     List<Article> findAllByTitleLike(String title);
 
     List<Article> findAllByUidIs(Long uid);
+
+    List<Article> findAllByHotIsOrderByUpdateTimeDesc(Boolean b);
 }

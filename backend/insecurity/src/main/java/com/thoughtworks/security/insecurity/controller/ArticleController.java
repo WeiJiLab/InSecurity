@@ -38,6 +38,12 @@ public class ArticleController {
         return articleService.listByCreateTime();
     }
 
+    @GetMapping("/hot")
+    @CrossOrigin(origins = "*")
+    public ResultDTO<List<ArticleResponseDTO>> listHotByUpdateTime() {
+        return articleService.listHotByUpdateTime();
+    }
+
     @GetMapping("/topic")
     @CrossOrigin(origins = "*")
     public ResultDTO<List<ArticleResponseDTO>> listByTopic(@RequestParam("topic") String topic) {

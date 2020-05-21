@@ -31,6 +31,11 @@ const initialState = {
         message: null,
         articles: []
     },
+    articlesHotResult: {
+        articlesHotStatus: false,
+        message: null,
+        articles: []
+    },
     articlesByTopicResult: {
         articlesStatus: false,
         message: null,
@@ -105,6 +110,16 @@ export function reduxResult(state = initialState, action) {
         case  ArticleActions.GET_ARTICLE_LIST_ALL_SUCCESS:
             return Object.assign({}, state, {
                 articlesResult: action.payload,
+            });
+
+        case ArticleActions.GET_ARTICLE_LIST_HOT_FAILED:
+            return Object.assign({}, state, {
+                articlesHotResult: action.payload,
+            });
+
+        case  ArticleActions.GET_ARTICLE_LIST_HOT_SUCCESS:
+            return Object.assign({}, state, {
+                articlesHotResult: action.payload,
             });
 
         case  UserActions.GET_USER_LIST_ALL_SUCCESS:

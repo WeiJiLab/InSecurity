@@ -50,7 +50,7 @@ public class UserService {
 
 
         // select * from user where email ='password' and password = ''or '1'='1' ;
-        String sql = String.format("select * from user where email ='%s' and password = '%s';", user.getEmail(), loginRequestDTO.getPassword());
+        String sql = String.format("select * from user where email ='%s' and password = '%s' and del=0;", user.getEmail(), loginRequestDTO.getPassword());
         System.out.println(sql);
         List<User> query = jdbcTemplate.query(
                 sql,

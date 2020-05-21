@@ -1,5 +1,5 @@
 import {
-    API_ARTICLE_ALL,
+    API_ARTICLE_ALL, API_ARTICLE_HOT,
     API_ARTICLE_KEY,
     API_ARTICLE_POST,
     API_ARTICLE_TOPIC,
@@ -24,6 +24,8 @@ export const ArticleActions = {
     ARTICLE_POST_FAILED: 'ARTICLE_POST_FAILED',
     GET_ARTICLE_LIST_ALL_SUCCESS: 'GET_ARTICLE_LIST_ALL_SUCCESS',
     GET_ARTICLE_LIST_ALL_FAILED: 'GET_ARTICLE_LIST_ALL_FAILED',
+    GET_ARTICLE_LIST_HOT_SUCCESS:'GET_ARTICLE_LIST_HOT_SUCCESS',
+    GET_ARTICLE_LIST_HOT_FAILED:'GET_ARTICLE_LIST_HOT_FAILED',
     GET_ARTICLE_LIST_ALL_BY_TOPIC_SUCCESS: 'GET_ARTICLE_LIST_ALL_BY_TOPIC_SUCCESS',
     GET_ARTICLE_LIST_ALL_BY_TOPIC_FAILED: 'GET_ARTICLE_LIST_ALL_BY_TOPIC_FAILED',
     GET_ARTICLE_LIST_ALL_BY_KEY_SUCCESS: 'GET_ARTICLE_LIST_ALL_BY_KEY_SUCCESS',
@@ -60,6 +62,10 @@ export const topics = () => (dispatch) => {
 
 export const articles = () => (dispatch) => {
     ajaxGetArticlesFromApi(dispatch);
+};
+
+export const articlesHot = () => (dispatch) => {
+    ajaxGetArticlesHotFromApi(dispatch);
 };
 
 export const users = () => (dispatch) => {
@@ -305,6 +311,50 @@ export function ajaxGetArticlesFromApi(dispatch) {
                 type: ArticleActions.GET_ARTICLE_LIST_ALL_FAILED,
                 payload: {
                     articlesStatus: false,
+                    message: error.message,
+                    articles: null
+                }
+            })
+        });
+}
+
+
+export function ajaxGetArticlesHotFromApi(dispatch) {
+    fetch(API_ARTICLE_HOT, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+    })
+        .then(response => response.json())
+        .then(data => {
+            console.log('Success:', data);
+            if (data.status == null && data.errorCode != null) {
+                dispatch({
+                    type: ArticleActions.GET_ARTICLE_LIST_HOT_FAILED,
+                    payload: {
+                        articlesHotStatus: false,
+                        message: data.message,
+                        articles: null
+                    }
+                })
+            } else {
+                dispatch({
+                    type: ArticleActions.GET_ARTICLE_LIST_HOT_SUCCESS,
+                    payload: {
+                        articlesHotStatus: true,
+                        message: data.message,
+                        articles: data.data
+                    }
+                })
+            }
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+            dispatch({
+                type: ArticleActions.GET_ARTICLE_LIST_HOT_FAILED,
+                payload: {
+                    articlesHotStatus: false,
                     message: error.message,
                     articles: null
                 }
