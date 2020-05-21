@@ -5,7 +5,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import {Link} from "react-router-dom";
 import {bindActionCreators} from "redux";
-import {articlesByTopic, articlesHot} from "../../actions/actions";
+import {articlesHot} from "../../actions/actions";
 import {connect} from "react-redux";
 
 class HotPanel extends Component {
@@ -33,14 +33,19 @@ class HotPanel extends Component {
         return (<Fragment>{
             this.props.articlesHotResult.articles.map((item, index) => {
                 const path = {
-                    pathname:"/article",
-                    state:{
-                        article:item
+                    pathname: "/article",
+                    state: {
+                        article: item
                     }
                 };
-                return <Container style={{marginBottom: '0.3em',paddingBottom:'0.3em'}}>
-                    <Row style={{fontSize:'0.9em',color:'#303030',textAlign:'left'}}>
-                        <Link className={"title"} to={path}><span className={"hotSpan"}>{index}</span>{item.article.title}</Link>
+                return <Container style={{marginBottom: '0.3em', paddingBottom: '0.3em'}}>
+                    <Row style={{fontSize: '0.9em', color: '#303030', textAlign: 'left'}}>
+                        <Col md={1} style={{padding: 0, margin: 0}}>
+                            <span className={"hotSpan"}>{index}</span>
+                        </Col>
+                        <Col md={11} style={{padding: 0, margin: 0}}>
+                            <Link className={"title"} to={path}>{item.article.title}</Link>
+                        </Col>
                     </Row>
                 </Container>;
             })
