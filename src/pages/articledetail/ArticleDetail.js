@@ -1,19 +1,20 @@
-import React, {Component} from 'react';
-import './SearchResult.css';
+import React, {Component, Fragment} from 'react';
+import './ArticleDetail.css';
 import Container from "react-bootstrap/Container";
-import {Col, Row} from "react-bootstrap";
+import {Button, Col, Image, Row} from "react-bootstrap";
 import Menu from "../../components/menu/Menu";
 import {bindActionCreators} from "redux";
 import {articlesByKey} from "../../actions/actions";
 import {connect} from "react-redux";
-import ArticleList from "../../components/articlelists/ArticleList";
 import HotPanel from "../../components/hotpanel/HotPanel";
+import Subscribe from "../../components/subscribe/Subscribe";
+import {Link} from "react-router-dom";
 
-class SearchResult extends Component {
+class ArticleDetail extends Component {
     render() {
-        let key = this.props.location.state.key;
-        let html = {
-            __html: key
+        const article = this.props.location.state.article;
+        let content = {
+            __html:article.article.content
         };
 
         return (<Container style={{padding: 0}} className="Home">
@@ -22,31 +23,41 @@ class SearchResult extends Component {
                 <Row style={{padding: 0}}>
                     <Col md={8} style={{padding: 0}}>
                         <Container className="Left-Card">
-                            <h3>{this.renderBestIcon()}搜索结果</h3>
-                            <Row>
-                                <Col>
-                                    <p style={{color: '#888'}}>&nbsp;收录了关于 <div style={{display: 'inline-block'}} dangerouslySetInnerHTML={html}/> 的 {this.props.articlesByKeyResult.articles ? this.props.articlesByKeyResult.articles.length : 0} 篇内容
-                                    </p>
-                                </Col>
-                            </Row>
-                        </Container>
-                        <Container style={{
-                            background: '#fff',
-                            padding: '1em',
-                            marginTop: 0,
-                            boxShadow: '0 1px 3px rgba(27,95,160,.1)',
-                            textAlign: 'left'
-                        }}>
-                            <h4>全部</h4>
+                            <h3>{this.renderBestIcon()}阅读文章</h3>
+                            <Container style={{padding: '1em'}}>
+                                <Row style={{marginTop: '1em'}}>
+                                    <h4 className={"title"}>{article.article.title}</h4>
+                                </Row>
 
-                            <ArticleList articles={this.props.articlesByKeyResult.articles}/>
+                                <Row>
+                                    {this.renderTags(article.tags)}
+                                </Row>
 
+                                <Row style={{marginTop: '1em'}}>
+                                    <Image style={{width: '100%', borderRadius: '4px'}} src={article.article.imgUrl}/>
+                                </Row>
+
+                                <Row style={{fontSize: '0.8em', marginTop: '1em'}}>
+                                    <span style={{color: 'gray'}}>作者:</span>
+                                    {article.authorName}
+                                </Row>
+                                <Row style={{fontSize: '0.8em'}}>
+                                    <span style={{color: 'gray'}}>发布于:</span>
+                                    {article.article.createTime}
+                                </Row>
+
+
+                                <Row style={{marginTop: '3em', color: '#4a4a4a'}}><div style={{width:'100%'}} dangerouslySetInnerHTML={content}></div></Row>
+                            </Container>
                         </Container>
                     </Col>
                     <Col md={4} style={{paddingRight: 0, textAlign: 'left'}}>
                         <Row>
                             <Container>
                                 <HotPanel/>
+                            </Container>
+                            <Container style={{marginTop: '1em'}}>
+                                <Subscribe/>
                             </Container>
                         </Row>
                     </Col>
@@ -55,16 +66,49 @@ class SearchResult extends Component {
         </Container>);
     };
 
+    renderTags(tags) {
+        return <>
+            <Button variant="link" style={{padding: 0, margin: 0}}>{this.renderTagIcon()}</Button>
+            {
+                tags.map((item, index) => {
+                    let path = {
+                        pathname: "/topic",
+                        state: {
+                            tag: item,
+                        }
+                    };
+                    return <Fragment><Button variant="link" style={{padding: 0, margin: 0}}><Link to={path}>{item}</Link></Button>,
+                    </Fragment>
+                })
+            }
+        </>;
+    }
+
+    renderTagIcon() {
+        return (
+            <svg t="1589901720528" className="icon SvgIcon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1156"
+                 width="200"
+                 height="200">
+                <path
+                    d="M194.133333 388.266667c0 53.333333 42.666667 96 96 96s96-42.666667 96-96-42.666667-96-96-96-96 42.666667-96 96z m128 0c0 17.066667-14.933333 32-32 32s-32-14.933333-32-32 14.933333-32 32-32 32 14.933333 32 32zM951.466667 569.6L469.333333 104.533333c-12.8-12.8-32-12.8-44.8 0-12.8 12.8-12.8 32 0 44.8l458.666667 441.6-270.933333 273.066667c-12.8 12.8-12.8 32 0 44.8 6.4 6.4 14.933333 8.533333 23.466666 8.533333 8.533333 0 17.066667-2.133333 23.466667-8.533333l294.4-294.4c6.4-6.4 8.533333-14.933333 8.533333-23.466667 0-8.533333-4.266667-14.933333-10.666666-21.333333z"
+                    fill="#007bff" p-id="1157"/>
+                <path
+                    d="M
+                797.866667 593.066667c0-8.533333-4.266667-17.066667-8.533334-23.466667L371.2 151.466667l-12.8-12.8c-6.4-6.4-14.933333-8.533333-23.466667-8.533334H64c-17.066667 0-32 14.933333-32 32v270.933334c0 8.533333 4.266667 17.066667 8.533333 23.466666l430.933334 430.933334c6.4 6.4 14.933333 8.533333 23.466666 8.533333s17.066667-2.133333 23.466667-8.533333L789.333333 616.533333c4.266667-6.4 8.533333-14.933333 8.533334-23.466666zM494.933333 819.2L96 420.266667V194.133333h226.133333l398.933334 398.933334-226.133334 226.133333z"
+                    fill="#007bff" p-id="1158"/>
+            </svg>);
+    }
+
     componentWillMount() {
-        let key = this.props.location.state.key;
-        this.props.articlesByKey(key);
+        // let key = this.props.location.state.key;
+        // this.props.articlesByKey(key);
     }
 
     componentWillUpdate(nextProps, nextState, nextContext) {
-        let key = this.props.location.state.key;
-        if (nextProps.location.state.key !== key) {
-            this.props.articlesByKey(nextProps.location.state.key);
-        }
+        // let key = this.props.location.state.key;
+        // if (nextProps.location.state.key !== key) {
+        //     this.props.articlesByKey(nextProps.location.state.key);
+        // }
     }
 
     renderBestIcon() {
@@ -88,4 +132,4 @@ const mapDispatchToProps = dispatch => bindActionCreators({
 }, dispatch);
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(SearchResult);
+export default connect(mapStateToProps, mapDispatchToProps)(ArticleDetail);

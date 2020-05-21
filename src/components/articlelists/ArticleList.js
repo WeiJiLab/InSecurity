@@ -11,9 +11,17 @@ class ArticleList extends Component {
             {
                 this.props.articles?
                 this.props.articles.map((item, index) => {
+                    const path = {
+                        pathname:"/article",
+                        state:{
+                            article:item
+                        }
+                    };
                     return <Row className={"Article-Card"}>
                         <Col style={{padding:0}} md={8}>
+                            <Link to={path}>
                             {this.renderTitle(item.article.title)}
+                            </Link>
                             <p>作者: {item.authorName}</p>
                             <h6 style={{color: '#aaa'}}>{item.article.content}</h6>
                             <Button variant="link" style={{padding: 0, margin: 0}}>{this.renderTagIcon()}</Button>

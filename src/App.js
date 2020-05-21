@@ -11,6 +11,7 @@ import Me from "./pages/me/Me";
 import {Col, Container, Row} from "react-bootstrap";
 import Topic from "./pages/topic/Topic";
 import SearchResult from "./pages/searchresult/SearchResult";
+import ArticleDetail from "./pages/articledetail/ArticleDetail";
 
 function App() {
     return (
@@ -24,6 +25,7 @@ function App() {
                             <Route exact path="/" component={Home}/>
                             <Route exact path="/topic" component={Topic}/>
                             <Route exact path="/search" component={SearchResult}/>
+                            <Route exact path="/article" component={ArticleDetail}/>
                             <Route exact path="/home" component={Home}/>
                             <Route exact path="/login" component={Login}/>
                             <Route exact path="/register" component={Register}/>

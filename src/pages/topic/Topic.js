@@ -8,6 +8,7 @@ import {articlesByTopic} from "../../actions/actions";
 import {connect} from "react-redux";
 import ArticleList from "../../components/articlelists/ArticleList";
 import HotPanel from "../../components/hotpanel/HotPanel";
+import Subscribe from "../../components/subscribe/Subscribe";
 
 class Topic extends Component {
     render() {
@@ -40,6 +41,9 @@ class Topic extends Component {
                         <Row>
                             <Container>
                                 <HotPanel/>
+                            </Container>
+                            <Container style={{marginTop:'1em'}}>
+                                <Subscribe/>
                             </Container>
                         </Row>
                     </Col>

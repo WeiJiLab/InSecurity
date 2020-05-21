@@ -12,25 +12,12 @@ class BestPanel extends Component {
     }
 
     render() {
+
         return (
             <Container className="Left-Card">
                 <h4>{this.renderBestIcon()}精选内容</h4>
                 {
-                    this.props.bestArticles[0] ? <Row style={{padding: '0 1em 0 1em'}}>
-                        <Col style={{padding: '1em 0em 0em 1em'}}>
-                            <Row><Image style={{width: '100%', borderRadius: '4px', height: '12em'}}
-                                        src={this.props.bestArticles[0].article.imgUrl}/></Row>
-                        </Col>
-                        <Col style={{paddingLeft: '3em', paddingTop: '0em'}}>
-                            <Row style={{marginTop: '1em'}}><h6 className={"title"}>{this.props.bestArticles[0].article.title.substr(0, 40)}</h6></Row>
-                            <Row style={{fontSize: '0.8em'}}><span style={{color: 'gray'}}>作者:</span>{this.props.bestArticles[0].authorName}</Row>
-                            <Row style={{marginTop: '1em', color: 'gray'}}>{this.props.bestArticles[0].article.content}</Row>
-
-                            <Row style={{marginTop: '1em'}}>
-                                {this.renderTags(this.props.bestArticles[0].tags)}
-                            </Row>
-                        </Col>
-                    </Row> : null
+                    this.props.bestArticles[0] ? this.renderTheBestArticle(this.props.bestArticles[0]) : null
                 }
 
                 <Row style={{padding: '0 1em 0 1em'}}>
@@ -42,6 +29,34 @@ class BestPanel extends Component {
         );
     }
 
+    renderTheBestArticle(article) {
+        const path = {
+            pathname: "/article",
+            state: {
+                article: article
+            }
+        };
+        return <Row style={{padding: '0 1em 0 1em'}}>
+            <Col style={{padding: '1em 0em 0em 1em'}}>
+                <Row><Image style={{width: '100%', borderRadius: '4px', height: '12em'}}
+                            src={article.article.imgUrl}/></Row>
+            </Col>
+            <Col style={{paddingLeft: '3em', paddingTop: '0em'}}>
+                <Row style={{marginTop: '1em'}}>
+                    <Link to={path}>
+                        <h6 className={"title"}>{article.article.title.substr(0, 40)}</h6>
+                    </Link>
+                </Row>
+                <Row style={{fontSize: '0.8em'}}><span style={{color: 'gray'}}>作者:</span>{article.authorName}</Row>
+                <Row style={{marginTop: '1em', color: 'gray'}}>{article.article.content}</Row>
+
+                <Row style={{marginTop: '1em'}}>
+                    {this.renderTags(article.tags)}
+                </Row>
+            </Col>
+        </Row>;
+    }
+
     renderBestArticle(bestArticles) {
         if (!bestArticles) {
             return null;
@@ -50,12 +65,22 @@ class BestPanel extends Component {
         if (title.length > 26) {
             title = title.substr(0, 26) + '...';
         }
+        const path = {
+            pathname: "/article",
+            state: {
+                article: bestArticles
+            }
+        };
         return <>
             {
                 bestArticles ? <Col style={{padding: '1em 1.5em 0 1em'}}>
                     <Row><Image style={{width: '100%', borderRadius: '4px', height: '8em'}}
                                 src={bestArticles.article.imgUrl}/></Row>
-                    <Row style={{marginTop: '1em'}}><h6 className={"title"}>{title}</h6></Row>
+                    <Row style={{marginTop: '1em'}}>
+                        <Link to={path}>
+                            <h6 className={"title"}>{title}</h6>
+                        </Link>
+                    </Row>
                     <Row style={{fontSize: '0.8em'}}><span style={{color: 'gray'}}>作者:</span>{bestArticles.authorName}</Row>
                     <Row style={{marginTop: '0.5em'}}>
                         {this.renderTags(bestArticles.tags)}
