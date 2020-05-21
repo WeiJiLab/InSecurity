@@ -28,8 +28,14 @@ class Header extends Component {
                     <Col md={8}>
                         <Navbar bg="#fff" variant="light">
                             <Link to="/home"><Image src={Logo} className="logo-img" rounded/>
-                                <Navbar.Brand className="icon" href="#home"><span className="span-in">TW</span>
-                                    <span className="span-security" style={{fontWeight:'bolder'}}>OWASP</span></Navbar.Brand>
+                                <Navbar.Brand className="icon" href="#home">
+                                    <p style={{padding:0,margin:0}}>TWOWASP</p>
+                                    {/*<span style={{fontWeight:'bolder',color:'#900C3F'}}>O</span>*/}
+                                    {/*<span style={{fontWeight:'bolder',color:'#C70039'}}>W</span>*/}
+                                    {/*<span style={{fontWeight:'bolder',color:'#FF5733'}}>A</span>*/}
+                                    {/*<span style={{fontWeight:'bolder',color:'#FFC300'}}>S</span>*/}
+                                    {/*<span style={{fontWeight:'bolder',color:'#DAF7A6'}}>P</span>*/}
+                                </Navbar.Brand>
                             </Link>
 
                             <Navbar.Collapse className="justify-content-end">
