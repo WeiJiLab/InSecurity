@@ -17,59 +17,68 @@ class Admin extends Component {
     }
 
     render() {
-        if (Cookies.get("login") === "null") {
+        let login = JSON.parse(Cookies.get("login"));
+        if (login == null || !login.loginStatus) {
             this.props.history.push("/login");
             return null;
         }
 
         let user = JSON.parse(Cookies.get("login")).userInfo.userDTO;
-
         return (<Container style={{padding: 0, marginTop: '1em'}} className="Home">
             <Container className="Events">
-                <Row style={{padding: 0}}>
-                    <Col md={4} style={{padding: 0}}>
-                        <Container className="Left-Card" style={{padding: 0}}>
-                            <Container style={{padding: 0, background: '#000'}}>
-                                <Image style={{width: '25%', height: '5em', background: '#000', padding: '1em'}} src={Logo}/>
-                                <h3 style={{color: '#fff', padding: 0, margin: 0}}>后台管理</h3>
+                {user.username === 'admin' ?
+                    <Row style={{padding: 0}}>
+                        <Col md={4} style={{padding: 0}}>
+                            <Container className="Left-Card" style={{padding: 0}}>
+                                <Container style={{padding: 0, background: '#000'}}>
+                                    <Image style={{width: '25%', height: '5em', background: '#000', padding: '1em'}} src={Logo}/>
+                                    <h3 style={{color: '#fff', padding: 0, margin: 0}}>后台管理</h3>
+                                </Container>
+                                <Container style={{padding: 0, paddingTop: '2em', paddingBottom: '2em'}}>
+                                    <Row className={'adminItem'} onClick={this.changeToArticleAdmin.bind(this)}>
+                                        <h5 style={{color: this.state.currentShow === "Article" ? '#1458d4' : '#000'}}>{this.renderBestIcon()}文章管理</h5>
+                                        <h5 style={{
+                                            position: 'absolute',
+                                            right: '1.5em',
+                                            color: this.state.currentShow === "Article" ? '#1458d4' : 'gray',
+                                            fontWeight: 'lighter'
+                                        }}> > </h5>
+                                    </Row>
+                                    <Row className={'adminItem'} onClick={this.changeToUserAdmin.bind(this)}>
+                                        <h5 style={{color: this.state.currentShow === "User" ? '#1458d4' : '#000'}}>{this.renderBestIcon()}用户管理</h5>
+                                        <h5 style={{
+                                            position: 'absolute',
+                                            right: '1.5em',
+                                            color: this.state.currentShow === "User" ? '#1458d4' : 'gray',
+                                            fontWeight: 'lighter'
+                                        }}> > </h5>
+                                    </Row>
+                                </Container>
                             </Container>
-                            <Container style={{padding: 0, paddingTop: '2em', paddingBottom: '2em'}}>
-                                <Row className={'adminItem'} onClick={this.changeToArticleAdmin.bind(this)}>
-                                    <h5 style={{color: this.state.currentShow === "Article" ? '#1458d4' : '#000'}}>{this.renderBestIcon()}文章管理</h5>
-                                    <h5 style={{
-                                        position: 'absolute',
-                                        right: '1.5em',
-                                        color: this.state.currentShow === "Article" ? '#1458d4' : 'gray',
-                                        fontWeight: 'lighter'
-                                    }}> > </h5>
-                                </Row>
-                                <Row className={'adminItem'} onClick={this.changeToUserAdmin.bind(this)}>
-                                    <h5 style={{color: this.state.currentShow === "User" ? '#1458d4' : '#000'}}>{this.renderBestIcon()}用户管理</h5>
-                                    <h5 style={{
-                                        position: 'absolute',
-                                        right: '1.5em',
-                                        color: this.state.currentShow === "User" ? '#1458d4' : 'gray',
-                                        fontWeight: 'lighter'
-                                    }}> > </h5>
-                                </Row>
+                        </Col>
+                        <Col md={8} style={{paddingRight: 0, textAlign: 'left'}}>
+                            <Row>
+                                {this.state.currentShow === 'Article' ?
+                                    <Container style={{marginTop: '0em'}}>
+                                        <ArticlesManage/>
+                                    </Container> : null
+                                }
+                                {this.state.currentShow === 'User' ?
+                                    <Container style={{marginTop: '0em'}}>
+                                        <UsersManage/>
+                                    </Container> : null
+                                }
+                            </Row>
+                        </Col>
+                    </Row> :
+                    <Row style={{padding: 0}}>
+                        <Col md={12} style={{padding: 0}}>
+                            <Container className="Left-Card" style={{padding: '2em'}}>
+                                <h3>抱歉, 你没有权限访问该页面.</h3>
                             </Container>
-                        </Container>
-                    </Col>
-                    <Col md={8} style={{paddingRight: 0, textAlign: 'left'}}>
-                        <Row>
-                            {this.state.currentShow === 'Article' ?
-                                <Container style={{marginTop: '0em'}}>
-                                    <ArticlesManage/>
-                                </Container> : null
-                            }
-                            {this.state.currentShow === 'User' ?
-                                <Container style={{marginTop: '0em'}}>
-                                    <UsersManage/>
-                                </Container> : null
-                            }
-                        </Row>
-                    </Col>
-                </Row>
+                        </Col>
+                    </Row>
+                }
             </Container>
         </Container>);
     }
