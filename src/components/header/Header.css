@@ -6,8 +6,7 @@
     border-bottom: 1px solid #f0f1f3;
 }
 
-.icon {
-    /*border-bottom: solid 3px #000;*/
+.icon-header {
 }
 
 .logo-img {
@@ -26,4 +25,8 @@
 .buttonWrite {
     background: #3db24b;
     color: #fff;
+}
+
+.headerTitleSpan{
+    font-weight: bolder !important;
 }
