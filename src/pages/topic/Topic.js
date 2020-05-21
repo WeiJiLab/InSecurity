@@ -20,7 +20,7 @@ class Topic extends Component {
                         <Container className="Left-Card">
                             <h3>{this.renderBestIcon()}{topic}</h3>
                             <Row>
-                                <Col><p style={{color: '#888'}}>&nbsp;收录了架构频道下的 {this.props.articlesByTopicResult.articles.length} 篇内容</p></Col>
+                                <Col><p style={{color: '#888'}}>&nbsp;收录了 <strong>{topic}</strong> 频道下的  <strong>{this.props.articlesByTopicResult.articles.length}</strong> 篇内容</p></Col>
                             </Row>
                         </Container>
                         <Container style={{
