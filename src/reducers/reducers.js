@@ -60,6 +60,11 @@ const initialState = {
         banUserStatus: false,
         message: null,
         userInfo: null
+    },
+    hotArticleByAidResult: {
+        hotArticleByAidStatus: false,
+        message: null,
+        article: null
     }
 };
 
@@ -177,7 +182,15 @@ export function reduxResult(state = initialState, action) {
                 banUserByUidResult: action.payload,
             });
 
+        case  ArticleActions.HOT_ARTICLE_BY_AID_SUCCESS:
+            return Object.assign({}, state, {
+                hotArticleByAidResult: action.payload,
+            });
 
+        case  ArticleActions.HOT_ARTICLE_BY_AID_FAILED:
+            return Object.assign({}, state, {
+                hotArticleByAidResult: action.payload,
+            });
         default:
             return state;
     }
