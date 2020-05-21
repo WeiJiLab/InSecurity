@@ -11,13 +11,13 @@ function Subscribe() {
                 订阅
             </h4>
             <h5>
-                <strong>InSecurity</strong>每周精要
+                <strong>BuildSecurityIn</strong>每周精要
             </h5>
             <h6 style={{background:'#eee',padding:'0.5em'}}>你将获得</h6>
             <ul>
-                <li style={{color:'#828a92'}}>资深编辑编译的全球 IT 要闻</li>
+                <li style={{color:'#828a92'}}>资深编辑编译的全球 网络安全 要闻</li>
                 <li style={{color:'#828a92'}}>一线技术专家撰写的实操技术案例</li>
-                <li style={{color:'#828a92'}}>InSecurity 出品的课程和线下活动报名通道</li>
+                <li style={{color:'#828a92'}}>BuildSecurityIn 出品的课程和线下活动报名通道</li>
             </ul>
             <Form>
                 <Form.Group controlId="formBasicEmail">
