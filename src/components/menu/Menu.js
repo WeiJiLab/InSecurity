@@ -11,6 +11,9 @@ import {topics} from "../../actions/actions";
 import {Dropdown, Navbar} from "react-bootstrap";
 
 class Menu extends Component {
+    constructor(props) {
+        super(props);
+    }
 
     render() {
         const topics = this.props.topicsResult.topics;
@@ -84,7 +87,9 @@ class Menu extends Component {
         }
 
         return (<Fragment>
-                <Nav.Link className="nav-tag" style={{color: "#000"}}><Link style={{color: '#1458d4'}} to={"/"}>首页</Link></Nav.Link>
+                <Nav.Link className="nav-tag" style={{color: "#000"}}><Link
+                    style={{color: this.props.selected ? '#4a4a4a' : '#1458d4',fontWeight: this.props.selected ? 'normal' : 'bold', paddingRight: '2em'}}
+                    to={"/"}>首页</Link></Nav.Link>
                 {
                     result.map((item, index) => {
                         let path = {
@@ -93,8 +98,14 @@ class Menu extends Component {
                                 tag: item,
                             }
                         };
+                        let color = '#4a4a4a';
+                        let bold = 'normal';
+                        if (this.props.selected === item) {
+                            color = '#1458d4';
+                            bold = 'bold';
+                        }
                         return <Nav.Link style={{color: "#000", paddingRight: '2em'}}>
-                            <Link style={{color: '#4a4a4a'}} to={path}>{item}</Link>
+                            <Link style={{color: color, fontWeight: bold}} to={path}>{item}</Link>
                         </Nav.Link>
                     })
                 }

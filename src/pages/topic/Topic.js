@@ -14,7 +14,7 @@ class Topic extends Component {
     render() {
         let topic = this.props.location.state.tag;
         return (<Container style={{padding: 0}} className="Home">
-            <Menu/>
+            <Menu selected={topic}/>
             <Container className="Events">
                 <Row style={{padding: 0}}>
                     <Col md={8} style={{padding: 0}}>
