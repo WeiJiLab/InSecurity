@@ -14,8 +14,8 @@ import com.thoughtworks.security.insecurity.exceptions.UsernameAlreadyRegistered
 import com.thoughtworks.security.insecurity.repository.UserRepository;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
-import org.springframework.util.DigestUtils;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
@@ -85,7 +85,7 @@ public class UserService {
             throw new UsernameAlreadyRegisteredException(USERNAME_ALREADY_REGISTERED);
         }
 
-       // String password = DigestUtils.md5DigestAsHex((registerRequestDTO.getEmail() + registerRequestDTO.getUsername() + registerRequestDTO.getPassword()).getBytes());
+        // String password = DigestUtils.md5DigestAsHex((registerRequestDTO.getEmail() + registerRequestDTO.getUsername() + registerRequestDTO.getPassword()).getBytes());
         User user = User.builder()
                 .username(registerRequestDTO.getUsername())
                 .email(registerRequestDTO.getEmail())
@@ -102,5 +102,15 @@ public class UserService {
                     .build();
         }
         throw new RegisterFailedException(REGISTER_FAILED);
+    }
+
+    public ResultDTO<List<UserDTO>> all() {
+        List<User> users = userRepository.findAll();
+        List<UserDTO> result = new ArrayList<>();
+        for (User user : users) {
+            result.add(user.toUserDTO());
+        }
+        return ResultDTO.<List<UserDTO>>builder()
+                .data(result).build();
     }
 }

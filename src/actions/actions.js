@@ -5,7 +5,7 @@ import {
     API_ARTICLE_TOPIC,
     API_ARTICLE_TOPICS, API_ARTICLE_USER,
     API_LOGIN,
-    API_REGISTER
+    API_REGISTER, API_USER_ALL
 } from "../api/insecurityApi";
 
 export const LoginActions = {
@@ -32,6 +32,11 @@ export const ArticleActions = {
     GET_ARTICLE_LIST_ALL_BY_UID_SUCCESS:'GET_ARTICLE_LIST_ALL_BY_UID_SUCCESS'
 };
 
+export const UserActions = {
+    GET_USER_LIST_ALL_SUCCESS: 'GET_USER_LIST_ALL_SUCCESS',
+    GET_USER_LIST_ALL_FAILED: 'GET_USER_LIST_ALL_FAILED',
+};
+
 export const TopicActions = {
     GET_TOPICS_SUCCESS: 'GET_TOPICS_SUCCESS',
     GET_TOPICS_FAILED: 'GET_TOPICS_FAILED',
@@ -55,6 +60,10 @@ export const topics = () => (dispatch) => {
 
 export const articles = () => (dispatch) => {
     ajaxGetArticlesFromApi(dispatch);
+};
+
+export const users = () => (dispatch) => {
+    ajaxGetUsersFromApi(dispatch);
 };
 
 export const articlesByTopic = (topic) => (dispatch) => {
@@ -298,6 +307,50 @@ export function ajaxGetArticlesFromApi(dispatch) {
                     articlesStatus: false,
                     message: error.message,
                     articles: null
+                }
+            })
+        });
+}
+
+
+export function ajaxGetUsersFromApi(dispatch) {
+    fetch(API_USER_ALL, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+    })
+        .then(response => response.json())
+        .then(data => {
+            console.log('Success:', data);
+            if (data.status == null && data.errorCode != null) {
+                dispatch({
+                    type: UserActions.GET_USER_LIST_ALL_FAILED,
+                    payload: {
+                        usersStatus: false,
+                        message: data.message,
+                        users: null
+                    }
+                })
+            } else {
+                dispatch({
+                    type: UserActions.GET_USER_LIST_ALL_SUCCESS,
+                    payload: {
+                        usersStatus: true,
+                        message: data.message,
+                        users: data.data
+                    }
+                })
+            }
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+            dispatch({
+                type: UserActions.GET_USER_LIST_ALL_FAILED,
+                payload: {
+                    usersStatus: false,
+                    message: error.message,
+                    users: null
                 }
             })
         });

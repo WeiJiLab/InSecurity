@@ -47,10 +47,6 @@ class Header extends Component {
 
                             <Navbar.Collapse className="justify-content-end">
                                 <Search/>
-
-                                <Button className={"buttonWrite"} variant="default" type="button" style={{background: '#3db24b', color: '#fff'}}><Link
-                                    style={{color: '#fff'}} to={"/write"}>写作平台</Link></Button>
-
                                 {
                                     this.renderUserInfo()
                                 }
@@ -65,7 +61,7 @@ class Header extends Component {
 
     renderUserInfo() {
         let ck = Cookies.get("login");
-        const login  = this.state.user;
+        const login = this.state.user;
         if (ck == null || login == null || !login.loginStatus) {
             return (<Fragment><Link to="/login"><Button variant="link" style={{color: "#000"}}>
                 登录
@@ -74,9 +70,19 @@ class Header extends Component {
                     注册
                 </Button></Link></Fragment>);
         } else {
-            return (<Link to="/me"><Button variant="link" style={{color: "#000"}}>
-                <strong>{login.userInfo.userDTO.username}</strong> ({login.userInfo.userDTO.email})
-            </Button></Link>);
+            return (<Link to="/me">{
+                login.userInfo.userDTO.username === 'admin' ?
+                    <Button className={"buttonWrite"} variant="default" type="button" style={{background: '#3db24b', color: '#fff'}}><Link
+                        style={{color: '#fff'}} to={"/admin"}>后台管理</Link>
+                    </Button> :
+                    <Button className={"buttonWrite"} variant="default" type="button" style={{background: '#3db24b', color: '#fff'}}><Link
+                        style={{color: '#fff'}} to={"/write"}>写作平台</Link>
+                    </Button>
+            }
+                <Button variant="link" style={{color: "#000"}}>
+                    <strong>{login.userInfo.userDTO.username}</strong> ({login.userInfo.userDTO.email})
+                </Button>
+            </Link>);
         }
     }
 

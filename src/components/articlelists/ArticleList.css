@@ -14,7 +14,7 @@
 .Article-Card:hover {
     background: #f5f6f6;
     -webkit-transition: background-size .2s linear;
-    transition: background-size .2s linear;
+    transition: all .2s linear;
 }
 
 .title{

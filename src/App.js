@@ -12,6 +12,7 @@ import {Col, Container, Row} from "react-bootstrap";
 import Topic from "./pages/topic/Topic";
 import SearchResult from "./pages/searchresult/SearchResult";
 import ArticleDetail from "./pages/articledetail/ArticleDetail";
+import Admin from "./pages/admin/Admin";
 
 function App() {
     return (
@@ -28,6 +29,7 @@ function App() {
                             <Route exact path="/article" component={ArticleDetail}/>
                             <Route exact path="/home" component={Home}/>
                             <Route exact path="/login" component={Login}/>
+                            <Route exact path="/admin" component={Admin}/>
                             <Route exact path="/register" component={Register}/>
                             <Route exact path="/write" component={Write}/>
                             <Route exact path="/me" component={Me}/>

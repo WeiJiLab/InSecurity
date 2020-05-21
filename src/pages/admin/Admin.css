@@ -1,0 +1,13 @@
+.Admin {
+    padding-top: 3em;
+    padding-bottom: 3em;
+    margin: 0;
+}
+
+.adminItem {
+    padding: 1em 3em 0.5em;
+}
+
+.adminItem:hover {
+    background: #f5f6f6;
+}

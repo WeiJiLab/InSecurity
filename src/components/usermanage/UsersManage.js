@@ -1,62 +1,70 @@
 import React, {Component, Fragment} from 'react';
-import './MyArticlesPanel.css';
+import './UsersManage.css';
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import {Link} from "react-router-dom";
 import {bindActionCreators} from "redux";
-import {articlesByUid} from "../../actions/actions";
+import {users} from "../../actions/actions";
 import {connect} from "react-redux";
 import Col from "react-bootstrap/Col";
 
-class MyArticlesPanel extends Component {
+class UsersManage extends Component {
     render() {
         return (
             <Container style={{background: '#fff', padding: '1em', boxShadow: '0 1px 3px rgba(27,95,160,.1)'}}>
                 <h4 style={{display: 'inline-block'}}>
                     {this.renderHotIcon()}
-                    我的文章
-                </h4><span
-                style={{color: 'gray', marginLeft: '0.5em', fontSize: '0.9em'}}>共发布 <strong>{this.props.articlesByUidResult.articles.length}</strong> 篇文章</span>
+                    用户管理
+                </h4>{this.renderUserCount()}
                 <Container style={{padding: 0, marginTop: '1em'}}>
                     <Container style={{padding: 0}}>
-                        {this.renderMyArticlesList()}
+                        {this.renderAllUsersList()}
                     </Container>
                 </Container>
             </Container>
         );
     }
 
-    renderMyArticlesList() {
-        if (!this.props.articlesByUidResult) {
+    renderUserCount() {
+        if (this.props.usersResult.users) {
+            return <span
+                style={{
+                    color: 'gray',
+                    marginLeft: '0.5em',
+                    fontSize: '0.9em'
+                }}>一共 <strong>{this.props.usersResult.users.length}</strong> 个用户</span>;
+        }
+    }
+
+    renderAllUsersList() {
+        if (!this.props.usersResult.users) {
             return <Row><Col><span style={{color: '#ccc'}}>&nbsp;&nbsp;无</span></Col></Row>
         }
 
         return (<Fragment>{
-            this.props.articlesByUidResult.articles.map((item, index) => {
-                const path = {
-                    pathname: "/article",
-                    state: {
-                        article: item
-                    }
-                };
-                return <Container style={{borderBottom: 'solid 1px #eee', marginBottom: '0.5em', paddingBottom: '0.5em'}}>
-                    <Row style={{fontSize: '0.9em', color: '#303030'}}><Link className={"title"} to={path}>{item.article.title}</Link></Row>
-                    <Row style={{fontSize: '0.7em'}}><span style={{color: 'gray'}}>{item.article.createTime}</span></Row>
+            this.props.usersResult.users.map((item, index) => {
+                return <Container style={{marginBottom: '0em', paddingBottom: '0em'}}>
+                    <Row>
+                        <Col md={10} style={{marginBottom: '0.5em', paddingBottom: '0.5em'}}>
+                            <Row style={{fontSize: '1em', color: '#303030'}}>{item.username} ({item.email})</Row>
+                            <Row style={{fontSize: '0.7em'}}>
+                                上一次登录&nbsp;<span
+                                style={{color: 'gray'}}>{item.lastLoginTime}</span>
+                            </Row>
+                        </Col>
+                        <Col md={2} style={{padding: 0}}>
+                            <Row style={{height: '100%'}}>
+                                <Col style={{color: '#000', height: '100%'}}><Link>删除</Link></Col>
+                            </Row>
+                        </Col>
+                    </Row>
                 </Container>;
             })
         }</Fragment>);
     }
 
     componentWillMount() {
-        let uid = this.props.uid;
-        this.props.articlesByUid(uid);
-    }
-
-    componentWillUpdate(nextProps, nextState, nextContext) {
-        let uid = this.props.uid;
-        if (nextProps.uid !== uid) {
-            this.props.articlesByUid(nextProps.uid);
-        }
+        this.props.users();
     }
 
     renderHotIcon() {
@@ -78,12 +86,12 @@ class MyArticlesPanel extends Component {
 }
 
 const mapStateToProps = state => ({
-    articlesByUidResult: state.reduxResult.articlesByUidResult
+    usersResult: state.reduxResult.usersResult
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators({
-    articlesByUid
+    users
 }, dispatch);
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(MyArticlesPanel);
+export default connect(mapStateToProps, mapDispatchToProps)(UsersManage);
