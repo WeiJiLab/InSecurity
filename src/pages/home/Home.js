@@ -11,6 +11,7 @@ import HotPanel from "../../components/hotpanel/HotPanel";
 import Subscribe from "../../components/subscribe/Subscribe";
 import BestPanel from "../../components/bestpanel/BestPanel";
 import SuggestPanel from "../../components/suggestpanel/SuggestPanel";
+import QRCode from "../../components/qrcode/QRCode";
 
 class Home extends Component {
     render() {
@@ -38,6 +39,10 @@ class Home extends Component {
 
                                 <Container style={{marginTop:'1em'}}>
                                     <Subscribe/>
+                                </Container>
+
+                                <Container style={{marginTop:'1em'}}>
+                                    <QRCode/>
                                 </Container>
                             </Row>
                         </Col>

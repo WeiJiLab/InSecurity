@@ -27,6 +27,12 @@
     color: #fff;
 }
 
-.headerTitleSpan{
-    font-weight: bolder !important;
+.headerTitleSpan {
+    font-weight: normal;
+    color: gray;
 }
+
+.headerTitleSpan:hover {
+    color: rgb(75, 166, 127);
+}
+

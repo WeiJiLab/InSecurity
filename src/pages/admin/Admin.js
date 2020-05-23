@@ -3,7 +3,7 @@ import './Admin.css';
 import Container from "react-bootstrap/Container";
 import {Col, Image, Row} from "react-bootstrap";
 import Cookies from "js-cookie";
-import Logo from "../../static/images/logo_w.png"
+import Logo from "../../static/images/logo_g.png"
 import ArticlesManage from "../../components/articlesmanage/ArticlesManage";
 import UsersManage from "../../components/usermanage/UsersManage";
 
