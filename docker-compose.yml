@@ -1,0 +1,35 @@
+version: "3.7"
+
+services:
+  frontend:
+    image: frontend
+    build:
+      context: .
+      dockerfile: ./docker/Dockerfile.frontend
+    restart: on-failure
+    ports:
+      - "3000:80"
+  
+  backend:
+    image: backend
+    build:
+      context: .
+      dockerfile: ./docker/Dockerfile.backend
+    environment:
+        SPRING_PROFILES_ACTIVE: docker
+    restart: on-failure
+    ports:
+      - "8080:8080"
+  
+
+
+  db:
+    image: mysql:5.7
+    environment:
+        MYSQL_DATABASE: insecurity
+        MYSQL_ROOT_PASSWORD: root
+    restart: always
+    ports:
+      - "3306:3306"
+    command: ['mysqld', '--character-set-server=utf8mb4', '--collation-server=utf8mb4_unicode_ci']
+

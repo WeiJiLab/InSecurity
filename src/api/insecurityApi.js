@@ -1,4 +1,4 @@
-const API_BASE = 'http://localhost:8080/';
+const API_BASE = process.env.API_BASE || 'http://localhost:8080/';
 
 
 export const API_LOGIN = API_BASE + 'user/login';
