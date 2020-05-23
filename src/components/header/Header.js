@@ -33,18 +33,29 @@ class Header extends Component {
                 <Row>
                     <Col md={2}> </Col>
                     <Col md={8}>
-                        <Navbar bg="#fff" variant="light" style={{paddingLeft:'0.2em',paddingRight:0}}>
-                            <Link to="/home" style={{fontWeight:'bolder',margin:0,padding:0}}>
+                        <Navbar bg="#fff" variant="light" style={{paddingLeft: '0.2em', paddingRight: 0}}>
+                            <Link to="/home" style={{fontWeight: 'bolder', margin: 0, padding: 0}}>
                                 <Image src={Logo} className="logo-img" rounded/>
+                            </Link>
+                            <Link to="/event" style={{fontWeight: 'bolder', margin: 0, padding: 0}}>
                                 <Navbar.Brand className="icon-header" href="#home">
                                     <strong className={"headerTitleSpan"}>活动</strong>
                                 </Navbar.Brand>
+                            </Link>
+
+                            <Link to="/column" style={{fontWeight: 'bolder', margin: 0, padding: 0}}>
                                 <Navbar.Brand className="icon-header" href="#home">
                                     <strong className={"headerTitleSpan"}>专栏</strong>
                                 </Navbar.Brand>
+                            </Link>
+
+                            <Link to="/report" style={{fontWeight: 'bolder', margin: 0, padding: 0}}>
                                 <Navbar.Brand className="icon-header" href="#home">
                                     <strong className={"headerTitleSpan"}>安全报告</strong>
                                 </Navbar.Brand>
+                            </Link>
+
+                            <Link to="/service" style={{fontWeight: 'bolder', margin: 0, padding: 0}}>
                                 <Navbar.Brand className="icon-header" href="#home">
                                     <strong className={"headerTitleSpan"}>企业服务</strong>
                                 </Navbar.Brand>
