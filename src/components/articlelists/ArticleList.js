@@ -37,7 +37,7 @@ class ArticleList extends Component {
                                 })
                             }
                         </Col>
-                        <Col style={{padding:0}} md={4}>
+                        <Col style={{padding:0}} md={4} className={"imgContainer"}>
                             <Image style={{width: '100%',height:'8em',borderRadius:'4px'}} src={item.article.imgUrl}/>
                         </Col>
                     </Row>

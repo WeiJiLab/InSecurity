@@ -38,7 +38,7 @@ class BestPanel extends Component {
         };
         return <Row style={{padding: '0 1em 0 1em'}}>
             <Col style={{padding: '1em 0em 0em 1em'}}>
-                <Row><Image style={{width: '100%', borderRadius: '4px', height: '12em'}}
+                <Row className={"imgContainer"}><Image style={{width: '100%', borderRadius: '4px', height: '12em'}}
                             src={article.article.imgUrl}/></Row>
             </Col>
             <Col style={{paddingLeft: '3em', paddingTop: '0em'}}>
@@ -74,7 +74,7 @@ class BestPanel extends Component {
         return <>
             {
                 bestArticles ? <Col style={{padding: '1em 1.5em 0 1em'}}>
-                    <Row><Image style={{width: '100%', borderRadius: '4px', height: '8em'}}
+                    <Row className={"imgContainer"}><Image style={{width: '100%', borderRadius: '4px', height: '8em'}}
                                 src={bestArticles.article.imgUrl}/></Row>
                     <Row style={{marginTop: '1em'}}>
                         <Link to={path}>
