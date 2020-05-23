@@ -10,8 +10,16 @@ spring:
     database: MySQL
     database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
     show-sql: true
+    generate-ddl: false
+    hibernate:
+      ddl-auto: none
   flyway:
     enabled: true
     url: jdbc:mysql://localhost:3306/insecurity?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull&allowMultiQueries=true&useSSL=false
-    password: root
     user: root
+    password: root
+    schemas: insecurity
+    baselineOnMigrate: true
+    locations: classpath:/db/migration
+
+

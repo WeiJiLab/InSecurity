@@ -19,6 +19,9 @@ dependencies {
 
 	implementation 'mysql:mysql-connector-java:8.0.20'
 
+	// https://mvnrepository.com/artifact/org.flywaydb/flyway-core
+	compile group: 'org.flywaydb', name: 'flyway-core', version: '6.4.2'
+
 
 	compileOnly 'org.projectlombok:lombok:1.18.12'
 	annotationProcessor 'org.projectlombok:lombok:1.18.12'
