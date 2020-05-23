@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import './QRCode.css';
 import Container from "react-bootstrap/Container";
-import {Button, Col, Form, Image, Row} from "react-bootstrap";
+import {Col, Image, Row} from "react-bootstrap";
 import QrCode from "../../static/images/qrcode.jpg"
 
 class QRCode extends Component {
@@ -22,17 +22,6 @@ class QRCode extends Component {
                 </Row>
             </Container>
         );
-    }
-
-    onEmailChange(e) {
-        this.subscribeDTO.Email = e.currentTarget.value;
-    }
-
-    subscribe() {
-        this.setState({
-            subscribed: true
-        })
-        // https://info.thoughtworks.com/index.php/leadCapture/save2
     }
 }
 
