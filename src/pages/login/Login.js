@@ -8,7 +8,7 @@ import {Alert, Col, Row} from "react-bootstrap";
 import {bindActionCreators} from "redux";
 import {connect} from "react-redux";
 import Image from "react-bootstrap/Image";
-import Logo from "../../static/images/logo_w.png"
+import Logo from "../../static/images/logo_g.png"
 import Cookies from 'js-cookie';
 
 class Login extends Component {
@@ -35,7 +35,7 @@ class Login extends Component {
                     <Col style={{padding:"0em"}}>
                         <Row style={{padding:0,margin:0,boxShadow:'0 1px 3px rgba(27,95,160,.1)'}}>
                             <Col style={{textAlign: "left",padding:0}}>
-                                <Image src={Logo} style={{padding:"4em", width: '100%',height:'100%',background:'#000'}}/>
+                                <Image src={Logo} style={{padding:"4em", width: '100%',height:'100%',background:'rgb(75,166,127)'}}/>
                             </Col>
                             <Col style={{padding:"3em"}}>
                                 <h3>登录</h3>

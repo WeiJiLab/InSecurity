@@ -88,7 +88,7 @@ class Menu extends Component {
 
         return (<Fragment>
                 <Nav.Link className="nav-tag" style={{color: "#000"}}><Link
-                    style={{color: this.props.selected ? '#4a4a4a' : '#1458d4',fontWeight: this.props.selected ? 'normal' : 'bold', paddingRight: '2em'}}
+                    style={{color: this.props.selected ? '#4a4a4a' : 'rgb(75,166,127)',fontWeight: this.props.selected ? 'normal' : 'bold', paddingRight: '2em'}}
                     to={"/"}>首页</Link></Nav.Link>
                 {
                     result.map((item, index) => {
@@ -101,7 +101,7 @@ class Menu extends Component {
                         let color = '#4a4a4a';
                         let bold = 'normal';
                         if (this.props.selected === item) {
-                            color = '#1458d4';
+                            color = 'rgb(75,166,127)';
                             bold = 'bold';
                         }
                         return <Nav.Link style={{color: "#000", paddingRight: '2em'}}>

@@ -3,7 +3,7 @@ import './Me.css';
 import Container from "react-bootstrap/Container";
 import {Col, Image, Row} from "react-bootstrap";
 import Cookies from "js-cookie";
-import Logo from "../../static/images/logo_w.png"
+import Logo from "../../static/images/logo_g.png"
 import Button from "react-bootstrap/Button";
 import MyArticlesPanel from "../../components/myarticles/MyArticlesPanel";
 
@@ -26,7 +26,7 @@ class Me extends Component {
                 <Row style={{padding: 0}}>
                     <Col md={4} style={{padding: 0}}>
                         <Container className="Left-Card" style={{padding: 0}}>
-                            <Image style={{width: '100%', background: '#000', padding: '4em'}} src={Logo}/>
+                            <Image style={{width: '100%', background: 'rgb(75,166,127)', padding: '4em'}} src={Logo}/>
                             <Container style={{padding: '3em'}}>
                                 <Row>
                                     <h2>{user.username}</h2>

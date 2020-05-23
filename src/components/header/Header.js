@@ -33,8 +33,8 @@ class Header extends Component {
                 <Row>
                     <Col md={2}> </Col>
                     <Col md={8}>
-                        <Navbar bg="#fff" variant="light">
-                            <Link to="/home" style={{fontWeight:'bolder'}}>
+                        <Navbar bg="#fff" variant="light" style={{paddingLeft:'0.2em',paddingRight:0}}>
+                            <Link to="/home" style={{fontWeight:'bolder',margin:0,padding:0}}>
                                 <Image src={Logo} className="logo-img" rounded/>
                                 <Navbar.Brand className="icon-header" href="#home">
                                     <strong className={"headerTitleSpan"}>活动</strong>

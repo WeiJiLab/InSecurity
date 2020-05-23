@@ -16,21 +16,26 @@ function Footer() {
                         <Col md={2}></Col>
                         <Col md={8}>
                             <Row>
-                                <Col>
-                                    <Row><Image style={{height:'2em'}} src={Logo}/></Row>
+                                <Col style={{paddingLeft:'1.5em'}}>
+                                    <Row><Image style={{height:'2em',marginLeft:0}} src={Logo}/></Row>
                                     <Row><span className="footerText">© 2020 TW BuildSecurityIn</span></Row>
                                 </Col>
                                 <Col>
 
                                 </Col>
-                                <Col>
-                                    <Row>SiteMap</Row>
-                                    <Row><span className="footerText"><Link to="/home">Home</Link></span></Row>
-                                </Col>
                                 <Col><Row>Info</Row>
                                     <Row><span className="footerText">Terms</span></Row>
                                     <Row><span className="footerText">Privacy</span></Row>
                                     <Row><span className="footerText">Contract</span></Row>
+                                </Col>
+                                <Col>
+                                    <Row>SiteMap</Row>
+                                    <Row><span className="footerText"><Link to="/home">Home</Link></span></Row>
+                                </Col>
+                                <Col><Row>Focus</Row>
+                                    <Row><span className="footerText">Weibo</span></Row>
+                                    <Row><span className="footerText">WeChat</span></Row>
+                                    <Row><span className="footerText">Twitter</span></Row>
                                 </Col>
                                 <Col>
                                     <Row>Links</Row>
