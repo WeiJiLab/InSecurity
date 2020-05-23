@@ -1,0 +1,28 @@
+version: "3.7"
+
+services:
+  frontend:
+    image: node:lts-alpine
+    volumes:
+      - .:/opt/app
+      - /opt/app/node_modules
+    working_dir: /opt/app
+    environment:
+        API_BASE: http://backend:8080/
+    restart: on-failure
+    stdin_open: true
+    ports:
+      - "3000:3000"
+    command: >
+        sh -c "yarn install && yarn start"
+  
+  backend:
+    image: adoptopenjdk/openjdk11:alpine
+    command: ./gradlew bootRun
+    working_dir: /opt/app
+    volumes:
+      - ./backend/insecurity:/opt/app
+    environment:
+        SPRING_PROFILES_ACTIVE: docker
+    restart: on-failure
+

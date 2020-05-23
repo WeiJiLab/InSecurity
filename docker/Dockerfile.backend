@@ -1,0 +1,19 @@
+FROM adoptopenjdk/openjdk11:alpine AS build
+
+WORKDIR /app
+
+COPY ./backend/insecurity /app
+
+RUN ./gradlew build -x test
+
+
+FROM adoptopenjdk/openjdk11:alpine
+
+WORKDIR /app
+
+COPY --from=build /app/build/libs/insecurity-0.0.1-SNAPSHOT.jar .
+
+EXPOSE 8080
+
+CMD ["java", "-jar", "insecurity-0.0.1-SNAPSHOT.jar"]
+
