@@ -39,7 +39,7 @@ class BestPanel extends Component {
         return <Row style={{padding: '0 1em 0 1em'}}>
             <Col style={{padding: '1em 0em 0em 1em'}}>
                 <Row className={"imgContainer"}><Image style={{width: '100%', borderRadius: '4px', height: '12em'}}
-                            src={article.article.imgUrl}/></Row>
+                                                       src={article.article.imgUrl}/></Row>
             </Col>
             <Col style={{paddingLeft: '3em', paddingTop: '0em'}}>
                 <Row style={{marginTop: '1em'}}>
@@ -48,10 +48,10 @@ class BestPanel extends Component {
                     </Link>
                 </Row>
                 <Row style={{fontSize: '0.8em'}}><span style={{color: 'gray'}}>作者:</span>{article.authorName}</Row>
-                <Row style={{marginTop: '1em', color: 'gray'}}>{article.article.content.substr(0,50)}...</Row>
+                <Row style={{marginTop: '1em', color: '#828a92',fontSize:'1em'}}>{article.article.content.substr(0, 50)}...</Row>
 
                 <Row style={{marginTop: '1em'}}>
-                    {this.renderTags(article.tags)}
+                    {this.renderTags(article.tags, 5)}
                 </Row>
             </Col>
         </Row>;
@@ -75,7 +75,7 @@ class BestPanel extends Component {
             {
                 bestArticles ? <Col style={{padding: '1em 1.5em 0 1em'}}>
                     <Row className={"imgContainer"}><Image style={{width: '100%', borderRadius: '4px', height: '8em'}}
-                                src={bestArticles.article.imgUrl}/></Row>
+                                                           src={bestArticles.article.imgUrl}/></Row>
                     <Row style={{marginTop: '1em'}}>
                         <Link to={path}>
                             <h6 className={"title"}>{title}</h6>
@@ -83,25 +83,26 @@ class BestPanel extends Component {
                     </Row>
                     <Row style={{fontSize: '0.8em'}}><span style={{color: 'gray'}}>作者:</span>{bestArticles.authorName}</Row>
                     <Row style={{marginTop: '0.5em'}}>
-                        {this.renderTags(bestArticles.tags)}
+                        {this.renderTags(bestArticles.tags, 3)}
                     </Row>
                 </Col> : <Col style={{padding: '1em 1.5em 0 1em'}}> </Col>
             }
         </>;
     }
 
-    renderTags(tags) {
+    renderTags(tags, size) {
         return <>
             <Button variant="link" style={{padding: 0, margin: 0}}>{this.renderTagIcon()}</Button>
             {
-                tags.map((item, index) => {
+                tags.slice(0, size).map((item, index) => {
                     let path = {
                         pathname: "/topic",
                         state: {
                             tag: item,
                         }
                     };
-                    return <Fragment><Button variant="link" style={{padding: 0, margin: 0}}><Link to={path}>{item}</Link></Button>,
+                    return <Fragment><Button variant="link" style={{padding: 0, margin: 0}}><Link className={"tagLink"}
+                                                                                                  to={path}>{item}</Link></Button>{((index === tags.length - 1) || (index === size - 1)) ? '' : ','}
                     </Fragment>
                 })
             }

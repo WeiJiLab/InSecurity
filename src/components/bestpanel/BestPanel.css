@@ -26,3 +26,15 @@
     border-radius: 4px;
     transform: scale(1.2);
 }
+
+.tagLink {
+    font-size: 0.8em !important;
+}
+
+.SvgIcon {
+    width: 1em;
+    height: 1em;
+    float: left;
+    margin-right: 0.5em;
+    position: relative;
+}

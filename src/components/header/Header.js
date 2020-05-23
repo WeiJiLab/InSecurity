@@ -37,15 +37,16 @@ class Header extends Component {
                             <Link to="/home" style={{fontWeight: 'bolder', margin: 0, padding: 0}}>
                                 <Image src={Logo} className="logo-img" rounded/>
                             </Link>
-                            <Link to="/event" style={{fontWeight: 'bolder', margin: 0, padding: 0}}>
-                                <Navbar.Brand className="icon-header" href="#home">
-                                    <strong className={"headerTitleSpan"}>活动</strong>
-                                </Navbar.Brand>
-                            </Link>
 
                             <Link to="/column" style={{fontWeight: 'bolder', margin: 0, padding: 0}}>
                                 <Navbar.Brand className="icon-header" href="#home">
                                     <strong className={"headerTitleSpan"}>专栏</strong>
+                                </Navbar.Brand>
+                            </Link>
+
+                            <Link to="/event" style={{fontWeight: 'bolder', margin: 0, padding: 0}}>
+                                <Navbar.Brand className="icon-header" href="#home">
+                                    <strong className={"headerTitleSpan"}>活动</strong>
                                 </Navbar.Brand>
                             </Link>
 

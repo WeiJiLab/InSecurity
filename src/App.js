@@ -27,12 +27,20 @@ function App() {
                             <Route exact path="/topic" component={Topic}/>
                             <Route exact path="/search" component={SearchResult}/>
                             <Route exact path="/article" component={ArticleDetail}/>
+
                             <Route exact path="/home" component={Home}/>
-                            <Route exact path="/login" component={Login}/>
-                            <Route exact path="/admin" component={Admin}/>
-                            <Route exact path="/register" component={Register}/>
+                            {/*<Route exact path="/column" component={Column}/>*/}
+
+
                             <Route exact path="/write" component={Write}/>
+
+                            <Route exact path="/login" component={Login}/>
+                            <Route exact path="/register" component={Register}/>
+
+                            <Route exact path="/admin" component={Admin}/>
+
                             <Route exact path="/me" component={Me}/>
+
                         </Switch>
                     </Col>
                 </Row>

@@ -9,39 +9,41 @@ class ArticleList extends Component {
     render() {
         return (<Fragment>
             {
-                this.props.articles?
-                this.props.articles.map((item, index) => {
-                    const path = {
-                        pathname:"/article",
-                        state:{
-                            article:item
-                        }
-                    };
-                    return <Row className={"Article-Card"}>
-                        <Col style={{padding:0}} md={8}>
-                            <Link to={path}>
-                            {this.renderTitle(item.article.title)}
-                            </Link>
-                            <p>作者: {item.authorName}</p>
-                            <h6 style={{color: '#aaa'}}>{item.article.content.substr(0,50)}...</h6>
-                            <Button variant="link" style={{padding: 0, margin: 0}}>{this.renderTagIcon()}</Button>
-                            {
-                                item.tags.map((item, index) => {
-                                    let path = {
-                                        pathname: "/topic",
-                                        state: {
-                                            tag: item,
-                                        }
-                                    };
-                                    return <Fragment><Button variant="link" style={{padding: 0, margin: 0}}><Link to={path}>{item}</Link></Button>, </Fragment>
-                                })
+                this.props.articles ?
+                    this.props.articles.map((item, index) => {
+                        const path = {
+                            pathname: "/article",
+                            state: {
+                                article: item
                             }
-                        </Col>
-                        <Col style={{padding:0}} md={4} className={"imgContainer"}>
-                            <Image style={{width: '100%',height:'8em',borderRadius:'4px'}} src={item.article.imgUrl}/>
-                        </Col>
-                    </Row>
-                }):<span style={{color:'gray'}}>无</span>
+                        };
+                        return <Row className={"Article-Card"}>
+                            <Col style={{padding: 0}} md={8}>
+                                <Link to={path}>
+                                    {this.renderTitle(item.article.title)}
+                                </Link>
+                                <p style={{fontSize: '0.8em', marginBottom: 0}}><span style={{color: 'gray'}}>作者:</span>{item.authorName}</p>
+                                <p style={{color: '#828a92', fontWeight: 'light', marginTop: 0,marginBottom:'0.5em'}}>{item.article.content.substr(0, 50)}...</p>
+                                <Button variant="link" style={{padding: 0, margin: 0}}>{this.renderTagIcon()}</Button>
+                                {
+                                    item.tags.map((item, index) => {
+                                        let path = {
+                                            pathname: "/topic",
+                                            state: {
+                                                tag: item,
+                                            }
+                                        };
+                                        return <Fragment><Button variant="link" style={{padding: 0, margin: 0}}><Link className={"tagLink"}
+                                                                                                                      to={path}>{item}</Link></Button>,
+                                        </Fragment>
+                                    })
+                                }
+                            </Col>
+                            <Col style={{padding: 0}} md={4} className={"imgContainer"}>
+                                <Image style={{width: '100%', height: '8em', borderRadius: '4px'}} src={item.article.imgUrl}/>
+                            </Col>
+                        </Row>
+                    }) : <span style={{color: 'gray'}}>无</span>
             }
 
         </Fragment>);
@@ -49,10 +51,12 @@ class ArticleList extends Component {
 
     renderTitle(title) {
         let html = {
-            __html:title
+            __html: title
         };
         // return <h5>{title}</h5>;
-        return <h6 className={"title"}><div style={{width:'100%'}} dangerouslySetInnerHTML={html}></div></h6>;
+        return <h6 className={"title"}>
+            <div style={{width: '100%'}} dangerouslySetInnerHTML={html}></div>
+        </h6>;
     }
 
     renderTagIcon() {

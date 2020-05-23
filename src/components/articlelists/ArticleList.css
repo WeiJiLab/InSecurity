@@ -17,9 +17,10 @@
     transition: all .2s linear;
 }
 
-.title{
-    color:#000;
+.title {
+    color: #000;
 }
+
 .title:hover {
     color: #1458d4;
 }
@@ -29,6 +30,7 @@
     margin: auto;
     overflow: hidden;
 }
+
 .imgContainer img {
     transition: all 0.3s;
     display: block;
@@ -40,4 +42,9 @@
 .imgContainer:hover img {
     border-radius: 4px;
     transform: scale(1.2);
+}
+
+.tagLink {
+    font-size: 0.8em !important;
+    color: #1458d4;
 }

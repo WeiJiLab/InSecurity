@@ -28,7 +28,7 @@ class Search extends Component {
                         <Navbar bg="#fff" variant="light" style={{paddingLeft: 0, paddingRight: 0}}>
                             <InputGroup>
                                 <FormControl
-                                    style={{borderTopLeftRadius: '10em', borderBottomLeftRadius: '10em', height: '2em'}}
+                                    style={{borderTopLeftRadius: '10em', borderBottomLeftRadius: '10em', height: '2em',borderRight:'none'}}
                                     placeholder="请输入搜索内容"
                                     aria-label="search"
                                     aria-describedby="basic-addon2"
@@ -55,7 +55,9 @@ class Search extends Component {
             borderBottomRightRadius: '10em',
             height: '2em',
             lineHeight: '1em',
-            border: '1px solid #ced4da'
+            border: '1px solid #ced4da',
+            borderLeft:'none',
+            color:'gray'
         }}><Link to={path}>{this.renderSearchIcon()}</Link></Button>;
     }
 
