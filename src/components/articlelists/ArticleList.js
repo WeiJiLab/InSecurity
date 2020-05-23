@@ -23,18 +23,26 @@ class ArticleList extends Component {
                                     {this.renderTitle(item.article.title)}
                                 </Link>
                                 <p style={{fontSize: '0.8em', marginBottom: 0}}><span style={{color: 'gray'}}>作者:</span>{item.authorName}</p>
-                                <p style={{color: '#828a92', fontWeight: 'light', marginTop: 0,marginBottom:'0.5em'}}>{item.article.content.substr(0, 50)}...</p>
+                                <p style={{
+                                    color: '#828a92',
+                                    fontWeight: 'light',
+                                    marginTop: 0,
+                                    marginBottom: '0.5em'
+                                }}>{item.article.content.substr(0, 50)}...</p>
                                 <Button variant="link" style={{padding: 0, margin: 0}}>{this.renderTagIcon()}</Button>
                                 {
-                                    item.tags.map((item, index) => {
+                                    item.tags.map((tag, index) => {
                                         let path = {
                                             pathname: "/topic",
                                             state: {
-                                                tag: item,
+                                                tag: tag,
                                             }
                                         };
-                                        return <Fragment><Button variant="link" style={{padding: 0, margin: 0}}><Link className={"tagLink"}
-                                                                                                                      to={path}>{item}</Link></Button>,
+                                        return <Fragment>
+                                            <Button variant="link" style={{padding: 0, margin: 0}}>
+                                                <Link className={"tagLink"} to={path}>{tag}</Link>
+                                            </Button>
+                                            {(index === item.tags.length - 1) ? '' : ','}
                                         </Fragment>
                                     })
                                 }
