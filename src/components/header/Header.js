@@ -6,7 +6,7 @@ import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import {Link} from "react-router-dom";
 import Image from "react-bootstrap/Image";
-import Logo from "../../static/images/logo.png"
+import Logo from "../../static/images/logo_build.png"
 import Button from "react-bootstrap/Button";
 import {bindActionCreators} from "redux";
 import {login} from "../../actions/actions";
@@ -37,12 +37,16 @@ class Header extends Component {
                             <Link to="/home" style={{fontWeight:'bolder'}}>
                                 <Image src={Logo} className="logo-img" rounded/>
                                 <Navbar.Brand className="icon-header" href="#home">
-                                    <strong className={"headerTitleSpan"}>TWOWASP</strong>
-                                    {/*<strong className={"headerTitleSpan"} style={{color:'#900C3F'}}>O</strong>*/}
-                                    {/*<strong className={"headerTitleSpan"} style={{color:'#C70039'}}>W</strong>*/}
-                                    {/*<strong className={"headerTitleSpan"} style={{color:'#FF5733'}}>A</strong>*/}
-                                    {/*<strong className={"headerTitleSpan"} style={{color:'#FFC300'}}>S</strong>*/}
-                                    {/*<strong className={"headerTitleSpan"} style={{color:'#DAF7A6'}}>P</strong>*/}
+                                    <strong className={"headerTitleSpan"}>活动</strong>
+                                </Navbar.Brand>
+                                <Navbar.Brand className="icon-header" href="#home">
+                                    <strong className={"headerTitleSpan"}>专栏</strong>
+                                </Navbar.Brand>
+                                <Navbar.Brand className="icon-header" href="#home">
+                                    <strong className={"headerTitleSpan"}>安全报告</strong>
+                                </Navbar.Brand>
+                                <Navbar.Brand className="icon-header" href="#home">
+                                    <strong className={"headerTitleSpan"}>企业服务</strong>
                                 </Navbar.Brand>
                             </Link>
 
