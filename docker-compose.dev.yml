@@ -8,13 +8,13 @@ services:
       - /opt/app/node_modules
     working_dir: /opt/app
     environment:
-        API_BASE: http://backend:8080/
+      API_BASE: http://backend:8080/
     restart: on-failure
     stdin_open: true
     ports:
       - "3000:3000"
     command: >
-        sh -c "yarn install && yarn start"
+      sh -c "yarn install && yarn start"
   
   backend:
     image: adoptopenjdk/openjdk11:alpine
@@ -23,6 +23,16 @@ services:
     volumes:
       - ./backend/insecurity:/opt/app
     environment:
-        SPRING_PROFILES_ACTIVE: docker
+      SPRING_PROFILES_ACTIVE: docker
     restart: on-failure
+
+  db:
+    image: mysql:5.7
+    environment:
+      MYSQL_DATABASE: insecurity
+      MYSQL_ROOT_PASSWORD: root
+    restart: always
+    ports:
+      - "3306:3306"
+    command: ['mysqld', '--character-set-server=utf8mb4', '--collation-server=utf8mb4_unicode_ci']
 
