@@ -29,7 +29,7 @@ class Home extends Component {
                                     <Container className="Write-Card">
                                         <h2 className="Write-Card-Title">BuildSecurityIn写作平台</h2>
                                         <h3 className="Write-Card-Content">全新上线</h3>
-                                        <Link to={"/write"}><Button variant="outline-light" style={{marginTop: "1em"}}>开始写作</Button></Link>
+                                        <Link to={"/write"}><Button variant="outline-light" style={{marginTop: "0em"}}>开始写作</Button></Link>
                                     </Container>
                                 </Container>
 
