@@ -16,18 +16,16 @@ services:
       context: .
       dockerfile: ./docker/Dockerfile.backend
     environment:
-        SPRING_PROFILES_ACTIVE: docker
+      SPRING_PROFILES_ACTIVE: docker
     restart: on-failure
     ports:
       - "8080:8080"
-  
-
 
   db:
     image: mysql:5.7
     environment:
-        MYSQL_DATABASE: insecurity
-        MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: insecurity
+      MYSQL_ROOT_PASSWORD: root
     restart: always
     ports:
       - "3306:3306"
