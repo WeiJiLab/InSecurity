@@ -18,7 +18,7 @@ class ArticleList extends Component {
                             }
                         };
                         return <Row className={"Article-Card"}>
-                            <Col style={{padding: 0,paddingRight:'0.5em'}} md={8}>
+                            <Col style={{padding: 0, paddingRight: '0.5em'}} md={8}>
                                 <Link to={path}>
                                     {this.renderTitle(item.article.title)}
                                 </Link>
