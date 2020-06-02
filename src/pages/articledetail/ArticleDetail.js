@@ -27,7 +27,8 @@ class ArticleDetail extends Component {
                             <h3>{this.renderBestIcon()}阅读文章</h3>
                             <Container style={{padding: '1em'}}>
                                 <Row style={{marginTop: '1em'}}>
-                                    <h4 className={"title"}>{article.article.title}</h4>
+
+                                    <h4 className={"title"}>{this.renderTitle(article.article.title)}</h4>
                                 </Row>
 
                                 <Row>
@@ -69,6 +70,16 @@ class ArticleDetail extends Component {
             </Container>
         </Container>);
     };
+
+    renderTitle(title){
+        let html = {
+            __html: title
+        };
+        // return <h5>{title}</h5>;
+        return <h6 className={"title"}>
+            <div style={{width: '100%'}} dangerouslySetInnerHTML={html}></div>
+        </h6>;
+    }
 
     renderTags(tags) {
         return <>

@@ -119,8 +119,7 @@ class Write extends Component {
         let login = JSON.parse(Cookies.get("login"));
         this.article.uid = login.userInfo.userDTO.uid;
 
-        console.log(888, this.article);
-        // this.props.post(this.article);
+        this.props.post(this.article);
     }
 }
 
