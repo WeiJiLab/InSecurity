@@ -5,7 +5,6 @@ import com.thoughtworks.security.insecurity.dto.request.PostArticleRequestDTO;
 import com.thoughtworks.security.insecurity.dto.response.ArticleResponseDTO;
 import com.thoughtworks.security.insecurity.entity.Article;
 import com.thoughtworks.security.insecurity.exceptions.ArticleNotFoundException;
-import com.thoughtworks.security.insecurity.exceptions.EmailOrPasswordNotCorrectException;
 import com.thoughtworks.security.insecurity.repository.ArticleRepository;
 import com.thoughtworks.security.insecurity.repository.UserRepository;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -21,7 +20,6 @@ import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
 import static com.thoughtworks.security.insecurity.constant.Constant.ARTICLE_NOT_FOUND;
-import static com.thoughtworks.security.insecurity.constant.Constant.EMAIL_OR_PASSWORD_NOT_CORRECT_CODE;
 
 @Component
 public class ArticleService {
