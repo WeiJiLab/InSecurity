@@ -6,6 +6,6 @@ create table if not exists article
     tags        varchar(128) not null,
     img_url     varchar(128),
     content     text,
-    create_time datetime     not null,
-    update_time datetime     not null
+    create_time varchar(64)     not null,
+    update_time varchar(64)     not null
 );

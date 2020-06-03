@@ -16,6 +16,6 @@ public class UserDTO {
     private String username;
     private String email;
     private String token;
-    private Date lastLoginTime;
+    private String lastLoginTime;
     private Boolean del;
 }

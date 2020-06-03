@@ -62,9 +62,9 @@ public class UserService {
                             .username(rs.getString("username"))
                             .password(rs.getString("password"))
                             .token(rs.getString("token"))
-                            .createTime(rs.getTime("create_time"))
-                            .updateTime(rs.getTime("update_time"))
-                            .lastLoginTime(rs.getTime("last_login_time"))
+                            .createTime(rs.getString("create_time"))
+                            .updateTime(rs.getString("update_time"))
+                            .lastLoginTime(rs.getString("last_login_time"))
                             .build());
             if (!query.isEmpty()) {
                 user = query.get(0);
@@ -93,9 +93,9 @@ public class UserService {
                 .username(registerRequestDTO.getUsername())
                 .email(registerRequestDTO.getEmail())
                 .password(registerRequestDTO.getPassword())
-                .createTime(new Date())
-                .updateTime(new Date())
-                .lastLoginTime(new Date())
+                .createTime(new Date().toString())
+                .updateTime(new Date().toString())
+                .lastLoginTime(new Date().toString())
                 .token(UUID.randomUUID().toString())
                 .build();
         User savedUser = userRepository.save(user);

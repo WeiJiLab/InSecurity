@@ -5,8 +5,8 @@ create table if not exists user
     email           varchar(64) not null,
     password        varchar(64) not null,
     token           varchar(64),
-    create_time     datetime    not null,
-    update_time     datetime    not null,
-    last_login_time datetime
+    create_time     varchar(64)    not null,
+    update_time     varchar(64)    not null,
+    last_login_time varchar(64)
 );
 
