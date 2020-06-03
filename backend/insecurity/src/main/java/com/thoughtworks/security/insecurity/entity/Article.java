@@ -32,7 +32,7 @@ public class Article {
     private String tags;
     private String imgUrl;
     private String content;
-    private String createTime;
-    private String updateTime;
+    private Date createTime;
+    private Date updateTime;
     private Boolean hot;
 }

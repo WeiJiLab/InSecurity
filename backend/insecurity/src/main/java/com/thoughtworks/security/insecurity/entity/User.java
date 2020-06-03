@@ -34,9 +34,9 @@ public class User {
 
     private String token;
 
-    private String createTime;
-    private String updateTime;
-    private String lastLoginTime;
+    private Date createTime;
+    private Date updateTime;
+    private Date lastLoginTime;
     private Boolean del;
 
     public UserDTO toUserDTO(){

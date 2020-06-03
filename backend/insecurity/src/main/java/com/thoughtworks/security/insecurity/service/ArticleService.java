@@ -86,8 +86,8 @@ public class ArticleService {
                 .title(postArticleRequestDTO.getTitle())
                 .imgUrl(postArticleRequestDTO.getImgUrl())
                 .content(postArticleRequestDTO.getContent())
-                .createTime(new Date().toString())
-                .updateTime(new Date().toString())
+                .createTime(new Date())
+                .updateTime(new Date())
                 .build();
         return ResultDTO.<Article>builder().data(articleRepository.save(article)).build();
     }
@@ -106,7 +106,7 @@ public class ArticleService {
                             .tags(rs.getString("tags"))
                             .imgUrl(rs.getString("img_url"))
                             .content(rs.getString("content"))
-                            .createTime(rs.getString("create_time"))
+                            .createTime(rs.getTime("create_time"))
                             .build());
 
             result.addAll(getArticleResponseDTO(allByTagsLike));
