@@ -94,7 +94,6 @@ public class ArticleService {
 
     public ResultDTO<List<ArticleResponseDTO>> listByKey(String key) {
         Set<ArticleResponseDTO> result = new HashSet<>();
-//        List<Article> allByTagsLike = articleRepository.findAllByTitleLike("%"+key+"%");
         try {
             String sql = "select * from article where title like '%" + key + "%';";
             System.out.println(sql);

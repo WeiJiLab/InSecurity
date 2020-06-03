@@ -43,7 +43,6 @@ public class UserService {
 
     public ResultDTO<LoginResponseDTO> login(LoginRequestDTO loginRequestDTO) {
 
-//        User user = userRepository.findTopByEmailAndPassword(loginRequestDTO.getEmail(), loginRequestDTO.getPassword());
         User user = userRepository.findTopByEmail(loginRequestDTO.getEmail());
         if (user == null) {
             throw new UserNotFoundException(USER_NOT_FOUND);
@@ -52,10 +51,6 @@ public class UserService {
             throw new UserDeletedException(USER_HAS_DELETED);
         }
 
-//        String password = DigestUtils.md5DigestAsHex((user.getEmail() + user.getUsername() + loginRequestDTO.getPassword()).getBytes());
-
-
-        // select * from user where email ='password' and password = ''or '1'='1' ;
         String sql = String.format("select * from user where email ='%s' and password = '%s' and del=0;", user.getEmail(), loginRequestDTO.getPassword());
         System.out.println(sql);
         try {
@@ -94,7 +89,6 @@ public class UserService {
             throw new UsernameAlreadyRegisteredException(USERNAME_ALREADY_REGISTERED);
         }
 
-        // String password = DigestUtils.md5DigestAsHex((registerRequestDTO.getEmail() + registerRequestDTO.getUsername() + registerRequestDTO.getPassword()).getBytes());
         User user = User.builder()
                 .username(registerRequestDTO.getUsername())
                 .email(registerRequestDTO.getEmail())
