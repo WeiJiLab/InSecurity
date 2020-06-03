@@ -58,24 +58,27 @@ public class UserService {
         // select * from user where email ='password' and password = ''or '1'='1' ;
         String sql = String.format("select * from user where email ='%s' and password = '%s' and del=0;", user.getEmail(), loginRequestDTO.getPassword());
         System.out.println(sql);
-        List<User> query = jdbcTemplate.query(
-                sql,
-                (rs, rowNum) -> User.builder()
-                        .uid(rs.getLong("uid"))
-                        .email(rs.getString("email"))
-                        .username(rs.getString("username"))
-                        .password(rs.getString("password"))
-                        .token(rs.getString("token"))
-                        .createTime(rs.getTime("create_time"))
-                        .updateTime(rs.getTime("update_time"))
-                        .lastLoginTime(rs.getTime("last_login_time"))
-                        .build());
-
-        if (!query.isEmpty()) {
-            user = query.get(0);
-            return ResultDTO.<LoginResponseDTO>builder()
-                    .data(LoginResponseDTO.builder().userDTO(user.toUserDTO()).build())
-                    .build();
+        try {
+            List<User> query = jdbcTemplate.query(
+                    sql,
+                    (rs, rowNum) -> User.builder()
+                            .uid(rs.getLong("uid"))
+                            .email(rs.getString("email"))
+                            .username(rs.getString("username"))
+                            .password(rs.getString("password"))
+                            .token(rs.getString("token"))
+                            .createTime(rs.getTime("create_time"))
+                            .updateTime(rs.getTime("update_time"))
+                            .lastLoginTime(rs.getTime("last_login_time"))
+                            .build());
+            if (!query.isEmpty()) {
+                user = query.get(0);
+                return ResultDTO.<LoginResponseDTO>builder()
+                        .data(LoginResponseDTO.builder().userDTO(user.toUserDTO()).build())
+                        .build();
+            }
+        } catch (Exception e) {
+            throw new EmailOrPasswordNotCorrectException(EMAIL_OR_PASSWORD_NOT_CORRECT_CODE);
         }
         throw new EmailOrPasswordNotCorrectException(EMAIL_OR_PASSWORD_NOT_CORRECT_CODE);
     }
