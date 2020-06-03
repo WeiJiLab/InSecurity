@@ -5,6 +5,7 @@ import com.thoughtworks.security.insecurity.dto.request.PostArticleRequestDTO;
 import com.thoughtworks.security.insecurity.dto.response.ArticleResponseDTO;
 import com.thoughtworks.security.insecurity.entity.Article;
 import com.thoughtworks.security.insecurity.exceptions.ArticleNotFoundException;
+import com.thoughtworks.security.insecurity.exceptions.EmailOrPasswordNotCorrectException;
 import com.thoughtworks.security.insecurity.repository.ArticleRepository;
 import com.thoughtworks.security.insecurity.repository.UserRepository;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -20,6 +21,7 @@ import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
 import static com.thoughtworks.security.insecurity.constant.Constant.ARTICLE_NOT_FOUND;
+import static com.thoughtworks.security.insecurity.constant.Constant.EMAIL_OR_PASSWORD_NOT_CORRECT_CODE;
 
 @Component
 public class ArticleService {
@@ -97,19 +99,23 @@ public class ArticleService {
 //        List<Article> allByTagsLike = articleRepository.findAllByTitleLike("%"+key+"%");
         String sql = "select * from article where title like '%" + key + "%';";
         System.out.println(sql);
-        List<Article> allByTagsLike = jdbcTemplate.query(
-                sql,
-                (rs, rowNum) -> Article.builder()
-                        .aid(rs.getLong("aid"))
-                        .uid(rs.getLong("uid"))
-                        .title(rs.getString("title"))
-                        .tags(rs.getString("tags"))
-                        .imgUrl(rs.getString("img_url"))
-                        .content(rs.getString("content"))
-                        .createTime(rs.getTime("create_time"))
-                        .build());
+        try {
+            List<Article> allByTagsLike = jdbcTemplate.query(
+                    sql,
+                    (rs, rowNum) -> Article.builder()
+                            .aid(rs.getLong("aid"))
+                            .uid(rs.getLong("uid"))
+                            .title(rs.getString("title"))
+                            .tags(rs.getString("tags"))
+                            .imgUrl(rs.getString("img_url"))
+                            .content(rs.getString("content"))
+                            .createTime(rs.getTime("create_time"))
+                            .build());
 
-        result.addAll(getArticleResponseDTO(allByTagsLike));
+            result.addAll(getArticleResponseDTO(allByTagsLike));
+        } catch (Exception e) {
+            return ResultDTO.<List<ArticleResponseDTO>>builder().data(new ArrayList<>(result)).build();
+        }
         return ResultDTO.<List<ArticleResponseDTO>>builder().data(new ArrayList<>(result)).build();
     }
 
