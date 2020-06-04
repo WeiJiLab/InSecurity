@@ -65,6 +65,7 @@ class Me extends Component {
     logout() {
         Cookies.set("login", null);
         this.props.refreshCookie();
+        window.location.reload();
         this.props.history.push("/");
     }
 }
