@@ -47,6 +47,7 @@ public class UserService {
         if (user == null) {
             throw new UserNotFoundException(USER_NOT_FOUND);
         }
+        System.out.println("U:"+user.toString());
         if (user.getDel()) {
             throw new UserDeletedException(USER_HAS_DELETED);
         }
@@ -97,6 +98,7 @@ public class UserService {
                 .updateTime(new Date())
                 .lastLoginTime(new Date())
                 .token(UUID.randomUUID().toString())
+                .del(false)
                 .build();
         User savedUser = userRepository.save(user);
         if (savedUser.getUid() != null) {

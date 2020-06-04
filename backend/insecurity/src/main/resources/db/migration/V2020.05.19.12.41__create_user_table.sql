@@ -7,6 +7,7 @@ create table if not exists user
     token           varchar(64),
     create_time     datetime    not null,
     update_time     datetime    not null,
-    last_login_time datetime
+    last_login_time datetime,
+    del tinyint default 0
 );
 
