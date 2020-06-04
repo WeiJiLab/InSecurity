@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import './Write.css';
 import Container from "react-bootstrap/Container";
-import {Col, FormControl, InputGroup, Row} from "react-bootstrap";
+import {Col, FormControl, InputGroup, Modal, Row} from "react-bootstrap";
 import {bindActionCreators} from "redux";
 import {edit, post} from "../../actions/actions";
 import {connect} from "react-redux";
@@ -22,7 +22,8 @@ class Write extends Component {
             content: ''
         };
         this.state = {
-            editorState: null
+            editorState: null,
+            showModal: false
         };
         this.doEdit = this.doEdit.bind(this);
     }
@@ -86,6 +87,19 @@ class Write extends Component {
                 </Col>
                 <Button variant="outline-dark" type="button" style={{marginTop: '0em', marginLeft: '1.5em', zIndex: '99'}}
                         onClick={this.post.bind(this)}>发布</Button>
+                <Modal
+                    size="sm"
+                    show={this.state.showModal}
+                    onHide={this.returnHome.bind(this)}
+                    aria-labelledby="example-modal-sizes-title-sm"
+                >
+                    <Modal.Header closeButton>
+                        <Modal.Title id="example-modal-sizes-title-sm">
+                            发布成功
+                        </Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>关闭该弹出框自动返回主页</Modal.Body>
+                </Modal>
             </Row>
         </Container>);
     };
@@ -124,9 +138,16 @@ class Write extends Component {
 
     componentWillReceiveProps(nextProps) {
         if (nextProps.postResult.postStatus === true) {
-
-            this.props.history.push("/home");
+            this.setState({
+                showModal:true,
+            });
         }
+    }
+    returnHome(){
+        this.setState({
+            showModal:false,
+        });
+        this.props.history.push("/home");
     }
 }
 
