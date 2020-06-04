@@ -52,8 +52,21 @@ export const TopicActions = {
     GET_TOPICS_FAILED: 'GET_TOPICS_FAILED',
 };
 
+export const CookieActions = {
+    REFRESH_COOKIE: 'REFRESH_COOKIE',
+};
+
 export const login = (loginDTO) => (dispatch) => {
     ajaxLoginFromApi(loginDTO, dispatch);
+};
+
+export const refreshCookie = () => (dispatch) => {
+    dispatch({
+        type: CookieActions.REFRESH_COOKIE,
+        payload: {
+            cookieStatus: true,
+        }
+    })
 };
 
 export const register = (registerDTO) => (dispatch) => {

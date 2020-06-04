@@ -3,7 +3,7 @@ import './Login.css';
 import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-import {login} from "../../actions/actions";
+import {login, refreshCookie} from "../../actions/actions";
 import {Alert, Col, Row} from "react-bootstrap";
 import {bindActionCreators} from "redux";
 import {connect} from "react-redux";
@@ -83,6 +83,7 @@ class Login extends Component {
         if (nextProps.loginResult !== this.props.loginResult) {
             if (nextProps.loginResult.loginStatus) {
                 Cookies.set("login",nextProps.loginResult);
+                this.props.refreshCookie();
                 this.props.history.push("/");
             }
         }
@@ -94,7 +95,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators({
-    login
+    login,
+    refreshCookie
 }, dispatch);
 
 

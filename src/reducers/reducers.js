@@ -1,5 +1,5 @@
 import {combineReducers} from 'redux'
-import {ArticleActions, LoginActions, RegisterActions, TopicActions, UserActions} from '../actions/actions'
+import {ArticleActions, CookieActions, LoginActions, RegisterActions, TopicActions, UserActions} from '../actions/actions'
 
 const initialState = {
     loginResult: {
@@ -65,6 +65,9 @@ const initialState = {
         hotArticleByAidStatus: false,
         message: null,
         article: null
+    },
+    cookieResult:{
+        cookieStatus: false,
     }
 };
 
@@ -190,6 +193,11 @@ export function reduxResult(state = initialState, action) {
         case  ArticleActions.HOT_ARTICLE_BY_AID_FAILED:
             return Object.assign({}, state, {
                 hotArticleByAidResult: action.payload,
+            });
+
+        case  CookieActions.REFRESH_COOKIE:
+            return Object.assign({}, state, {
+                cookieResult: action.payload,
             });
         default:
             return state;

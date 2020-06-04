@@ -6,6 +6,9 @@ import Cookies from "js-cookie";
 import Logo from "../../static/images/logo_g.png"
 import Button from "react-bootstrap/Button";
 import MyArticlesPanel from "../../components/myarticles/MyArticlesPanel";
+import {bindActionCreators} from "redux";
+import {login, refreshCookie} from "../../actions/actions";
+import {connect} from "react-redux";
 
 class Me extends Component {
 
@@ -61,8 +64,16 @@ class Me extends Component {
 
     logout() {
         Cookies.set("login", null);
+        this.props.refreshCookie();
         this.props.history.push("/");
     }
 }
 
-export default Me;
+const mapStateToProps = state => ({
+});
+
+const mapDispatchToProps = dispatch => bindActionCreators({
+    refreshCookie
+}, dispatch);
+
+export default connect(mapStateToProps, mapDispatchToProps)(Me);

@@ -104,7 +104,6 @@ class Header extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        if (nextProps.loginResult !== this.props.loginResult) {
             let ck = Cookies.get("login");
             let login = null;
             if (ck != null) {
@@ -112,12 +111,11 @@ class Header extends Component {
             }
             this.setState({
                 user: login
-            })
-        }
+            });
     }
 }
-
 const mapStateToProps = state => ({
+    cookieResult:  state.reduxResult.cookieResult,
     loginResult: state.reduxResult.loginResult
 });
 
