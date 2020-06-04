@@ -98,7 +98,7 @@ class Write extends Component {
                             发布成功
                         </Modal.Title>
                     </Modal.Header>
-                    <Modal.Body>关闭该弹出框自动返回主页</Modal.Body>
+                    <Modal.Body>关闭弹框返回主页</Modal.Body>
                 </Modal>
             </Row>
         </Container>);
