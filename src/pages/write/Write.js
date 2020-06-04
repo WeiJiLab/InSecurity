@@ -80,11 +80,11 @@ class Write extends Component {
                         <BraftEditor
                             value={this.props.editorState}
                             onChange={this.handleEditorChange.bind(this)}
-                            style={{ marginBottom: '1em'}}
+                            style={{marginBottom: '1em'}}
                         />
                     </Container>
                 </Col>
-                <Button variant="outline-dark" type="button" style={{marginTop: '0em', marginLeft: '1.5em',zIndex:'99'}}
+                <Button variant="outline-dark" type="button" style={{marginTop: '0em', marginLeft: '1.5em', zIndex: '99'}}
                         onClick={this.post.bind(this)}>发布</Button>
             </Row>
         </Container>);
@@ -120,6 +120,13 @@ class Write extends Component {
         this.article.uid = login.userInfo.userDTO.uid;
 
         this.props.post(this.article);
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.postResult.postStatus === true) {
+
+            this.props.history.push("/home");
+        }
     }
 }
 
