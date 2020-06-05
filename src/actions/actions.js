@@ -1,5 +1,5 @@
 import {
-    API_ARTICLE_ALL,
+    API_ARTICLE_ALL, API_ARTICLE_DELETE,
     API_ARTICLE_HOT,
     API_ARTICLE_KEY,
     API_ARTICLE_POST,
@@ -33,12 +33,15 @@ export const ArticleActions = {
     GET_ARTICLE_LIST_HOT_FAILED: 'GET_ARTICLE_LIST_HOT_FAILED',
     HOT_ARTICLE_BY_AID_SUCCESS: 'HOT_ARTICLE_BY_AID_SUCCESS',
     HOT_ARTICLE_BY_AID_FAILED: 'HOT_ARTICLE_BY_AID_FAILED',
+    DELETE_ARTICLE_BY_AID_SUCCESS: 'DELETE_ARTICLE_BY_AID_SUCCESS',
+    DELETE_ARTICLE_BY_AID_FAILED: 'DELETE_ARTICLE_BY_AID_FAILED',
     GET_ARTICLE_LIST_ALL_BY_TOPIC_SUCCESS: 'GET_ARTICLE_LIST_ALL_BY_TOPIC_SUCCESS',
     GET_ARTICLE_LIST_ALL_BY_TOPIC_FAILED: 'GET_ARTICLE_LIST_ALL_BY_TOPIC_FAILED',
     GET_ARTICLE_LIST_ALL_BY_KEY_SUCCESS: 'GET_ARTICLE_LIST_ALL_BY_KEY_SUCCESS',
     GET_ARTICLE_LIST_ALL_BY_KEY_FAILED: 'GET_ARTICLE_LIST_ALL_BY_KEY_FAILED',
     GET_ARTICLE_LIST_ALL_BY_UID_FAILED: 'GET_ARTICLE_LIST_ALL_BY_UID_FAILED',
     GET_ARTICLE_LIST_ALL_BY_UID_SUCCESS: 'GET_ARTICLE_LIST_ALL_BY_UID_SUCCESS'
+
 };
 
 export const UserActions = {
@@ -100,6 +103,10 @@ export const banUser = (uid) => (dispatch) => {
 
 export const hotArticleByAid = (aid) => (dispatch) => {
     ajaxHotArticleByAidFromApi(aid, dispatch);
+};
+
+export const deleteArticleByAid = (aid) => (dispatch) => {
+    ajaxDeleteArticleByAidFromApi(aid, dispatch);
 };
 
 export const articlesByTopic = (topic) => (dispatch) => {
@@ -617,11 +624,14 @@ export function ajaxBanUsersFromApi(uid, dispatch) {
 
 
 export function ajaxHotArticleByAidFromApi(aid, dispatch) {
+    let ck = Cookies.get("login");
+    let login = JSON.parse(ck);
     fetch(API_ARTICLE_HOT + "/" + aid, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
         },
+        body: JSON.stringify(login.userInfo.userDTO),
     })
         .then(response => response.json())
         .then(data => {
@@ -652,6 +662,52 @@ export function ajaxHotArticleByAidFromApi(aid, dispatch) {
                 type: ArticleActions.HOT_ARTICLE_BY_AID_FAILED,
                 payload: {
                     hotArticleStatus: false,
+                    message: error.message,
+                    article: null
+                }
+            })
+        });
+}
+
+export function ajaxDeleteArticleByAidFromApi(aid, dispatch) {
+    let ck = Cookies.get("login");
+    let login = JSON.parse(ck);
+    fetch(API_ARTICLE_DELETE + "/" + aid, {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(login.userInfo.userDTO),
+    })
+        .then(response => response.json())
+        .then(data => {
+            console.log('Success:', data);
+            if (data.status == null && data.errorCode != null) {
+                dispatch({
+                    type: ArticleActions.DELETE_ARTICLE_BY_AID_FAILED,
+                    payload: {
+                        deleteArticleStatus: false,
+                        message: data.message,
+                        article: null
+                    }
+                })
+            } else {
+                dispatch({
+                    type: ArticleActions.DELETE_ARTICLE_BY_AID_SUCCESS,
+                    payload: {
+                        deleteArticleStatus: true,
+                        message: data.message,
+                        article: data.data
+                    }
+                })
+            }
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+            dispatch({
+                type: ArticleActions.DELETE_ARTICLE_BY_AID_FAILED,
+                payload: {
+                    deleteArticleStatus: false,
                     message: error.message,
                     article: null
                 }

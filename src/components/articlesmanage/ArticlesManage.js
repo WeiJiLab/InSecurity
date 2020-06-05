@@ -4,7 +4,7 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import {Link} from "react-router-dom";
 import {bindActionCreators} from "redux";
-import {articles, hotArticleByAid} from "../../actions/actions";
+import {articles, deleteArticleByAid, hotArticleByAid} from "../../actions/actions";
 import {connect} from "react-redux";
 import Col from "react-bootstrap/Col";
 import {Badge, Button} from "react-bootstrap";
@@ -64,7 +64,7 @@ class ArticlesManage extends Component {
                         </Col>
                         <Col md={2} style={{padding: 0}}>
                             <Row style={{height: '100%'}}>
-                                <Col style={{color: '#000', height: '100%'}}><Link>删除</Link></Col>
+                                <Col onClick={this.deleteArticleById.bind(this, item.article.aid)} style={{color: '#000', height: '100%'}}><Link>删除</Link></Col>
                                 <Col onClick={this.hotArticleById.bind(this, item.article.aid)}
                                      style={{color: '#000', height: '100%'}}><Link>{item.article.hot ? '降温' : '热点'}</Link></Col>
                             </Row>
@@ -96,6 +96,10 @@ class ArticlesManage extends Component {
 
     hotArticleById(aid) {
         this.props.hotArticleByAid(aid);
+    }
+
+    deleteArticleById(aid) {
+        this.props.deleteArticleByAid(aid);
     }
 
     componentWillMount() {
@@ -142,12 +146,14 @@ class ArticlesManage extends Component {
 
 const mapStateToProps = state => ({
     articlesResult: state.reduxResult.articlesResult,
-    hotArticleByAidResult: state.reduxResult.hotArticleByAidResult
+    hotArticleByAidResult: state.reduxResult.hotArticleByAidResult,
+    deleteArticleByAidResult: state.reduxResult.deleteArticleByAidResult
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators({
     articles,
-    hotArticleByAid
+    hotArticleByAid,
+    deleteArticleByAid,
 }, dispatch);
 
 

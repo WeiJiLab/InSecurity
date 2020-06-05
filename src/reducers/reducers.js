@@ -66,6 +66,11 @@ const initialState = {
         message: null,
         article: null
     },
+    deleteArticleByAidResult: {
+        deleteArticleByAidStatus: false,
+        message: null,
+        article: null
+    },
     cookieResult:{
         cookieStatus: false,
     }
@@ -191,6 +196,16 @@ export function reduxResult(state = initialState, action) {
             });
 
         case  ArticleActions.HOT_ARTICLE_BY_AID_FAILED:
+            return Object.assign({}, state, {
+                hotArticleByAidResult: action.payload,
+            });
+
+        case  ArticleActions.DELETE_ARTICLE_BY_AID_SUCCESS:
+            return Object.assign({}, state, {
+                hotArticleByAidResult: action.payload,
+            });
+
+        case  ArticleActions.DELETE_ARTICLE_BY_AID_FAILED:
             return Object.assign({}, state, {
                 hotArticleByAidResult: action.payload,
             });

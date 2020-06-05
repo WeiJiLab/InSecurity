@@ -8,6 +8,7 @@ import com.thoughtworks.security.insecurity.dto.response.ArticleResponseDTO;
 import com.thoughtworks.security.insecurity.entity.Article;
 import com.thoughtworks.security.insecurity.service.ArticleService;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -49,8 +50,14 @@ public class ArticleController {
 
     @PutMapping("/hot/{aid}")
     @CrossOrigin(origins = "*")
-    public ResultDTO<ArticleResponseDTO> hotByUid(@PathVariable("aid") Long aid) throws Throwable {
+    public ResultDTO<ArticleResponseDTO> hotByAid(@PathVariable("aid") Long aid, UserDTO userDTO) throws Throwable {
         return articleService.hotByAid(aid);
+    }
+
+    @DeleteMapping("/delete/{aid}")
+    @CrossOrigin(origins = "*")
+    public ResultDTO<ArticleResponseDTO> deleteByAid(@PathVariable("aid") Long aid, UserDTO userDTO) throws Throwable {
+        return articleService.deleteByAid(aid);
     }
 
     @GetMapping("/topic")

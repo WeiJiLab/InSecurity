@@ -86,6 +86,7 @@ public class ArticleService {
                 .title(postArticleRequestDTO.getTitle())
                 .imgUrl(postArticleRequestDTO.getImgUrl())
                 .content(postArticleRequestDTO.getContent())
+                .hot(false)
                 .createTime(new Date())
                 .updateTime(new Date())
                 .build();
@@ -107,6 +108,7 @@ public class ArticleService {
                             .imgUrl(rs.getString("img_url"))
                             .content(rs.getString("content"))
                             .createTime(rs.getTime("create_time"))
+                            .hot(rs.getBoolean("hot"))
                             .build());
 
             result.addAll(getArticleResponseDTO(allByTagsLike));
@@ -136,6 +138,16 @@ public class ArticleService {
                 .tags(Arrays.asList(article.getTags().trim().split(",")))
                 .article(article).build();
 
+        return ResultDTO.<ArticleResponseDTO>builder().data(articleResponseDTO).build();
+    }
+
+    public ResultDTO<ArticleResponseDTO> deleteByAid(Long aid) throws Throwable {
+        Article article = articleRepository.findById(aid).orElseThrow((Supplier<Throwable>) () -> new ArticleNotFoundException(ARTICLE_NOT_FOUND));
+        articleRepository.deleteById(aid);
+        ArticleResponseDTO articleResponseDTO = ArticleResponseDTO.builder()
+                .authorName(userRepository.findById(article.getUid()).get().getUsername())
+                .tags(Arrays.asList(article.getTags().trim().split(",")))
+                .article(article).build();
         return ResultDTO.<ArticleResponseDTO>builder().data(articleResponseDTO).build();
     }
 }
