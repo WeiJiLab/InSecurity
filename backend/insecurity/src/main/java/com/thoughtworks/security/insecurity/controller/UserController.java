@@ -36,7 +36,7 @@ public class UserController {
 
     @PutMapping("/ban/{uid}")
     @CrossOrigin(origins = "*")
-    public ResultDTO<UserDTO> register(@PathVariable("uid") Long uid) throws Throwable {
+    public ResultDTO<UserDTO> register(@PathVariable("uid") Long uid,@RequestBody UserDTO userDTO) throws Throwable {
         return userService.banUser(uid);
     }
 

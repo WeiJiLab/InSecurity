@@ -570,11 +570,14 @@ export function ajaxGetArticlesByUidFromApi(uid, dispatch) {
 }
 
 export function ajaxBanUsersFromApi(uid, dispatch) {
+    let ck = Cookies.get("login");
+    let login = JSON.parse(ck);
     fetch(API_USER_BAN + "/" + uid, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
         },
+        body: JSON.stringify(login.userInfo.userDTO),
     })
         .then(response => response.json())
         .then(data => {
