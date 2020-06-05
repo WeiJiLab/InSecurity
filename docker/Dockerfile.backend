@@ -2,7 +2,13 @@ FROM adoptopenjdk/openjdk11:alpine AS build
 
 WORKDIR /app
 
-COPY ./backend/insecurity /app
+COPY ./backend/insecurity/gradle /app/gradle
+COPY ./backend/insecurity/gradlew /app/
+
+RUN ./gradlew --version
+
+COPY ./backend/insecurity/src /app/src
+COPY ./backend/insecurity/build.gradle ./backend/insecurity/settings.gradle /app/
 
 RUN ./gradlew build -x test
 
