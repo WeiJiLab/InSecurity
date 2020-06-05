@@ -16,7 +16,7 @@ class MyArticlesPanel extends Component {
                     {this.renderHotIcon()}
                     我的文章
                 </h4><span
-                style={{color: 'gray', marginLeft: '0.5em', fontSize: '0.9em'}}>共发布 <strong>{this.props.articlesByUidResult.articles.length}</strong> 篇文章</span>
+                style={{color: 'gray', marginLeft: '0.5em', fontSize: '0.9em'}}>共发布 <strong>{this.props.articlesByUidResult.articles?this.props.articlesByUidResult.articles.length:0}</strong> 篇文章</span>
                 <Container style={{padding: 0, marginTop: '1em'}}>
                     <Container style={{padding: 0}}>
                         {this.renderMyArticlesList()}
@@ -27,7 +27,7 @@ class MyArticlesPanel extends Component {
     }
 
     renderMyArticlesList() {
-        if (!this.props.articlesByUidResult) {
+        if (!this.props.articlesByUidResult.articles) {
             return <Row><Col><span style={{color: '#ccc'}}>&nbsp;&nbsp;无</span></Col></Row>
         }
 

@@ -17,13 +17,13 @@ class BestPanel extends Component {
             <Container className="Left-Card">
                 <h4>{this.renderBestIcon()}精选内容</h4>
                 {
-                    this.props.bestArticles[0] ? this.renderTheBestArticle(this.props.bestArticles[0]) : null
+                    this.props.bestArticles && this.props.bestArticles.length>=1 ? this.renderTheBestArticle(this.props.bestArticles[0]) : null
                 }
 
                 <Row style={{padding: '0 1em 0 1em'}}>
-                    {this.renderBestArticle(this.props.bestArticles[1])}
-                    {this.renderBestArticle(this.props.bestArticles[2])}
-                    {this.renderBestArticle(this.props.bestArticles[3])}
+                    {this.props.bestArticles && this.props.bestArticles.length>=2? this.renderBestArticle(this.props.bestArticles[1]):null}
+                    {this.props.bestArticles && this.props.bestArticles.length>=3?this.renderBestArticle(this.props.bestArticles[2]):null}
+                    {this.props.bestArticles && this.props.bestArticles.length>=4?this.renderBestArticle(this.props.bestArticles[3]):null}
                 </Row>
             </Container>
         );

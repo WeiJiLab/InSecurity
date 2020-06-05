@@ -24,7 +24,7 @@ class Menu extends Component {
                         <Navbar bg="#fff" variant="light">
                             <Nav className="mr-auto">
                                 {this.renderTopics()}
-                                {topics.length > 10 ?
+                                {topics && topics.length > 10 ?
                                     <Navbar.Collapse className="justify-content-end" style={{position: 'absolute', right: '0'}}>
                                         <Dropdown style={{float: 'right'}}>
                                             <Dropdown.Toggle variant="success" id="dropdown-basic"
@@ -48,9 +48,11 @@ class Menu extends Component {
     renderDropDownTags() {
         const topics = this.props.topicsResult.topics;
         const result = [];
-        if (topics.length > 10) {
-            for (let i = 10; i < topics.length; i++) {
-                result.push(topics[i]);
+        if(topics) {
+            if (topics.length > 10) {
+                for (let i = 10; i < topics.length; i++) {
+                    result.push(topics[i]);
+                }
             }
         }
         return <>
@@ -76,13 +78,15 @@ class Menu extends Component {
     renderTopics() {
         const topics = this.props.topicsResult.topics;
         const result = [];
-        if (topics.length < 10) {
-            for (let i = 0; i < topics.length; i++) {
-                result.push(topics[i]);
-            }
-        } else {
-            for (let i = 0; i < 10; i++) {
-                result.push(topics[i]);
+        if(topics) {
+            if (topics.length < 10) {
+                for (let i = 0; i < topics.length; i++) {
+                    result.push(topics[i]);
+                }
+            } else {
+                for (let i = 0; i < 10; i++) {
+                    result.push(topics[i]);
+                }
             }
         }
 

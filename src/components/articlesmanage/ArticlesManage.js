@@ -21,7 +21,7 @@ class ArticlesManage extends Component {
                     color: 'gray',
                     marginLeft: '0.5em',
                     fontSize: '0.9em'
-                }}>一共 <strong>{this.props.articlesResult.articles.length}</strong> 篇文章</span>
+                }}>一共 <strong>{this.props.articlesResult.articles?this.props.articlesResult.articles.length:0}</strong> 篇文章</span>
                 <Container style={{padding: 0, marginTop: '1em'}}>
                     <Container style={{padding: 0}}>
                         {this.renderAllArticlesList()}
@@ -32,12 +32,12 @@ class ArticlesManage extends Component {
     }
 
     renderAllArticlesList() {
-        if (!this.props.articlesResult) {
+        if (!this.props.articlesResult.articles) {
             return <Row><Col><span style={{color: '#ccc'}}>&nbsp;&nbsp;无</span></Col></Row>
         }
 
         return (<Fragment>{
-            this.props.articlesResult.articles.map((item, index) => {
+            this.props.articlesResult.articles && this.props.articlesResult.articles.map((item, index) => {
                 const path = {
                     pathname: "/article",
                     state: {

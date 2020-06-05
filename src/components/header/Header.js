@@ -88,7 +88,7 @@ class Header extends Component {
                 </Button></Link></Fragment>);
         } else {
             return (<Link to="/me">{
-                login.userInfo.userDTO.username === 'admin' ?
+                login.userInfo.userDTO && login.userInfo.userDTO.username === 'admin' ?
                     <Button className={"buttonWrite"} variant="default" type="button" style={{background: '#3db24b', color: '#fff'}}><Link
                         style={{color: '#fff'}} to={"/admin"}>后台管理</Link>
                     </Button> :
@@ -97,7 +97,7 @@ class Header extends Component {
                     </Button>
             }
                 <Button variant="link" style={{color: "#000"}}>
-                    <strong>{login.userInfo.userDTO.username}</strong> ({login.userInfo.userDTO.email})
+                    <strong>{login.userInfo.userDTO ? login.userInfo.userDTO.username:""}</strong> ({login.userInfo.userDTO ?login.userInfo.userDTO.email:""})
                 </Button>
             </Link>);
         }

@@ -26,7 +26,7 @@ class HotPanel extends Component {
     }
 
     renderHotList() {
-        if (!this.props.articlesHotResult) {
+        if (!this.props.articlesHotResult.articles) {
             return <Row><Col><span style={{color: '#ccc'}}>&nbsp;&nbsp;无</span></Col></Row>
         }
 
