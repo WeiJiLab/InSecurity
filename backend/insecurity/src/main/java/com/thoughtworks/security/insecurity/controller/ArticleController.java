@@ -2,6 +2,7 @@ package com.thoughtworks.security.insecurity.controller;
 
 
 import com.thoughtworks.security.insecurity.dto.ResultDTO;
+import com.thoughtworks.security.insecurity.dto.UserDTO;
 import com.thoughtworks.security.insecurity.dto.request.PostArticleRequestDTO;
 import com.thoughtworks.security.insecurity.dto.response.ArticleResponseDTO;
 import com.thoughtworks.security.insecurity.entity.Article;

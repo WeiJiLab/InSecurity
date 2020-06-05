@@ -45,7 +45,7 @@ public class User {
                 .username(username)
                 .email(email)
                 .token(token)
-                .lastLoginTime(lastLoginTime)
+                .lastLoginTime(lastLoginTime.toString())
                 .del(del)
                 .build();
     }

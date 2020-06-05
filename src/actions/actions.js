@@ -11,6 +11,7 @@ import {
     API_USER_ALL,
     API_USER_BAN
 } from "../api/insecurityApi";
+import Cookies from "js-cookie";
 
 export const LoginActions = {
     LOGIN_SUCCESS: 'LOGIN_SUCCESS',
@@ -215,6 +216,9 @@ export function ajaxRegisterFromApi(loginDTO, dispatch) {
 
 
 export function ajaxPostArticleFromApi(articleDTO, dispatch) {
+    let ck = Cookies.get("login");
+    let login = JSON.parse(ck);
+    articleDTO.userDTO = login.userInfo.userDTO;
     fetch(API_ARTICLE_POST, {
         method: 'POST',
         headers: {

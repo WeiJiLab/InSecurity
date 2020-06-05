@@ -81,7 +81,7 @@ public class ArticleService {
 
     public ResultDTO<Article> post(PostArticleRequestDTO postArticleRequestDTO) {
         Article article = Article.builder()
-                .uid(postArticleRequestDTO.getUid())
+                .uid(postArticleRequestDTO.getUserDTO().getUid())
                 .tags(postArticleRequestDTO.getTags())
                 .title(postArticleRequestDTO.getTitle())
                 .imgUrl(postArticleRequestDTO.getImgUrl())
