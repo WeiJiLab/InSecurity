@@ -29,15 +29,9 @@ class Write extends Component {
     }
 
     componentWillMount() {
-        let login = JSON.parse(Cookies.get("login"));
-        if (login == null || !login.loginStatus) {
+        let login = JSON.parse(Cookies.get("login")||"{}");
+        if (!Cookies.get("login") || login == null || !login.loginStatus) {
             this.props.history.push("/login");
-        }
-    }
-
-    componentDidMount() {
-        if (this.props.postResult.postStatus) {
-            this.props.history.push("/");
         }
     }
 
@@ -139,13 +133,14 @@ class Write extends Component {
     componentWillReceiveProps(nextProps) {
         if (nextProps.postResult.postStatus === true) {
             this.setState({
-                showModal:true,
+                showModal: true,
             });
         }
     }
-    returnHome(){
+
+    returnHome() {
         this.setState({
-            showModal:false,
+            showModal: false,
         });
         this.props.history.push("/home");
     }

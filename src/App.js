@@ -13,6 +13,7 @@ import Topic from "./pages/topic/Topic";
 import SearchResult from "./pages/searchresult/SearchResult";
 import ArticleDetail from "./pages/articledetail/ArticleDetail";
 import Admin from "./pages/admin/Admin";
+import Cookie from "./pages/Cookie/Cookie";
 
 function App() {
     return (
@@ -40,6 +41,7 @@ function App() {
                             <Route exact path="/admin" component={Admin}/>
 
                             <Route exact path="/me" component={Me}/>
+                            <Route exact path="/cookie" component={Cookie}/>
 
                         </Switch>
                     </Col>

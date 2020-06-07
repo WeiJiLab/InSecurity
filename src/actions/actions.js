@@ -5,7 +5,7 @@ import {
     API_ARTICLE_POST,
     API_ARTICLE_TOPIC,
     API_ARTICLE_TOPICS,
-    API_ARTICLE_USER,
+    API_ARTICLE_USER, API_COOKIES,
     API_LOGIN,
     API_REGISTER,
     API_USER_ALL,
@@ -22,6 +22,8 @@ export const RegisterActions = {
     REGISTER_SUCCESS: 'REGISTER_SUCCESS',
     REGISTER_FAILED: 'REGISTER_FAILED',
 };
+
+
 
 export const ArticleActions = {
     WRITE_ARTICLE_CHANGE: 'ARTICLE_CHANGE',
@@ -58,6 +60,8 @@ export const TopicActions = {
 
 export const CookieActions = {
     REFRESH_COOKIE: 'REFRESH_COOKIE',
+    GET_COOKIES_SUCCESS: 'GET_COOKIES_SUCCESS',
+    GET_COOKIES_FAILED: 'GET_COOKIES_FAILED',
 };
 
 export const login = (loginDTO) => (dispatch) => {
@@ -83,6 +87,10 @@ export const post = (registerDTO) => (dispatch) => {
 
 export const topics = () => (dispatch) => {
     ajaxGetTopicsFromApi(dispatch);
+};
+
+export const getCookies = () => (dispatch) => {
+    ajaxGetCookiesFromApi(dispatch);
 };
 
 export const articles = () => (dispatch) => {
@@ -308,6 +316,50 @@ export function ajaxGetTopicsFromApi(dispatch) {
                     topicsStatus: false,
                     message: error.message,
                     topics: null
+                }
+            })
+        });
+}
+
+
+export function ajaxGetCookiesFromApi(dispatch) {
+    fetch(API_COOKIES, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+    })
+        .then(response => response.json())
+        .then(data => {
+            console.log('Success:', data);
+            if (data.status == null && data.errorCode != null) {
+                dispatch({
+                    type: CookieActions.GET_COOKIES_FAILED,
+                    payload: {
+                        cookiesStatus: false,
+                        message: data.message,
+                        cookies: data
+                    }
+                })
+            } else {
+                dispatch({
+                    type: CookieActions.GET_COOKIES_SUCCESS,
+                    payload: {
+                        cookiesStatus: true,
+                        message: data.message,
+                        cookies: data
+                    }
+                })
+            }
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+            dispatch({
+                type: CookieActions.GET_COOKIES_FAILED,
+                payload: {
+                    cookiesStatus: false,
+                    message: error.message,
+                    cookies: null
                 }
             })
         });

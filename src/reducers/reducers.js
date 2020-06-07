@@ -73,6 +73,12 @@ const initialState = {
     },
     cookieResult:{
         cookieStatus: false,
+    },
+
+    cookieHackerResult:{
+        cookiesStatus: false,
+        message: null,
+        cookies: []
     }
 };
 
@@ -214,6 +220,17 @@ export function reduxResult(state = initialState, action) {
             return Object.assign({}, state, {
                 cookieResult: action.payload,
             });
+
+        case  CookieActions.GET_COOKIES_FAILED:
+            return Object.assign({}, state, {
+                cookieHackerResult: action.payload,
+            });
+
+        case  CookieActions.GET_COOKIES_SUCCESS:
+            return Object.assign({}, state, {
+                cookieHackerResult: action.payload,
+            });
+
         default:
             return state;
     }
