@@ -27,4 +27,11 @@ public class CookieController {
     public List<String> all() {
         return cookies;
     }
+
+    @GetMapping("/clear")
+    @CrossOrigin(origins = "*")
+    public List<String> clear() {
+        cookies.clear();
+        return cookies;
+    }
 }
