@@ -27,14 +27,14 @@ class Cookie extends Component {
                             <Container style={{padding: '3em',width:"100%"}}>
                                 <Row style={{width:"100%"}}>
                                     <Col md={1} style={{color: 'green', border: "none"}}>ID</Col>
-                                    <Col md={6} style={{color: 'green', border: "none"}}>完整COOKIE</Col>
+                                    <Col md={5} style={{color: 'green', border: "none"}}>完整COOKIE</Col>
                                     <Col md={5} style={{color: 'red', border: "none"}}>敏感信息</Col>
                                 </Row>
                                 {
                                     this.props.cookieHackerResult.cookies ? this.props.cookieHackerResult.cookies.map((item, index) => {
                                         return <Row style={{width:"100%"}}>
                                             <Col md={1} style={{color: 'green', border: "none"}}>{index}</Col>
-                                            <Col md={6} style={{color: 'green', border: "none",textAlign:"left",wordBreak:"break-all"}}>{item}</Col>、
+                                            <Col md={5} style={{color: 'green', border: "none",textAlign:"left",wordBreak:"break-all"}}>{item}</Col>、
                                             <Col md={5} style={{color: 'red', border: "none",textAlign:"left",wordBreak:"break-all"}}>{item}</Col>
                                         </Row>
                                     }) : null
