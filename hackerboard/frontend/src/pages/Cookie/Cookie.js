@@ -24,21 +24,19 @@ class Cookie extends Component {
                 <Row style={{padding: 0}}>
                     <Col md={12} style={{padding: 0}}>
                         <Container className="Left-Card" style={{padding: 0}}>
-                            <Container style={{padding: '3em'}}>
-                                <Row>
+                            <Container style={{padding: '3em',width:"100%"}}>
+                                <Row style={{width:"100%"}}>
                                     <Col md={1} style={{color: 'green', border: "none"}}>#</Col>
                                     <Col md={11} style={{color: 'green', border: "none"}}>COOKIE</Col>
                                 </Row>
-                                <tbody style={{color: 'green', border: "none"}}>
                                 {
                                     this.props.cookieHackerResult.cookies ? this.props.cookieHackerResult.cookies.map((item, index) => {
-                                        return <Row>
+                                        return <Row style={{width:"100%"}}>
                                             <Col md={1} style={{color: 'green', border: "none"}}>{index}</Col>
                                             <Col md={11} style={{color: 'green', border: "none"}}>{item}</Col>
                                         </Row>
                                     }) : null
                                 }
-                                </tbody>
                             </Container>
                         </Container>
                     </Col>
