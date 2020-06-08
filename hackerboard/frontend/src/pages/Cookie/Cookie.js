@@ -27,7 +27,7 @@ class Cookie extends Component {
                             <Container style={{padding: '3em'}}>
                                 <Row>
                                     <Col md={1} style={{color: 'green', border: "none"}}>#</Col>
-                                    <Col md={11} style={{color: 'green', border: "none"}}>COOKIE</>
+                                    <Col md={11} style={{color: 'green', border: "none"}}>COOKIE</Col>
                                 </Row>
                                 <tbody style={{color: 'green', border: "none"}}>
                                 {
