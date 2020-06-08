@@ -25,24 +25,20 @@ class Cookie extends Component {
                     <Col md={12} style={{padding: 0}}>
                         <Container className="Left-Card" style={{padding: 0}}>
                             <Container style={{padding: '3em'}}>
-                                <Table striped bordered hover style={{color:'green',border:"none"}}>
-                                    <thead>
-                                    <tr>
-                                        <th style={{color:'green',border:"none"}}>#</th>
-                                        <th style={{color:'green',border:"none"}}>COOKIE</th>
-                                    </tr>
-                                    </thead>
+                                    <Row>
+                                        <Col md={1} style={{color:'green',border:"none"}}>#</Col>
+                                        <Col md={11} style={{color:'green',border:"none"}}>COOKIE</>
+                                    </Row>
                                     <tbody style={{color:'green',border:"none"}}>
                                     {
                                         this.props.cookieHackerResult.cookies ? this.props.cookieHackerResult.cookies.map((item, index) => {
-                                            return  <tr>
-                                                <th style={{color:'green',border:"none"}}>{index}</th>
-                                                <th style={{color:'green',border:"none"}}>{item}</th>
-                                            </tr>
+                                            return  <Row>
+                                                    <Col md={1} style={{color:'green',border:"none"}}>{index}</Col>
+                                                    <Col md={11} style={{color:'green',border:"none"}}>{item}</>
+                                                </Row>
                                         }):null
                                     }
                                     </tbody>
-                                </Table>
                             </Container>
                         </Container>
                     </Col>
