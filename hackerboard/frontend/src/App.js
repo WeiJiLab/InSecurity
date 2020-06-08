@@ -2,7 +2,6 @@ import React from 'react';
 import './App.css';
 import {Route, Switch} from "react-router";
 import Header from "./components/header/Header";
-import Footer from "./components/footer/Footer";
 import {Col, Container, Row} from "react-bootstrap";
 import Cookie from "./pages/Cookie/Cookie";
 
@@ -21,7 +20,6 @@ function App() {
                     </Col>
                 </Row>
             </Container>
-            <Footer/>
         </div>
     );
 }
