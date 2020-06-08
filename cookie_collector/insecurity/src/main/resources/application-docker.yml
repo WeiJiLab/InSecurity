@@ -1,0 +1,24 @@
+server:
+  port:8080
+
+spring:
+  datasource:
+    url: jdbc:mysql://db:3306/insecurity?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull&allowMultiQueries=true&useSSL=false
+    username: root
+    password: root
+  jpa:
+    database: MySQL
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+    show-sql: true
+    generate-ddl: false
+    hibernate:
+      ddl-auto: none
+  flyway:
+    enabled: true
+    url: jdbc:mysql://db:3306/insecurity?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull&allowMultiQueries=true&useSSL=false
+    user: root
+    password: root
+    baseline-on-migrate: true
+    baseline-version: 1
+    schemas: insecurity
+    locations: classpath:db/migration
