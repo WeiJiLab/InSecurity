@@ -1,23 +1,23 @@
 FROM adoptopenjdk/openjdk11:alpine AS build
 
-WORKDIR /app
+ENV APP_HOME=/app/
+WORKDIR $APP_HOME
 
-COPY ./backend/insecurity/gradle /app/gradle
-COPY ./backend/insecurity/gradlew /app/
+COPY ./backend/insecurity/build.gradle ./backend/insecurity/settings.gradle ./backend/insecurity/gradlew $APP_HOME
+COPY ./backend/insecurity/gradle $APP_HOME/gradle
 
-RUN ./gradlew --version
+RUN ./gradlew build || return 0
 
-COPY ./backend/insecurity/src /app/src
-COPY ./backend/insecurity/build.gradle ./backend/insecurity/settings.gradle /app/
+COPY ./backend/insecurity $APP_HOME
 
 RUN ./gradlew build -x test
 
 
 FROM adoptopenjdk/openjdk11:alpine
+ENV APP_HOME=/app/
+WORKDIR $APP_HOME
 
-WORKDIR /app
-
-COPY --from=build /app/build/libs/insecurity-0.0.1-SNAPSHOT.jar .
+COPY --from=build $APP_HOME/build/libs/insecurity-0.0.1-SNAPSHOT.jar .
 
 EXPOSE 8080
 
