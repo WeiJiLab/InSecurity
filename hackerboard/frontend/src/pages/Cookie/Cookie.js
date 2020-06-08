@@ -33,7 +33,7 @@ class Cookie extends Component {
                                     this.props.cookieHackerResult.cookies ? this.props.cookieHackerResult.cookies.map((item, index) => {
                                         return <Row style={{width:"100%"}}>
                                             <Col md={1} style={{color: 'green', border: "none"}}>{index}</Col>
-                                            <Col md={11} style={{color: 'green', border: "none",textAlign:"left"}}>{item}</Col>
+                                            <Col md={11} style={{color: 'green', border: "none",textAlign:"left",wordBreak:"break-all"}}>{item}</Col>
                                         </Row>
                                     }) : null
                                 }
