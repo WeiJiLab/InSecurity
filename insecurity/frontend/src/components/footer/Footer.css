@@ -1,0 +1,27 @@
+.Footer {
+    padding-bottom:1em;
+    background: #000;
+    color: green;
+    border-top: 1px solid #f0f1f3;
+}
+
+.footerLine {
+    margin-top: 1em;
+    padding-top: 0.5em;
+}
+
+.footerText {
+    font-size: 0.8em;
+    color:#999;
+}
+
+.footerText > a {
+    color: #999;
+    text-decoration: none;
+}
+
+.footerText > a:hover {
+    font-weight: bolder;
+    color: #fff;
+    text-decoration: none;
+}

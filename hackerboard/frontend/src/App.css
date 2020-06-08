@@ -1,0 +1,10 @@
+.App {
+    text-align: center;
+    background: #000;
+    color:green;
+}
+
+
+.container, .container-lg, .container-md, .container-sm, .container-xl {
+    max-width: none !important;
+}
