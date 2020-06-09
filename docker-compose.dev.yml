@@ -4,7 +4,7 @@ services:
   frontend:
     image: node:lts-alpine
     volumes:
-      - .:/opt/app
+      - ./insecurity/frontend:/opt/app
       - /opt/app/node_modules
     working_dir: /opt/app
     environment:
@@ -21,7 +21,7 @@ services:
     command: ./gradlew bootRun
     working_dir: /opt/app
     volumes:
-      - ./backend/insecurity:/opt/app
+      - ./insecurity/backend:/opt/app
       - /root/.gradle
     ports:
       - "8080:8080"
