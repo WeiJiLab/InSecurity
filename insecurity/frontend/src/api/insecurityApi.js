@@ -1,5 +1,4 @@
-const API_BASE = process.env.API_BASE || 'http://localhost:8080/';
-
+const API_BASE = process.env.REACT_APP_API_BASE || 'http://localhost:8081/';
 
 export const API_LOGIN = API_BASE + 'user/login';
 export const API_REGISTER = API_BASE + 'user/register';
