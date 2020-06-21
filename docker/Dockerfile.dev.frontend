@@ -1,0 +1,9 @@
+
+FROM node:lts-alpine
+
+WORKDIR /app
+
+COPY ./insecurity/frontend/package.json ./insecurity/frontend/yarn.lock /app/
+RUN yarn install
+
+RUN rm -rf /app

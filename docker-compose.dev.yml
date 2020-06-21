@@ -2,7 +2,7 @@ version: "3.7"
 
 services:
   frontend:
-    image: node:lts-alpine
+    image: haohaolee/insecurity-frontend:dev
     volumes:
       - ./insecurity/frontend:/opt/app
       - /opt/app/node_modules
@@ -17,7 +17,7 @@ services:
       sh -c "yarn install && yarn start"
   
   backend:
-    image: adoptopenjdk/openjdk11:alpine
+    image: haohaolee/insecurity-backend:dev
     command: ./gradlew bootRun
     working_dir: /opt/app
     volumes:

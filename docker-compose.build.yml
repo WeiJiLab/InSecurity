@@ -2,7 +2,7 @@ version: "3.7"
 
 services:
   frontend:
-    image: frontend
+    image: haohaolee/insecurity-frontend
     build:
       context: .
       dockerfile: ./docker/Dockerfile.frontend
@@ -11,7 +11,7 @@ services:
       - "3000:80"
   
   backend:
-    image: backend
+    image: haohaolee/insecurity-backend
     build:
       context: .
       dockerfile: ./docker/Dockerfile.backend
