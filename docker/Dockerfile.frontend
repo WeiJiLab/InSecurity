@@ -3,7 +3,7 @@ FROM node:lts-alpine AS build
 
 WORKDIR /app
 
-COPY ./insecurity/frontend/package.json ./insecurity/frontend/yarn.lock /app/
+COPY ./insecurity/frontend/package.json /app/
 RUN yarn install
 
 COPY ./insecurity/frontend/src /app/src

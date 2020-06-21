@@ -6,7 +6,7 @@ WORKDIR $APP_HOME
 COPY ./insecurity/backend/build.gradle ./insecurity/backend/settings.gradle ./insecurity/backend/gradlew $APP_HOME
 COPY ./insecurity/backend/gradle $APP_HOME/gradle
 
-RUN ./gradlew build || return 0
+RUN ./gradlew getDeps
 
 COPY ./insecurity/backend $APP_HOME
 
