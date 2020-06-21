@@ -2,18 +2,24 @@ version: "3.7"
 
 services:
   frontend:
-    image: haohaolee/insecurity-frontend
+    image: frontend
+    build:
+      context: .
+      dockerfile: ./docker/Dockerfile.frontend
     restart: on-failure
     ports:
-      - "3001:80"
+      - "3000:80"
   
   backend:
-    image: haohaolee/insecurity-backend
+    image: backend
+    build:
+      context: .
+      dockerfile: ./docker/Dockerfile.backend
     environment:
       SPRING_PROFILES_ACTIVE: docker
     restart: on-failure
     ports:
-      - "8081:8080"
+      - "8080:8080"
 
   db:
     image: mysql:5.7

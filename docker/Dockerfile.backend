@@ -3,12 +3,12 @@ FROM adoptopenjdk/openjdk11:alpine AS build
 ENV APP_HOME=/app/
 WORKDIR $APP_HOME
 
-COPY ./backend/insecurity/build.gradle ./backend/insecurity/settings.gradle ./backend/insecurity/gradlew $APP_HOME
-COPY ./backend/insecurity/gradle $APP_HOME/gradle
+COPY ./insecurity/backend/build.gradle ./insecurity/backend/settings.gradle ./insecurity/backend/gradlew $APP_HOME
+COPY ./insecurity/backend/gradle $APP_HOME/gradle
 
 RUN ./gradlew build || return 0
 
-COPY ./backend/insecurity $APP_HOME
+COPY ./insecurity/backend $APP_HOME
 
 RUN ./gradlew build -x test
 
