@@ -2,4 +2,4 @@
 
 ### Used to make information security actual combat shooting range
 
-# it has xss injection, sql injection.... vulnerabilities, so do not seploy it on any server with open ports.
+# it has xss injection, sql injection.... vulnerabilities, so do not deploy it on any server with open ports.
