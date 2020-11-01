@@ -5,6 +5,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import {Button, Image} from "react-bootstrap";
 import {Link} from "react-router-dom";
+import {withTranslation} from 'react-i18next';
 
 class BestPanel extends Component {
     constructor(props) {
@@ -15,7 +16,7 @@ class BestPanel extends Component {
 
         return (
             <Container className="Left-Card">
-                <h4>{this.renderBestIcon()}精选内容</h4>
+                <h4>{this.renderBestIcon()}{this.props.t('Featured')}</h4>
                 {
                     this.props.bestArticles && this.props.bestArticles.length>=1 ? this.renderTheBestArticle(this.props.bestArticles[0]) : null
                 }
@@ -47,7 +48,7 @@ class BestPanel extends Component {
                         <h6 className={"title"}>{article.article.title.substr(0, 50)}</h6>
                     </Link>
                 </Row>
-                <Row style={{fontSize: '0.8em'}}><span style={{color: 'gray'}}>作者:</span>{article.authorName}</Row>
+                <Row style={{fontSize: '0.8em'}}><span style={{color: 'gray'}}>{this.props.t('Author')}:</span>{article.authorName}</Row>
                 <Row style={{marginTop: '1em', color: '#828a92',fontSize:'1em'}}>{article.article.content.substr(0, 50)}...</Row>
 
                 <Row style={{marginTop: '1em'}}>
@@ -81,7 +82,7 @@ class BestPanel extends Component {
                             <h6 className={"title"}>{title}</h6>
                         </Link>
                     </Row>
-                    <Row style={{fontSize: '0.8em'}}><span style={{color: 'gray'}}>作者:</span>{bestArticles.authorName}</Row>
+                    <Row style={{fontSize: '0.8em'}}><span style={{color: 'gray'}}>{this.props.t('Author')}:</span>{bestArticles.authorName}</Row>
                     <Row style={{marginTop: '0.5em'}}>
                         {this.renderTags(bestArticles.tags, 3)}
                     </Row>
@@ -137,4 +138,5 @@ class BestPanel extends Component {
 }
 
 
-export default BestPanel;
+export default withTranslation()(BestPanel);
+

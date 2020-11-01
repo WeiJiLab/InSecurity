@@ -42,25 +42,25 @@ class Header extends Component {
 
                             <Link to="/column" style={{fontWeight: 'bolder', margin: 0, padding: 0}}>
                                 <Navbar.Brand className="icon-header" href="#home">
-                                    <strong className={"headerTitleSpan"}>专栏</strong>
+                                    <strong className={"headerTitleSpan"}>{this.props.t('Column')}</strong>
                                 </Navbar.Brand>
                             </Link>
 
                             <Link to="/event" style={{fontWeight: 'bolder', margin: 0, padding: 0}}>
                                 <Navbar.Brand className="icon-header" href="#home">
-                                    <strong className={"headerTitleSpan"}>活动</strong>
+                                    <strong className={"headerTitleSpan"}>{this.props.t('Activities')}</strong>
                                 </Navbar.Brand>
                             </Link>
 
                             <Link to="/report" style={{fontWeight: 'bolder', margin: 0, padding: 0}}>
                                 <Navbar.Brand className="icon-header" href="#home">
-                                    <strong className={"headerTitleSpan"}>安全报告</strong>
+                                    <strong className={"headerTitleSpan"}>{this.props.t('SecReport')}</strong>
                                 </Navbar.Brand>
                             </Link>
 
                             <Link to="/service" style={{fontWeight: 'bolder', margin: 0, padding: 0}}>
                                 <Navbar.Brand className="icon-header" href="#home">
-                                    <strong className={"headerTitleSpan"}>企业服务</strong>
+                                    <strong className={"headerTitleSpan"}>{this.props.t('EntpriseService')}</strong>
                                 </Navbar.Brand>
                             </Link>
 

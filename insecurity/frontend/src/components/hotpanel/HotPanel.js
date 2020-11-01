@@ -7,6 +7,8 @@ import {Link} from "react-router-dom";
 import {bindActionCreators} from "redux";
 import {articlesHot} from "../../actions/actions";
 import {connect} from "react-redux";
+import {withTranslation} from 'react-i18next';
+
 
 class HotPanel extends Component {
     render() {
@@ -14,7 +16,7 @@ class HotPanel extends Component {
             <Container style={{background: '#fff', padding: '1em', boxShadow: '0 1px 3px rgba(27,95,160,.1)'}}>
                 <h4>
                     {this.renderHotIcon()}
-                    热点
+                    {this.props.t('Hot')}
                 </h4>
                 <Container style={{padding: 0, marginTop: '1em'}}>
                     <Container style={{padding: 0}}>
@@ -82,4 +84,4 @@ const mapDispatchToProps = dispatch => bindActionCreators({
 }, dispatch);
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(HotPanel);
+export default withTranslation()(connect(mapStateToProps, mapDispatchToProps)(HotPanel));

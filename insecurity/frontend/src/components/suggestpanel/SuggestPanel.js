@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import './SuggestPanel.css';
 import Container from "react-bootstrap/Container";
 import ArticleList from "../articlelists/ArticleList";
+import {withTranslation} from 'react-i18next';
+
 
 class SuggestPanel extends Component {
 
@@ -18,7 +20,7 @@ class SuggestPanel extends Component {
                 boxShadow: '0 1px 3px rgba(27,95,160,.1)',
                 textAlign: 'left'
             }}>
-                <h4>{this.renderSuggestIcon()}推荐内容</h4>
+                <h4>{this.renderSuggestIcon()}{this.props.t('Recommended')}</h4>
 
                 <ArticleList articles={this.props.articlesResult.articles}/>
 
@@ -40,4 +42,4 @@ class SuggestPanel extends Component {
     }
 }
 
-export default SuggestPanel;
+export default withTranslation()(SuggestPanel);

@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import './Subscribe.css';
 import Container from "react-bootstrap/Container";
 import {Button, Col, Form, Row} from "react-bootstrap";
+import {withTranslation} from 'react-i18next';
+
 
 class Subscribe extends Component {
 
@@ -36,34 +38,34 @@ class Subscribe extends Component {
         return (
             <Container style={{background: '#fff', padding: '1em', boxShadow: '0 1px 3px rgba(27,95,160,.1)'}}>
                 <h4>
-                    订阅
+                {this.props.t('Subscribe')}
                 </h4>
                 <h5>
-                    <strong>BuildSecurityIn</strong>每周精要
+                    <strong>BuildSecurityIn</strong>{this.props.t('WeeklyEssentials')}
                 </h5>
-                <h6 style={{background: '#eee', padding: '0.5em'}}>你将获得</h6>
+                <h6 style={{background: '#eee', padding: '0.5em'}}>{this.props.t('YouWillGet')}</h6>
                 <ul>
-                    <li style={{color: '#828a92'}}>资深编辑编译的全球 网络安全 要闻</li>
-                    <li style={{color: '#828a92'}}>一线技术专家撰写的实操技术案例</li>
-                    <li style={{color: '#828a92'}}>BuildSecurityIn 出品的课程和线下活动报名通道</li>
+                    <li style={{color: '#828a92'}}>{this.props.t('EditorGeneratedContent')}</li>
+                    <li style={{color: '#828a92'}}>{this.props.t('ExpertGeneratedContent')}</li>
+                    <li style={{color: '#828a92'}}>{this.props.t('OfflineCourseApplication')}</li>
                 </ul>
                 {this.state.subscribed ?
                     <Row style={{color:'#09aca8',textAlign:'center'}}>
-                        <Col><h4 style={{textAlign:'center'}}>你已订阅.</h4></Col>
+                        <Col><h4 style={{textAlign:'center'}}>{this.props.t('YouHaveSubscribed')}</h4></Col>
                     </Row> :
                     <Form>
                         <Form.Group controlId="formBasicEmail">
-                            <Form.Control type="email" placeholder="请输入邮箱" style={{border: 'solid 1px #09aca8'}}
+                            <Form.Control type="email" placeholder={this.props.t('InputEmail')} style={{border: 'solid 1px #09aca8'}}
                                           onChange={this.onEmailChange.bind(this)}/>
                             <Form.Text className="text-muted">
-                                我们不会向任何人泄露您的邮箱信息
+                                 {this.props.t('NoDisclosureEmail')}
                             </Form.Text>
                         </Form.Group>
 
                         <Button variant="primary" type="button"
                                 onClick={this.subscribe.bind(this)}
                                 style={{background: '#09aca8', color: '#fff', border: 'solid 1px #09aca8', width: '100%'}}>
-                            立即订阅 >
+                            {this.props.t('SubscribeNow')} >
                         </Button>
                     </Form>
                 }
@@ -83,4 +85,4 @@ class Subscribe extends Component {
     }
 }
 
-export default Subscribe;
+export default withTranslation()(Subscribe);
