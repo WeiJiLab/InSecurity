@@ -2,13 +2,13 @@ version: "3.7"
 
 services:
   frontend:
-    image: haohaolee/insecurity-frontend
+    image: haohaolee/insecurity-frontend:latest_en
     restart: on-failure
     ports:
       - "3001:80"
   
   backend:
-    image: haohaolee/insecurity-backend
+    image: haohaolee/insecurity-backend:latest_en
     environment:
       SPRING_PROFILES_ACTIVE: docker
     restart: on-failure
