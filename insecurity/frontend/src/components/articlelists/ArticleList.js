@@ -4,6 +4,8 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import {Link} from "react-router-dom";
 import {Button, Image} from "react-bootstrap";
+import {withTranslation} from 'react-i18next';
+
 
 class ArticleList extends Component {
     render() {
@@ -22,7 +24,7 @@ class ArticleList extends Component {
                                 <Link to={path}>
                                     {this.renderTitle(item.article.title)}
                                 </Link>
-                                <p style={{fontSize: '0.8em', marginBottom: 0}}><span style={{color: 'gray'}}>作者:</span>{item.authorName}</p>
+                                <p style={{fontSize: '0.8em', marginBottom: 0}}><span style={{color: 'gray'}}>{this.props.t('Author')}:</span>{item.authorName}</p>
                                 <p style={{
                                     color: '#828a92',
                                     fontWeight: 'light',
@@ -51,7 +53,7 @@ class ArticleList extends Component {
                                 <Image style={{width: '100%', height: '8em', borderRadius: '4px'}} src={item.article.imgUrl}/>
                             </Col>
                         </Row>
-                    }) : <span style={{color: 'gray'}}>无</span>
+                    }) : <span style={{color: 'gray'}}>{this.props.t('None')}</span>
             }
 
         </Fragment>);
@@ -83,4 +85,4 @@ class ArticleList extends Component {
     }
 }
 
-export default ArticleList;
+export default withTranslation()(ArticleList);

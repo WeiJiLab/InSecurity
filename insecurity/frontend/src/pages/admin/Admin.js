@@ -32,11 +32,11 @@ class Admin extends Component {
                             <Container className="Left-Card" style={{padding: 0}}>
                                 <Container style={{padding: 0, background: 'rgb(75,166,127)'}}>
                                     <Image style={{width: '25%', height: '5em', background: 'rgb(75,166,127)', padding: '1em'}} src={Logo}/>
-                                    <h3 style={{color: '#fff', padding: 0, margin: 0}}>后台管理</h3>
+                                    <h3 style={{color: '#fff', padding: 0, margin: 0}}>  {this.props.t('AdminManagement')}</h3>
                                 </Container>
                                 <Container style={{padding: 0, paddingTop: '2em', paddingBottom: '2em'}}>
                                     <Row className={'adminItem'} onClick={this.changeToArticleAdmin.bind(this)}>
-                                        <h5 style={{color: this.state.currentShow === "Article" ? 'rgb(75,166,127)' : '#000'}}>{this.renderBestIcon()}文章管理</h5>
+                                        <h5 style={{color: this.state.currentShow === "Article" ? 'rgb(75,166,127)' : '#000'}}>{this.renderBestIcon()}{this.props.t('ArticleManagement')}</h5>
                                         <h5 style={{
                                             position: 'absolute',
                                             right: '1.5em',
@@ -45,7 +45,7 @@ class Admin extends Component {
                                         }}> > </h5>
                                     </Row>
                                     <Row className={'adminItem'} onClick={this.changeToUserAdmin.bind(this)}>
-                                        <h5 style={{color: this.state.currentShow === "User" ? 'rgb(75,166,127)' : '#000'}}>{this.renderBestIcon()}用户管理</h5>
+                                        <h5 style={{color: this.state.currentShow === "User" ? 'rgb(75,166,127)' : '#000'}}>{this.renderBestIcon()}{this.props.t('UserManagement')}</h5>
                                         <h5 style={{
                                             position: 'absolute',
                                             right: '1.5em',
@@ -74,7 +74,7 @@ class Admin extends Component {
                     <Row style={{padding: 0}}>
                         <Col md={12} style={{padding: 0}}>
                             <Container className="Left-Card" style={{padding: '2em'}}>
-                                <h3>抱歉, 你没有权限访问该页面.</h3>
+                                <h3>{this.props.t('YouDontHaveTheAccess')}</h3>
                             </Container>
                         </Col>
                     </Row>

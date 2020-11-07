@@ -24,7 +24,7 @@ class ArticleDetail extends Component {
                 <Row style={{padding: 0}}>
                     <Col md={8} style={{padding: 0}}>
                         <Container className="Left-Card">
-                            <h3>{this.renderBestIcon()}阅读文章</h3>
+                            <h3>{this.renderBestIcon()}{this.props.t('ReadArticles')}</h3>
                             <Container style={{padding: '1em'}}>
                                 <Row style={{marginTop: '1em'}}>
 
@@ -40,11 +40,11 @@ class ArticleDetail extends Component {
                                 </Row>
 
                                 <Row style={{fontSize: '0.8em', marginTop: '1em'}}>
-                                    <span style={{color: 'gray'}}>作者:</span>
+                                    <span style={{color: 'gray'}}>{this.props.t('Author')}:</span>
                                     {article.authorName}
                                 </Row>
                                 <Row style={{fontSize: '0.8em'}}>
-                                    <span style={{color: 'gray'}}>发布于:</span>
+                                    <span style={{color: 'gray'}}>{this.props.t('PublishedAt')}:</span>
                                     {article.article.createTime}
                                 </Row>
 

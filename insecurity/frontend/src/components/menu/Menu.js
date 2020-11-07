@@ -9,6 +9,8 @@ import {bindActionCreators} from "redux";
 import {connect} from "react-redux";
 import {topics} from "../../actions/actions";
 import {Dropdown, Navbar} from "react-bootstrap";
+import {withTranslation} from 'react-i18next';
+
 
 class Menu extends Component {
     constructor(props) {
@@ -29,7 +31,7 @@ class Menu extends Component {
                                         <Dropdown style={{float: 'right'}}>
                                             <Dropdown.Toggle variant="success" id="dropdown-basic"
                                                              style={{background: 'transparent', color: '#4a4a4a', border: 'none'}}>
-                                                更多
+                                                {this.props.t('More')}
                                             </Dropdown.Toggle>
                                             <Dropdown.Menu>
                                                 {this.renderDropDownTags()}
@@ -93,7 +95,7 @@ class Menu extends Component {
         return (<Fragment>
                 <Nav.Link className="nav-tag" style={{color: "#000"}}><Link
                     style={{color: this.props.selected ? '#4a4a4a' : 'rgb(75,166,127)',fontWeight: this.props.selected ? 'normal' : 'bold', paddingRight: '2em'}}
-                    to={"/"}>首页</Link></Nav.Link>
+                    to={"/"}>{this.props.t('Homepage')}</Link></Nav.Link>
                 {
                     result.map((item, index) => {
                         let path = {
@@ -127,4 +129,4 @@ const mapDispatchToProps = dispatch => bindActionCreators({
 }, dispatch);
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(Menu);
+export default withTranslation()(connect(mapStateToProps, mapDispatchToProps)(Menu));

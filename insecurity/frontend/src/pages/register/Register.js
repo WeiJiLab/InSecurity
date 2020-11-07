@@ -9,6 +9,8 @@ import Logo from "../../static/images/logo_g.png";
 import {register} from "../../actions/actions";
 import {bindActionCreators} from "redux";
 import {connect} from "react-redux";
+import {withTranslation} from 'react-i18next';
+
 
 class Register extends Component {
 
@@ -33,38 +35,38 @@ class Register extends Component {
                                 <Image src={Logo} style={{padding:"4em",paddingTop:'10em',paddingBottom:'10em', width: '100%',height:'100%'}}/>
                             </Col>
                             <Col style={{padding:"3em"}}>
-                                <h3>注册</h3>
+                                <h3>{this.props.t('Register')}</h3>
                                 <Form>
                                     <Form.Group controlId="formBasicEmail">
-                                        <Form.Label>用户名</Form.Label>
-                                        <Form.Control type="text" placeholder="请输入用户名" onChange={this.onUsernameChange.bind(this)}/>
+                                        <Form.Label>{this.props.t('UserName')}</Form.Label>
+                                        <Form.Control type="text" placeholder={this.props.t('InputUserName')} onChange={this.onUsernameChange.bind(this)}/>
                                     </Form.Group>
 
                                     <Form.Group controlId="formBasicEmail">
-                                        <Form.Label>邮箱</Form.Label>
-                                        <Form.Control type="email" placeholder="请输入邮箱" onChange={this.onEmailChange.bind(this)}/>
+                                        <Form.Label>{this.props.t('Email')}</Form.Label>
+                                        <Form.Control type="email" placeholder={this.props.t('InputEmail')} onChange={this.onEmailChange.bind(this)}/>
                                         <Form.Text className="text-muted">
-                                            我们绝不会与其他任何人共享您的电子邮件。
+                                            {this.props.t('NoDisclosureEmail')}
                                         </Form.Text>
                                     </Form.Group>
 
                                     <Form.Group controlId="formBasicPassword">
-                                        <Form.Label>密码</Form.Label>
-                                        <Form.Control type="password" placeholder="请输入密码" onChange={this.onPasswordChange.bind(this)}/>
+                                        <Form.Label>{this.props.t('Password')}</Form.Label>
+                                        <Form.Control type="password" placeholder={this.props.t('InputPassword')} onChange={this.onPasswordChange.bind(this)}/>
                                     </Form.Group>
 
                                     <Form.Group controlId="formBasicPassword">
-                                        <Form.Label>确认密码</Form.Label>
-                                        <Form.Control type="password" placeholder="请确认输入密码" onChange={this.onRePasswordChange.bind(this)}/>
+                                        <Form.Label>{this.props.t('ConfirmPassword')}</Form.Label>
+                                        <Form.Control type="password" placeholder={this.props.t('ConfirmPassword')} onChange={this.onRePasswordChange.bind(this)}/>
                                     </Form.Group>
 
                                     <Form.Group controlId="formBasicCheckbox">
-                                        <Form.Check type="checkbox" label="记住我"/>
+                                        <Form.Check type="checkbox" label={this.props.t('RemeberMe')}/>
                                     </Form.Group>
                                     {!this.props.registerResult.registerStatus && this.props.registerResult.message !== null ?
                                         <Alert variant="danger">{this.props.registerResult.message}</Alert> : null
                                     }
-                                    <Button variant="outline-dark" type="button" onClick={this.ajaxRegister.bind(this)}>注册</Button>
+                                    <Button variant="outline-dark" type="button" onClick={this.ajaxRegister.bind(this)}>{this.props.t('Register')}</Button>
                                 </Form>
                             </Col>
                         </Row>
@@ -92,7 +94,7 @@ class Register extends Component {
 
     ajaxRegister() {
         if (this.registerDTO.rePassword !== this.registerDTO.password) {
-            alert("两次密码不一致");
+            alert(this.props.t('PasswordNotConsistent')); 
         } else {
             this.props.register(this.registerDTO);
         }
@@ -116,4 +118,4 @@ const mapDispatchToProps = dispatch => bindActionCreators({
 }, dispatch);
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(Register);
+export default withTranslation()(connect(mapStateToProps, mapDispatchToProps)(Register));

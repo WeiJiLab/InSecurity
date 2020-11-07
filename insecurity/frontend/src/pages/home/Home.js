@@ -12,6 +12,8 @@ import Subscribe from "../../components/subscribe/Subscribe";
 import BestPanel from "../../components/bestpanel/BestPanel";
 import SuggestPanel from "../../components/suggestpanel/SuggestPanel";
 import QRCode from "../../components/qrcode/QRCode";
+import {withTranslation} from 'react-i18next';
+
 
 class Home extends Component {
     render() {
@@ -27,9 +29,9 @@ class Home extends Component {
                             <Row>
                                 <Container className="Right-Top-Card">
                                     <Container className="Write-Card">
-                                        <h2 className="Write-Card-Title">BuildSecurityIn写作平台</h2>
-                                        <h3 className="Write-Card-Content">全新上线</h3>
-                                        <Link to={"/write"}><Button variant="outline-light" style={{marginTop: "0em"}}>开始写作</Button></Link>
+                                        <h2 className="Write-Card-Title">BuildSecurityIn {this.props.t('WritingPlatform')}</h2>
+                                        <h3 className="Write-Card-Content">{this.props.t('FreshOnline')}</h3>
+                                        <Link to={"/write"}><Button variant="outline-light" style={{marginTop: "0em"}}>{this.props.t('StartToWrite')}</Button></Link>
                                     </Container>
                                 </Container>
 
@@ -66,4 +68,4 @@ const mapDispatchToProps = dispatch => bindActionCreators({
 }, dispatch);
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(Home);
+export default withTranslation()(connect(mapStateToProps, mapDispatchToProps)(Home));

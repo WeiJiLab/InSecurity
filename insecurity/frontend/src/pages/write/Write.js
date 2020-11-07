@@ -9,6 +9,8 @@ import Button from "react-bootstrap/Button";
 import Cookies from "js-cookie";
 import BraftEditor from "braft-editor";
 import 'braft-editor/dist/index.css'
+import {withTranslation} from 'react-i18next';
+
 
 class Write extends Component {
 
@@ -42,31 +44,31 @@ class Write extends Component {
                     <Container style={{marginBottom: '2em'}}>
                         <InputGroup className="mb-3">
                             <InputGroup.Prepend>
-                                <InputGroup.Text id="basic-addon" className={"label"}>标题:</InputGroup.Text>
+                                <InputGroup.Text id="basic-addon" className={"label"}>{this.props.t('Title')}:</InputGroup.Text>
                             </InputGroup.Prepend>
                             <FormControl
                                 className={"input"}
-                                placeholder="请输入标题"
+                                placeholder={this.props.t('InputTitle')}
                                 aria-label="title"
                                 aria-describedby="basic-addon" onChange={this.onTitleChange.bind(this)}/>
                         </InputGroup>
                         <InputGroup className="mb-3">
                             <InputGroup.Prepend>
-                                <InputGroup.Text id="basic-addon" className={"label"}>标签:</InputGroup.Text>
+                                <InputGroup.Text id="basic-addon" className={"label"}>{this.props.t('Tag')}:</InputGroup.Text>
                             </InputGroup.Prepend>
                             <FormControl
                                 className={"input"}
-                                placeholder="请输入标签,用逗号隔开"
+                                placeholder={this.props.t('InputTag')}
                                 aria-label="tags"
                                 aria-describedby="basic-addon" onChange={this.onTagsChange.bind(this)}/>
                         </InputGroup>
                         <InputGroup className="mb-3">
                             <InputGroup.Prepend>
-                                <InputGroup.Text id="basic-addon" className={"label"}>标题图片链接:</InputGroup.Text>
+                                <InputGroup.Text id="basic-addon" className={"label"}>{this.props.t('PicLink')}:</InputGroup.Text>
                             </InputGroup.Prepend>
                             <FormControl
                                 className={"input"}
-                                placeholder="请输入链接"
+                                placeholder={this.props.t('InputLink')}
                                 aria-label="tags"
                                 aria-describedby="basic-addon" onChange={this.onImageUrlChange.bind(this)}/>
                         </InputGroup>
@@ -80,7 +82,7 @@ class Write extends Component {
                     </Container>
                 </Col>
                 <Button variant="outline-dark" type="button" style={{marginTop: '0em', marginLeft: '1.5em', zIndex: '99'}}
-                        onClick={this.post.bind(this)}>发布</Button>
+                        onClick={this.post.bind(this)}>{this.props.t('Publish')}</Button>
                 <Modal
                     size="sm"
                     show={this.state.showModal}
@@ -89,10 +91,10 @@ class Write extends Component {
                 >
                     <Modal.Header closeButton>
                         <Modal.Title id="example-modal-sizes-title-sm">
-                            发布成功
+                            {this.props.t('SuccInPub')}
                         </Modal.Title>
                     </Modal.Header>
-                    <Modal.Body>关闭弹框返回主页</Modal.Body>
+                    <Modal.Body>{this.props.t('CloseAndReturnToHome')}</Modal.Body>
                 </Modal>
             </Row>
         </Container>);
@@ -158,4 +160,4 @@ const mapDispatchToProps = dispatch => bindActionCreators({
 }, dispatch);
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(Write);
+export default withTranslation()(connect(mapStateToProps, mapDispatchToProps)(Write));

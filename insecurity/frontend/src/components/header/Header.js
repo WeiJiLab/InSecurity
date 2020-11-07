@@ -90,6 +90,7 @@ class Header extends Component {
 
     changeLanguage(lng) {
         this.props.i18n.changeLanguage(lng);
+        console.log(this.props.i18n);
     };
 
     renderUserInfo() {
@@ -106,10 +107,10 @@ class Header extends Component {
             return (<Link to="/me">{
                 login.userInfo.userDTO && login.userInfo.userDTO.username === 'admin' ?
                     <Button className={"buttonWrite"} variant="default" type="button" style={{background: '#3db24b', color: '#fff'}}><Link
-                        style={{color: '#fff'}} to={"/admin"}>后台管理</Link>
+                        style={{color: '#fff'}} to={"/admin"}>{this.props.t('AdminManagement')}</Link>
                     </Button> :
                     <Button className={"buttonWrite"} variant="default" type="button" style={{background: '#3db24b', color: '#fff'}}><Link
-                        style={{color: '#fff'}} to={"/write"}>写作平台</Link>
+                        style={{color: '#fff'}} to={"/write"}>{this.props.t('WritingPlatform')}</Link>
                     </Button>
             }
                 <Button variant="link" style={{color: "#000"}}>

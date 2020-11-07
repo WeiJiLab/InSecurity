@@ -9,6 +9,8 @@ import {connect} from "react-redux";
 import ArticleList from "../../components/articlelists/ArticleList";
 import HotPanel from "../../components/hotpanel/HotPanel";
 import Subscribe from "../../components/subscribe/Subscribe";
+import {withTranslation} from 'react-i18next';
+
 
 class Topic extends Component {
     render() {
@@ -21,7 +23,15 @@ class Topic extends Component {
                         <Container className="Left-Card">
                             <h3>{this.renderBestIcon()}{topic}</h3>
                             <Row>
-                                <Col><p style={{color: '#888'}}>&nbsp;收录了 <strong>{topic}</strong> 频道下的  <strong>{this.props.articlesByTopicResult.articles.length}</strong> 篇内容</p></Col>
+                                <Col>
+                                {
+                                this.props.i18n.language === 'zh' ? 
+                                <p style={{color: '#888'}}>&nbsp;{this.props.t('Recorded')} <strong>{topic}</strong> {this.props.t('Channel')}{this.props.t('ChineseDe')}  <strong>{this.props.articlesByTopicResult.articles.length}</strong> {this.props.t('ChinesePian')}{this.props.t('Articles')}</p>
+                                :
+                                <p style={{color: '#888'}}>&nbsp;{this.props.t('WeGotYou')} <strong>{this.props.articlesByTopicResult.articles.length}</strong> {this.props.t('Articles')} {this.props.t('About')} {this.props.t('Channel')} <strong>{topic}</strong></p>
+
+                                }
+                                </Col>
                             </Row>
                         </Container>
                         <Container style={{
@@ -31,7 +41,7 @@ class Topic extends Component {
                             boxShadow: '0 1px 3px rgba(27,95,160,.1)',
                             textAlign: 'left'
                         }}>
-                            <h4>全部</h4>
+                            <h4>{this.props.t('Total')}</h4>
 
                             <ArticleList articles={this.props.articlesByTopicResult.articles}/>
 
@@ -85,4 +95,5 @@ const mapDispatchToProps = dispatch => bindActionCreators({
 }, dispatch);
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(Topic);
+export default withTranslation()(connect(mapStateToProps, mapDispatchToProps)(Topic));
+

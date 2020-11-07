@@ -8,6 +8,8 @@ import {banUser, users} from "../../actions/actions";
 import {connect} from "react-redux";
 import Col from "react-bootstrap/Col";
 import {Badge} from "react-bootstrap";
+import {withTranslation} from 'react-i18next';
+
 
 class UsersManage extends Component {
     render() {
@@ -15,7 +17,7 @@ class UsersManage extends Component {
             <Container style={{background: '#fff', padding: '1em', boxShadow: '0 1px 3px rgba(27,95,160,.1)'}}>
                 <h4 style={{display: 'inline-block'}}>
                     {this.renderHotIcon()}
-                    用户管理
+                    {this.props.t('UserManagement')}
                 </h4>{this.renderUserCount()}
                 <Container style={{padding: 0, marginTop: '1em'}}>
                     <Container style={{padding: 0}}>
@@ -33,13 +35,13 @@ class UsersManage extends Component {
                     color: 'gray',
                     marginLeft: '0.5em',
                     fontSize: '0.9em'
-                }}>一共 <strong>{this.props.usersResult.users.length}</strong> 个用户</span>;
+                }}>{this.props.t('Total')}: <strong>{this.props.usersResult.users.length}</strong> {this.props.t('Users')}</span>;
         }
     }
 
     renderAllUsersList() {
         if (!this.props.usersResult.users) {
-            return <Row><Col><span style={{color: '#ccc'}}>&nbsp;&nbsp;无</span></Col></Row>
+            return <Row><Col><span style={{color: '#ccc'}}>&nbsp;&nbsp;{this.props.t('None')}</span></Col></Row>
         }
 
         return (<Fragment>{
@@ -51,18 +53,18 @@ class UsersManage extends Component {
                     <Row>
                         <Col md={10} style={{marginBottom: '0.5em', paddingBottom: '0.5em'}}>
                             <Row style={{fontSize: '1em', color: '#303030'}}>
-                                {item.del ? <Badge variant="dark" className={"banBadge"}>已拉黑</Badge> : null}
+                                {item.del ? <Badge variant="dark" className={"banBadge"}>{this.props.t('Cancelled')}</Badge> : null}
                                 {item.username} ({item.email})
                             </Row>
                             <Row style={{fontSize: '0.7em'}}>
-                                上一次登录&nbsp;<span
+                            {this.props.t('LastLogin')}&nbsp;<span
                                 style={{color: 'gray'}}>{item.lastLoginTime}</span>
                             </Row>
                         </Col>
                         <Col md={2} style={{padding: 0}}>
                             <Row style={{height: '100%'}}>
                                 <Col onClick={this.banUser.bind(this, item.uid)}
-                                     style={{color: '#000', height: '100%'}}><Link>{item.del ? '恢复' : '拉黑'}</Link></Col>
+                                     style={{color: '#000', height: '100%'}}><Link>{item.del ? this.props.t('Recover') : this.props.t('Cancel')}</Link></Col>
                             </Row>
                         </Col>
                     </Row>
@@ -114,4 +116,4 @@ const mapDispatchToProps = dispatch => bindActionCreators({
 }, dispatch);
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(UsersManage);
+export default withTranslation()(connect(mapStateToProps, mapDispatchToProps)(UsersManage));

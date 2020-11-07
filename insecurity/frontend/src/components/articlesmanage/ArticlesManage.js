@@ -8,6 +8,8 @@ import {articles, deleteArticleByAid, hotArticleByAid} from "../../actions/actio
 import {connect} from "react-redux";
 import Col from "react-bootstrap/Col";
 import {Badge, Button} from "react-bootstrap";
+import {withTranslation} from 'react-i18next';
+
 
 class ArticlesManage extends Component {
     render() {
@@ -15,13 +17,13 @@ class ArticlesManage extends Component {
             <Container style={{background: '#fff', padding: '1em', boxShadow: '0 1px 3px rgba(27,95,160,.1)'}}>
                 <h4 style={{display: 'inline-block'}}>
                     {this.renderHotIcon()}
-                    文章管理
+                    {this.props.t('ArticleManagement')}
                 </h4><span
                 style={{
                     color: 'gray',
                     marginLeft: '0.5em',
                     fontSize: '0.9em'
-                }}>一共 <strong>{this.props.articlesResult.articles?this.props.articlesResult.articles.length:0}</strong> 篇文章</span>
+                }}>{this.props.t('Total')} <strong>{this.props.articlesResult.articles?this.props.articlesResult.articles.length:0}</strong> {this.props.t('Article')}</span>
                 <Container style={{padding: 0, marginTop: '1em'}}>
                     <Container style={{padding: 0}}>
                         {this.renderAllArticlesList()}
@@ -33,7 +35,7 @@ class ArticlesManage extends Component {
 
     renderAllArticlesList() {
         if (!this.props.articlesResult.articles) {
-            return <Row><Col><span style={{color: '#ccc'}}>&nbsp;&nbsp;无</span></Col></Row>
+            return <Row><Col><span style={{color: '#ccc'}}>&nbsp;&nbsp;{this.props.t('None')}</span></Col></Row>
         }
 
         return (<Fragment>{
@@ -50,7 +52,7 @@ class ArticlesManage extends Component {
                             <Row style={{fontSize: '1em', color: '#303030'}}>
                                 {item.article.hot ?
                                     <Col md={1} style={{padding: 0, margin: 0}}>
-                                        <Badge variant="dark" className={"banBadge"}>热点</Badge>
+                                        <Badge variant="dark" className={"banBadge"}>{this.props.t('Hot')}</Badge>
                                     </Col>
                                     : null}
                                 <Col md={11} style={{padding: 0, margin: 0}}>
@@ -58,15 +60,15 @@ class ArticlesManage extends Component {
                                 </Col>
                             </Row>
                             <Row style={{fontSize: '0.7em'}}>{this.renderTags(item.tags)}
-                                <span style={{color: 'gray', marginLeft: '1em'}}>{item.authorName}</span>&nbsp;发布于&nbsp;<span
+                                <span style={{color: 'gray', marginLeft: '1em'}}>{item.authorName}</span>&nbsp;{this.props.t('PublishedAt')}&nbsp;<span
                                     style={{color: 'gray'}}>{item.article.createTime}</span>
                             </Row>
                         </Col>
                         <Col md={2} style={{padding: 0}}>
                             <Row style={{height: '100%'}}>
-                                <Col onClick={this.deleteArticleById.bind(this, item.article.aid)} style={{color: '#000', height: '100%'}}><Link>删除</Link></Col>
+                                <Col onClick={this.deleteArticleById.bind(this, item.article.aid)} style={{color: '#000', height: '100%'}}><Link>{this.props.t('Delete')}</Link></Col>
                                 <Col onClick={this.hotArticleById.bind(this, item.article.aid)}
-                                     style={{color: '#000', height: '100%'}}><Link>{item.article.hot ? '降温' : '热点'}</Link></Col>
+                                     style={{color: '#000', height: '100%'}}><Link>{item.article.hot ? this.props.t('CoolDown') : this.props.t('Hot')}</Link></Col>
                             </Row>
                         </Col>
                     </Row>
@@ -157,4 +159,4 @@ const mapDispatchToProps = dispatch => bindActionCreators({
 }, dispatch);
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(ArticlesManage);
+export default withTranslation()(connect(mapStateToProps, mapDispatchToProps)(ArticlesManage));

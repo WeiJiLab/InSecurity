@@ -9,6 +9,8 @@ import MyArticlesPanel from "../../components/myarticles/MyArticlesPanel";
 import {bindActionCreators} from "redux";
 import {login, refreshCookie} from "../../actions/actions";
 import {connect} from "react-redux";
+import {withTranslation} from 'react-i18next';
+
 
 class Me extends Component {
 
@@ -41,11 +43,11 @@ class Me extends Component {
                                 </Row>
 
                                 <Row style={{fontSize: '0.8em', marginTop: '1em'}}>
-                                    <span style={{color: 'gray'}}>上一次在线: {user.lastLoginTime}</span>
+                                    <span style={{color: 'gray'}}>{this.props.t('LastOnline')}: {user.lastLoginTime}</span>
                                 </Row>
 
                                 <Row style={{fontSize: '0.8em', marginTop: '2em'}}>
-                                    <Button variant="outline-dark" type="button" style={{width: '100%'}} onClick={this.logout.bind(this)}>登出</Button>
+                                    <Button variant="outline-dark" type="button" style={{width: '100%'}} onClick={this.logout.bind(this)}>{this.props.t('Logout')}</Button>
                                 </Row>
                             </Container>
                         </Container>
@@ -77,4 +79,4 @@ const mapDispatchToProps = dispatch => bindActionCreators({
     refreshCookie
 }, dispatch);
 
-export default connect(mapStateToProps, mapDispatchToProps)(Me);
+export default withTranslation()(connect(mapStateToProps, mapDispatchToProps)(Me));

@@ -10,6 +10,8 @@ import {connect} from "react-redux";
 import Image from "react-bootstrap/Image";
 import Logo from "../../static/images/logo_g.png"
 import Cookies from 'js-cookie';
+import {withTranslation} from 'react-i18next';
+
 
 class Login extends Component {
 
@@ -38,25 +40,25 @@ class Login extends Component {
                                 <Image src={Logo} style={{padding:"4em", width: '100%',height:'100%',background:'rgb(75,166,127)'}}/>
                             </Col>
                             <Col style={{padding:"3em"}}>
-                                <h3>登录</h3>
+                                <h3>{this.props.t('Login')}</h3>
                                 <Form>
                                     <Form.Group controlId="formBasicEmail">
-                                        <Form.Label>邮箱</Form.Label>
-                                        <Form.Control type="email" placeholder="请输入邮箱" onChange={this.onEmailChange.bind(this)}/>
+                                        <Form.Label>{this.props.t('Email')}</Form.Label>
+                                        <Form.Control type="email" placeholder={this.props.t('InputEmail')} onChange={this.onEmailChange.bind(this)}/>
                                         <Form.Text className="text-muted">
-                                            我们绝不会与其他任何人共享您的电子邮件。
+                                            {this.props.t('NoDisclosureEmail')}
                                         </Form.Text>
                                     </Form.Group>
 
                                     <Form.Group controlId="formBasicPassword">
-                                        <Form.Label>密码</Form.Label>
-                                        <Form.Control type="password" placeholder="请输入密码" onChange={this.onPasswordChange.bind(this)}/>
+                                        <Form.Label>{this.props.t('Password')}</Form.Label>
+                                        <Form.Control type="password" placeholder={this.props.t('InputPassword')} onChange={this.onPasswordChange.bind(this)}/>
                                     </Form.Group>
                                     {
                                         !this.props.loginResult.loginStatus && this.props.loginResult.message !== null ?
                                         <Alert variant="danger">{this.props.loginResult.message}</Alert> : null
                                     }
-                                    <Button variant="outline-dark" type="button" onClick={this.ajaxLogin.bind(this)}>登录</Button>
+                                    <Button variant="outline-dark" type="button" onClick={this.ajaxLogin.bind(this)}>{this.props.t('Login')}</Button>
                                 </Form>
                             </Col>
                         </Row>
@@ -100,4 +102,4 @@ const mapDispatchToProps = dispatch => bindActionCreators({
 }, dispatch);
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(Login);
+export default withTranslation()(connect(mapStateToProps, mapDispatchToProps)(Login));

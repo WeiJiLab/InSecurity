@@ -7,6 +7,8 @@ import {bindActionCreators} from "redux";
 import {articlesByUid} from "../../actions/actions";
 import {connect} from "react-redux";
 import Col from "react-bootstrap/Col";
+import {withTranslation} from 'react-i18next';
+
 
 class MyArticlesPanel extends Component {
     render() {
@@ -14,9 +16,9 @@ class MyArticlesPanel extends Component {
             <Container style={{background: '#fff', padding: '1em', boxShadow: '0 1px 3px rgba(27,95,160,.1)'}}>
                 <h4 style={{display: 'inline-block'}}>
                     {this.renderHotIcon()}
-                    我的文章
+                    {this.props.t('MyArticle')}
                 </h4><span
-                style={{color: 'gray', marginLeft: '0.5em', fontSize: '0.9em'}}>共发布 <strong>{this.props.articlesByUidResult.articles?this.props.articlesByUidResult.articles.length:0}</strong> 篇文章</span>
+                style={{color: 'gray', marginLeft: '0.5em', fontSize: '0.9em'}}> {this.props.t('Total')} <strong>{this.props.articlesByUidResult.articles?this.props.articlesByUidResult.articles.length:0}</strong>  {this.props.t('Article')}</span>
                 <Container style={{padding: 0, marginTop: '1em'}}>
                     <Container style={{padding: 0}}>
                         {this.renderMyArticlesList()}
@@ -28,7 +30,7 @@ class MyArticlesPanel extends Component {
 
     renderMyArticlesList() {
         if (!this.props.articlesByUidResult.articles) {
-            return <Row><Col><span style={{color: '#ccc'}}>&nbsp;&nbsp;无</span></Col></Row>
+            return <Row><Col><span style={{color: '#ccc'}}>&nbsp;&nbsp;{this.props.t('None')}</span></Col></Row>
         }
 
         return (<Fragment>{
@@ -86,4 +88,4 @@ const mapDispatchToProps = dispatch => bindActionCreators({
 }, dispatch);
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(MyArticlesPanel);
+export default withTranslation()(connect(mapStateToProps, mapDispatchToProps)(MyArticlesPanel));

@@ -9,6 +9,8 @@ import {connect} from "react-redux";
 import ArticleList from "../../components/articlelists/ArticleList";
 import HotPanel from "../../components/hotpanel/HotPanel";
 import Subscribe from "../../components/subscribe/Subscribe";
+import {withTranslation} from 'react-i18next';
+
 
 class SearchResult extends Component {
     render() {
@@ -23,11 +25,15 @@ class SearchResult extends Component {
                 <Row style={{padding: 0}}>
                     <Col md={8} style={{padding: 0}}>
                         <Container className="Left-Card">
-                            <h3>{this.renderBestIcon()}搜索结果</h3>
+                            <h3>{this.renderBestIcon()}{this.props.t('SearchResults')}</h3>
                             <Row>
                                 <Col>
-                                    <p style={{color: '#888'}}>&nbsp;收录了关于 <div style={{display: 'inline-block'}} dangerouslySetInnerHTML={html}/> 的 {this.props.articlesByKeyResult.articles ? this.props.articlesByKeyResult.articles.length : 0} 篇内容
-                                    </p>
+                                {
+                                    this.props.i18n.language === 'zh' ? 
+                                    <p style={{color: '#888'}}>&nbsp;{this.props.t('Recorded')}{this.props.t('About')} <strong><div style={{display: 'inline-block'}} dangerouslySetInnerHTML={html}/></strong> {this.props.t('ChineseDe')} <strong>{this.props.articlesByKeyResult.articles ? this.props.articlesByKeyResult.articles.length : 0}</strong> {this.props.t('ChinesePian')}{this.props.t('Articles')}</p>
+                                    :
+                                    <p style={{color: '#888'}}>&nbsp;{this.props.t('WeGotYou')} <strong>{this.props.articlesByKeyResult.articles ? this.props.articlesByKeyResult.articles.length : 0}</strong> {this.props.t('Articles')} {this.props.t('About')} <strong><div style={{display: 'inline-block'}} dangerouslySetInnerHTML={html}/></strong></p>
+                                }
                                 </Col>
                             </Row>
                         </Container>
@@ -38,7 +44,7 @@ class SearchResult extends Component {
                             boxShadow: '0 1px 3px rgba(27,95,160,.1)',
                             textAlign: 'left'
                         }}>
-                            <h4>全部</h4>
+                            <h4>{this.props.t('Tocal')}</h4>
 
                             <ArticleList articles={this.props.articlesByKeyResult.articles}/>
 
@@ -92,4 +98,4 @@ const mapDispatchToProps = dispatch => bindActionCreators({
 }, dispatch);
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(SearchResult);
+export default withTranslation()(connect(mapStateToProps, mapDispatchToProps)(SearchResult));

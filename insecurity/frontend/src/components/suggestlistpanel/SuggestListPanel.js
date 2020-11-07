@@ -14,7 +14,7 @@ class SuggestListPanel extends Component {
             <Container style={{background: '#fff', padding: '1em', boxShadow: '0 1px 3px rgba(27,95,160,.1)'}}>
                 <h4>
                     {this.renderHotIcon()}
-                    推荐阅读
+                    {this.props.t('RecommendToRead')}
                 </h4>
                 <Container style={{padding: 0,marginTop:'1em'}}>
                     <Container style={{padding: 0}}>
@@ -27,7 +27,7 @@ class SuggestListPanel extends Component {
 
     renderSuggestList() {
         if (!this.props.articlesByTopicResult) {
-            return <Row><Col><span style={{color: '#ccc'}}>&nbsp;&nbsp;无</span></Col></Row>
+            return <Row><Col><span style={{color: '#ccc'}}>&nbsp;&nbsp;{this.props.t('None')}</span></Col></Row>
         }
 
         return (<Fragment>{
