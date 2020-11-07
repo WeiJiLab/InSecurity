@@ -7,6 +7,8 @@ import {bindActionCreators} from "redux";
 import {articlesByTopic} from "../../actions/actions";
 import {connect} from "react-redux";
 import Col from "react-bootstrap/Col";
+import {withTranslation} from 'react-i18next';
+
 
 class SuggestListPanel extends Component {
     render() {
@@ -85,4 +87,4 @@ const mapDispatchToProps = dispatch => bindActionCreators({
 }, dispatch);
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(SuggestListPanel);
+export default withTranslation()(connect(mapStateToProps, mapDispatchToProps)(SuggestListPanel));

@@ -10,6 +10,8 @@ import HotPanel from "../../components/hotpanel/HotPanel";
 import Subscribe from "../../components/subscribe/Subscribe";
 import {Link} from "react-router-dom";
 import SuggestListPanel from "../../components/suggestlistpanel/SuggestListPanel";
+import {withTranslation} from 'react-i18next';
+
 
 class ArticleDetail extends Component {
     render() {
@@ -135,4 +137,4 @@ const mapDispatchToProps = dispatch => bindActionCreators({
 }, dispatch);
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(ArticleDetail);
+export default withTranslation()(connect(mapStateToProps, mapDispatchToProps)(ArticleDetail));
