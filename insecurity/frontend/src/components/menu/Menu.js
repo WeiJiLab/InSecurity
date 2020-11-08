@@ -123,7 +123,7 @@ class Menu extends Component {
                             bold = 'bold';
                         }
                         return <Nav.Link style={{color: "#000", paddingRight: '1em'}}>
-                            <Link style={{color: color, fontWeight: bold}} to={path}>{item}</Link>
+                            <Link style={{color: color, fontWeight: bold, whiteSpace:'nowrap'}} to={path}>{item}</Link>
                         </Nav.Link>
                     })
                 }
