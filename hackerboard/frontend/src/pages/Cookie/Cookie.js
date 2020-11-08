@@ -5,8 +5,6 @@ import {Col, Row} from "react-bootstrap";
 import {bindActionCreators} from "redux";
 import {getCookies} from "../../actions/actions";
 import {connect} from "react-redux";
-import {withTranslation} from 'react-i18next';
-
 
 class Cookie extends Component {
 
@@ -29,8 +27,8 @@ class Cookie extends Component {
                             <Container style={{padding: '3em',width:"100%"}}>
                                 <Row style={{width:"100%"}}>
                                     <Col md={1} style={{color: 'green', border: "none"}}>ID</Col>
-                                    <Col md={5} style={{color: 'green', border: "none"}}>{this.props.t('Complete')} COOKIE</Col>
-                                    <Col md={5} style={{color: 'red', border: "none"}}>{this.props.t('SensitiveInfo')}</Col>
+                                    <Col md={5} style={{color: 'green', border: "none"}}>完整COOKIE</Col>
+                                    <Col md={5} style={{color: 'red', border: "none"}}>敏感信息</Col>
                                 </Row>
                                 {
                                     this.props.cookieHackerResult.cookies ? this.props.cookieHackerResult.cookies.map((item, index) => {
@@ -63,4 +61,4 @@ const mapDispatchToProps = dispatch => bindActionCreators({
     getCookies,
 }, dispatch);
 
-export default withTranslation()(connect(mapStateToProps, mapDispatchToProps)(Cookie));
+export default connect(mapStateToProps, mapDispatchToProps)(Cookie);
