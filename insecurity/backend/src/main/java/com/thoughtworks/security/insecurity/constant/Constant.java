@@ -17,13 +17,13 @@ public class Constant {
 
     static {
         Map<String, String> err = new HashMap<>();
-        err.put(EMAIL_OR_PASSWORD_NOT_CORRECT_CODE, "用户名或者密码不正确");
-        err.put(REGISTER_FAILED, "用户注册失败");
-        err.put(EMAIL_ALREADY_REGISTERED, "该邮箱已经注册过");
-        err.put(USERNAME_ALREADY_REGISTERED, "该用户名已经被别人用了");
-        err.put(USER_NOT_FOUND, "该用户不存在");
-        err.put(USER_HAS_DELETED, "该用户被禁止登录");
-        err.put(ARTICLE_NOT_FOUND, "文章不存在");
+        err.put(EMAIL_OR_PASSWORD_NOT_CORRECT_CODE, "Username or Password is incorrect");
+        err.put(REGISTER_FAILED, "Registration has failed");
+        err.put(EMAIL_ALREADY_REGISTERED, "This email has been used");
+        err.put(USERNAME_ALREADY_REGISTERED, "This username has been used");
+        err.put(USER_NOT_FOUND, "No such user");
+        err.put(USER_HAS_DELETED, "The user is not allowed");
+        err.put(ARTICLE_NOT_FOUND, "This article does not exist");
 
         ERRORS = err;
     }
