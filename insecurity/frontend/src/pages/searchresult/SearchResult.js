@@ -44,7 +44,7 @@ class SearchResult extends Component {
                             boxShadow: '0 1px 3px rgba(27,95,160,.1)',
                             textAlign: 'left'
                         }}>
-                            <h4>{this.props.t('Tocal')}</h4>
+                            <h4>{this.props.t('Total')}</h4>
 
                             <ArticleList articles={this.props.articlesByKeyResult.articles}/>
 

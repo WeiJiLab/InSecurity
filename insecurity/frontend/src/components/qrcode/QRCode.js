@@ -13,13 +13,11 @@ class QRCode extends Component {
     render() {
         return (
             <Container style={{background: '#fff', padding: '1em', boxShadow: '0 1px 3px rgba(27,95,160,.1)'}}>
-                {/* <Row>
+                <Row>
                     <Col md={5}> <Image id={"wechat-img"} style={{width:'100%'}} src={QrCode}/></Col>
                     <Col md={7} style={{paddingTop:'1.5em'}}>
-                        <Row><h5>关注我们的公众号</h5></Row>
-                        <Row><p>致力于传播信息安全</p></Row>
                     </Col>
-                </Row> */}
+                </Row>
             </Container>
         );
     }
