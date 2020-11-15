@@ -21,6 +21,4 @@ services:
       MYSQL_DATABASE: insecurity
       MYSQL_ROOT_PASSWORD: root
     restart: always
-    ports:
-      - "3306:3306"
     command: ['mysqld', '--character-set-server=utf8mb4', '--collation-server=utf8mb4_unicode_ci']
