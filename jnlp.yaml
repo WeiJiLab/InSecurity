@@ -1,0 +1,25 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    app: jnlp-slave
+  name: jnlp-slave
+spec:
+  serviceAccount: jenkins-agent
+  containers:
+  - name: kaniko-crane
+    image: weijilab/kaniko-crane
+    tty: true
+    command:
+    - cat
+  - name: trivy
+    image: aquasec/trivy
+    entrypoint: ""
+    tty: true
+    command:
+    - cat
+  - name: java
+    image: adoptopenjdk/openjdk11:alpine
+    tty: true
+    command:
+    - cat
