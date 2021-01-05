@@ -14,18 +14,6 @@ pipeline {
     }
 
     stages {
-        stage('Sonar Scanning') {
-            steps {
-                container('java') {
-                    withSonarQubeEnv(installationName: 'chinasec-sonarqube', credentialsId: 'sonar-token') {
-                        sh '''
-                        cd insecurity/backend
-                        ./gradlew sonarqube
-                        '''
-                    }
-                }
-            }
-        }
 
         stage('Build Docker Image') {
             steps {
