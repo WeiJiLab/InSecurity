@@ -30,7 +30,7 @@ services:
     restart: on-failure
 
   db:
-    image: mysql:5.7
+    image: mariadb:10.2
     environment:
       MYSQL_DATABASE: insecurity
       MYSQL_ROOT_PASSWORD: root
