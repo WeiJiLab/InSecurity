@@ -1,4 +1,4 @@
-FROM adoptopenjdk/openjdk11:alpine AS build
+FROM openjdk:11-slim AS build
 
 ENV APP_HOME=/app/
 WORKDIR $APP_HOME
@@ -13,7 +13,7 @@ COPY ./insecurity/backend ./
 RUN ./gradlew build -x test
 
 
-FROM adoptopenjdk/openjdk11:alpine
+FROM openjdk:11-slim
 ENV APP_HOME=/app/
 WORKDIR $APP_HOME
 
